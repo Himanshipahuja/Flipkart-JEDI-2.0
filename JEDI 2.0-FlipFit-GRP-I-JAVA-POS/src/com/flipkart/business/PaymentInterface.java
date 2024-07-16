@@ -1,5 +1,5 @@
 package com.flipkart.business;
 
-public interface PaymentBusiness {
+public interface PaymentInterface {
     void getPaymentDetails();
 }
