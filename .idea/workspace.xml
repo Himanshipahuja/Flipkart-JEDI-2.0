@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81da75dc-5f25-458d-a362-4a9f532c5c2f" name="Changes" comment="Added User and Customer classes" />
+    <list default="true" id="81da75dc-5f25-458d-a362-4a9f532c5c2f" name="Changes" comment="Added User and Customer classes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/JEDI 2.0-FlipFit-GRP-I-JAVA-POS/src/com/flipkart/bean/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/JEDI 2.0-FlipFit-GRP-I-JAVA-POS/src/com/flipkart/bean/Customer.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,7 +61,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1721125583900</updated>
-      <workItem from="1721125584916" duration="1923000" />
+      <workItem from="1721125584916" duration="2233000" />
     </task>
     <servers />
   </component>
