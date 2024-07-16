@@ -2,27 +2,31 @@ package com.flipkart.bean;
 
 public class Payment {
 	
-	private String paymentid;
-	private String bookingid;
-	private int amountPaid;
-	
-	public String getPaymentid() {
-		return paymentid;
+	private String paymentId;
+	private String bookingId;
+	private float amountPaid;
+
+	public String getPaymentId() {
+		return paymentId;
 	}
-	public void setPaymentid(String paymentid) {
-		this.paymentid = paymentid;
+
+	public void setPaymentId(String paymentId) {
+		this.paymentId = paymentId;
 	}
-	public String getBookingid() {
-		return bookingid;
+
+	public String getBookingId() {
+		return bookingId;
 	}
-	public void setBookingid(String bookingid) {
-		this.bookingid = bookingid;
+
+	public void setBookingId(String bookingId) {
+		this.bookingId = bookingId;
 	}
-	public int getAmountPaid() {
+
+	public float getAmountPaid() {
 		return amountPaid;
 	}
+
 	public void setAmountPaid(int amountPaid) {
 		this.amountPaid = amountPaid;
 	}
-
 }
