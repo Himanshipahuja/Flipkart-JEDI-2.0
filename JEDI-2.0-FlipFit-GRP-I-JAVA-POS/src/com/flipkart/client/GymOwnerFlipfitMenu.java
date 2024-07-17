@@ -2,7 +2,7 @@ package com.flipkart.client;
 
 import java.util.Scanner;
 
-public class GymOwnerClient {
+public class GymOwnerFlipfitMenu {
 
     public static Scanner scanner = new Scanner(System.in); // has to be imported from main client
 

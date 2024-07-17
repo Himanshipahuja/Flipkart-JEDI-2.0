@@ -6,7 +6,7 @@ import com.flipkart.exceptions.LoginFailedException;
 import java.util.Objects;
 
 
-public class AdminClient {
+public class AdminFlipfitMenu {
      Admin admin = new Admin();
 
     public boolean isUserValid(String userName, String password) {
@@ -18,7 +18,7 @@ public class AdminClient {
     public boolean adminLogin(String userName, String password) {
         if (isUserValid(userName, password)) {
             System.out.println("Successfully logged in as admin");
-            //adminClientMainPage();
+
         }
         else{
             new LoginFailedException("Admin Login Failed");

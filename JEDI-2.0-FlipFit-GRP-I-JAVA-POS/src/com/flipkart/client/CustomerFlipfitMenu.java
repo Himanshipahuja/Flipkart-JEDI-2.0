@@ -3,7 +3,7 @@ package com.flipkart.client;
 
 import java.util.Scanner;
 
-public class CustomerClient {
+public class CustomerFlipfitMenu {
     public static Scanner scanner = new Scanner(System.in);
 
     public boolean customerLogin(String userName, String password) {
