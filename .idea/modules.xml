@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/Flipkart-JEDI-2.0.iml" filepath="$PROJECT_DIR$/.idea/Flipkart-JEDI-2.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JEDI 2.0-FlipFit-GRP-I-JAVA-POS/JEDI 2.0-FlipFit-GRP-I-JAVA-POS.iml" filepath="$PROJECT_DIR$/JEDI 2.0-FlipFit-GRP-I-JAVA-POS/JEDI 2.0-FlipFit-GRP-I-JAVA-POS.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JEDI-2.0-FlipFit-GRP-I-JAVA-POS/JEDI-2.0-FlipFit-GRP-I-JAVA-POS.iml" filepath="$PROJECT_DIR$/JEDI-2.0-FlipFit-GRP-I-JAVA-POS/JEDI-2.0-FlipFit-GRP-I-JAVA-POS.iml" />
+    </modules>
+  </component>
+</project>
