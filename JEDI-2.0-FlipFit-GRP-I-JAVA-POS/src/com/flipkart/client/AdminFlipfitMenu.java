@@ -1,6 +1,8 @@
 package com.flipkart.client;
 
 import com.flipkart.bean.Admin;
+import com.flipkart.business.AdminServiceImpl;
+import com.flipkart.business.AdminServiceInterface;
 import com.flipkart.exceptions.LoginFailedException;
 
 import java.time.LocalDateTime;
@@ -10,36 +12,19 @@ import java.util.Scanner;
 
 
 public class AdminFlipfitMenu {
-    Admin admin = new Admin();
+
+    AdminServiceImpl adminService = new AdminServiceImpl();
 
     public static Scanner scanner = new Scanner(System.in);
 
-    public boolean isUserValid(String userName, String password) {
-        if (userName.equals(admin.getUserName()) && password.equals(admin.getPassword())) {
-            return true;
-        }
-        return false;
-    }
-
-    public boolean adminLogin(String userName, String password) {
-        if (isUserValid(userName, password)) {
-            System.out.println("Successfully logged in as admin");
+    public void adminLogin(String userName, String password) {
+        if(adminService.adminLogin(userName, password)){
             adminClientMainPage();
-
-        } else {
-            new LoginFailedException("Admin Login Failed");
-            return false;
         }
-        return true;
     }
 
     public void adminChangePassword(String userName, String old_password, String new_password) {
-        if (Objects.equals(old_password, admin.getPassword())) {
-            admin.setPassword(new_password);
-            System.out.println("Successfully changed the password");
-        } else {
-            System.out.println("Entered wrong password");
-        }
+        adminService.adminChangePassword(userName, old_password, new_password);
     }
 
     public void adminClientMainPage() {
