@@ -35,8 +35,10 @@ public class GymOwner extends User {
         this.cardDetails = cardDetails;
     }
 
+    public GymOwner() {
+    }
 
-    public GymOwner(String userId, String userName, String email, String password,String panNumber, boolean isApproved, List<String> gymCentreLists, String cardDetails) {
+    public GymOwner(String userId, String userName, String email, String password, String panNumber, boolean isApproved, List<String> gymCentreLists, String cardDetails) {
         super(userId, userName, email, password, Role.GYMOWNER);
         this.panNumber = panNumber;
         this.isApproved = isApproved;
