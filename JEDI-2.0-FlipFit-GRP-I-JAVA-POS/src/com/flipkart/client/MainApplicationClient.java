@@ -4,8 +4,7 @@ import com.flipkart.bean.Role;
 
 import java.util.Scanner;
 
-import static com.flipkart.constants.Constants.INVALID_CHOICE_ERROR;
-import static com.flipkart.constants.Constants.WELCOME_MESSAGE;
+import static com.flipkart.constants.Constants.*;
 
 public class MainApplicationClient {
 
@@ -32,6 +31,9 @@ public class MainApplicationClient {
                 return;
             case 4:
                 change_password();
+                return;
+            case 5:
+                System.out.println(EXIT_MESSAGE);
                 return;
             default:
                 System.out.println(INVALID_CHOICE_ERROR);

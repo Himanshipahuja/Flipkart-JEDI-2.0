@@ -1,15 +1,6 @@
 package com.flipkart.client;
 
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 import java.util.Scanner;
-
-import static com.flipkart.constants.ColourConstants.RESET_COLOR;
-import static com.flipkart.constants.ColourConstants.YELLOW_COLOR;
-import static com.flipkart.constants.ErrorConstants.INVALID_CHOICE_ERROR;
-import static com.flipkart.constants.PromptConstants.PREVIOUS_MENU_MESSAGE;
 
 public class GymOwnerClient {
 
