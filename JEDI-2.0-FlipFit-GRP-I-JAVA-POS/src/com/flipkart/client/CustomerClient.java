@@ -29,4 +29,8 @@ public class CustomerClient {
 
     }
 
+    public void customerChangePassword(String userName,String old_password,String new_password){
+        System.out.println("Successfully changed the password");
+    }
+
 }
