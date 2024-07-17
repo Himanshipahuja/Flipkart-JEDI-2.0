@@ -7,8 +7,8 @@ public class GymOwnerFlipfitMenu {
     public static Scanner scanner = new Scanner(System.in); // has to be imported from main client
 
     public boolean gymOwnerLogin(String userName, String password) {
-        gymOwnerClientMainPage();
         System.out.println("Successfully logged in as Gym Owner");
+        gymOwnerClientMainPage();
         return true;
     }
 
@@ -42,5 +42,33 @@ public class GymOwnerFlipfitMenu {
 
     public void gymOwnerClientMainPage() {
         System.out.println("Welcome to gym owner main page!!");
+        while(true) {
+            System.out.println("" +
+                    "0. View all my Gym Centres\n" +
+                    "1. Sending Gym Owner Approval Request\n" +
+                    "2. Add a new Gym Center\n" +
+                    "3. Send a Gym Centre Approval Request to Admin\n" +
+                    "4. Add Slots to a Gym Centre\n" +
+                    "5. Go Back to Previous Menu"
+            );
+            int choice = scanner.nextInt();
+            switch(choice){
+                case 0:
+                    System.out.println("Viewing all gym centers");
+                case 1:
+                    System.out.println("Gym owner request sent");
+                case 2:
+                    System.out.println("New Gym center added");
+                case 3:
+                    System.out.println("Gym Centre Approval Request sent to Admin");
+                case 4:
+                    System.out.println("Slots added in the Gym centre");
+                case 5:
+                    System.out.println("Inside previous menu");
+                default:
+                    System.out.println("Enter valid choice");
+            }
+        }
+
     }
 }
