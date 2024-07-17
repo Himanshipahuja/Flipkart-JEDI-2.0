@@ -8,6 +8,7 @@ public class CustomerClient {
 
     public boolean customerLogin(String userName, String password) {
         System.out.println("Successfully logged in as Customer");
+        customerClientMainPage();
         return true;
     }
 
@@ -33,7 +34,12 @@ public class CustomerClient {
         System.out.println("\t email: " + email);
         System.out.println("\t PAN Number: " + phoneNumber);
         System.out.println("\t Card Number: " + cardNumber);
+        customerClientMainPage();
 
+    }
+
+    public void customerClientMainPage() {
+        System.out.println("Welcome to customer main page!!");
     }
 
     public void customerChangePassword(String userName,String old_password,String new_password){

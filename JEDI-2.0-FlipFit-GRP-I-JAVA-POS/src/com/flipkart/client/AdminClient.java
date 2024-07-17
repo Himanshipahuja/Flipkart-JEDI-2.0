@@ -27,6 +27,10 @@ public class AdminClient {
         return true;
     }
 
+    public void adminClientMainPage() {
+        System.out.println("Welcome to admin main page!!");
+    }
+
     public void adminChangePassword(String userName,String old_password,String new_password){
         if(Objects.equals(old_password, admin.getPassword())){
             admin.setPassword(new_password);
