@@ -1,6 +1,6 @@
 package com.flipkart.business;
 
-public interface AdminInterface {
+public interface AdminServiceInterface {
     public void viewGymOwner(String gymOwnerId);
     public void removeGymOwner(String gymOwnerId);
     public boolean approveRequest(String requestId);

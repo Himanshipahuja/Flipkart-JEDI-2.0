@@ -6,7 +6,7 @@ import com.flipkart.bean.Slot;
 import java.sql.Date;
 import java.util.List;
 
-public interface GymOwnerInterface {
+public interface GymOwnerServiceInterface {
     public void login();
 
     public void register();
