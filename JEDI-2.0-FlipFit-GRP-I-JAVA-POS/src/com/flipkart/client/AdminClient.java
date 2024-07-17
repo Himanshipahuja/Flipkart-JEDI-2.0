@@ -30,6 +30,7 @@ public class AdminClient {
     public void adminChangePassword(String userName,String old_password,String new_password){
         if(Objects.equals(old_password, admin.getPassword())){
             admin.setPassword(new_password);
+            System.out.println("Successfully changed the password");
         }
         else{
             System.out.println("Entered wrong password");
