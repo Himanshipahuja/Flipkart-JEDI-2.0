@@ -3,7 +3,11 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$">
+<<<<<<< HEAD
       <sourceFolder url="file://$MODULE_DIR$/JEDI-2.0-FlipFit-GRP-I-JAVA-POS/src" isTestSource="false" />
+=======
+      <sourceFolder url="file://$MODULE_DIR$/JEDI 2.0-FlipFit-GRP-I-JAVA-POS/src" isTestSource="false" />
+>>>>>>> 4f4c519 (CustomerClient)
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
