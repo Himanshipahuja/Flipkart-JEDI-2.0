@@ -2,6 +2,8 @@ package com.flipkart.client;
 
 import java.util.Scanner;
 
+import static com.flipkart.constants.Constants.INVALID_CHOICE_ERROR;
+import static com.flipkart.constants.Constants.PREVIOUS_MENU_MESSAGE;
 public class GymOwnerFlipfitMenu {
 
     public static Scanner scanner = new Scanner(System.in); // has to be imported from main client
@@ -54,30 +56,30 @@ public class GymOwnerFlipfitMenu {
             int choice = scanner.nextInt();
             switch(choice){
                 case 0:
-                    System.out.println("Viewing all gym centers");
+                    System.out.println("Viewing all gym centers\n");
                     break;
 
                 case 1:
-                    System.out.println("Gym owner request sent");
+                    System.out.println("Gym owner request sent\n");
                     break;
 
                 case 2:
-                    System.out.println("New Gym center added");
+                    System.out.println("New Gym center added\n");
                     break;
 
                 case 3:
-                    System.out.println("Gym Centre Approval Request sent to Admin");
+                    System.out.println("Gym Centre Approval Request sent to Admin\n");
                     break;
 
                 case 4:
-                    System.out.println("Slots added in the Gym centre");
+                    System.out.println("Slots added in the Gym centre\n");
                     break;
 
                 case 5:
-                    System.out.println("Inside previous menu");
-                    break;
+                    System.out.println(PREVIOUS_MENU_MESSAGE);
+                    return;
                 default:
-                    System.out.println("Enter valid choice");
+                    System.out.println(INVALID_CHOICE_ERROR);
             }
         }
 
