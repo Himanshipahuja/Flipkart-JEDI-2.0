@@ -55,16 +55,27 @@ public class GymOwnerFlipfitMenu {
             switch(choice){
                 case 0:
                     System.out.println("Viewing all gym centers");
+                    break;
+
                 case 1:
                     System.out.println("Gym owner request sent");
+                    break;
+
                 case 2:
                     System.out.println("New Gym center added");
+                    break;
+
                 case 3:
                     System.out.println("Gym Centre Approval Request sent to Admin");
+                    break;
+
                 case 4:
                     System.out.println("Slots added in the Gym centre");
+                    break;
+
                 case 5:
                     System.out.println("Inside previous menu");
+                    break;
                 default:
                     System.out.println("Enter valid choice");
             }
