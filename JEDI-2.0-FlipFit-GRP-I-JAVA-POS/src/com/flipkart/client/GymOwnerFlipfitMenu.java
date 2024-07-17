@@ -1,5 +1,7 @@
 package com.flipkart.client;
 
+import com.flipkart.business.GymOwnerServiceImpl;
+
 import java.util.Scanner;
 
 import static com.flipkart.constants.Constants.INVALID_CHOICE_ERROR;
@@ -8,38 +10,21 @@ public class GymOwnerFlipfitMenu {
 
     public static Scanner scanner = new Scanner(System.in); // has to be imported from main client
 
+    GymOwnerServiceImpl gymOwnerService = new GymOwnerServiceImpl();
+
     public boolean gymOwnerLogin(String userName, String password) {
-        System.out.println("Successfully logged in as Gym Owner");
+        gymOwnerService.gymOwnerLogin(userName, password);
         gymOwnerClientMainPage();
         return true;
     }
 
     public void register() {
+        gymOwnerService.register();
         gymOwnerClientMainPage();
-        System.out.println("Enter your UserName");
-        String userName = scanner.next();
-
-        System.out.println("Enter your Passkey");
-        String password = scanner.next();
-
-        System.out.println("Enter your Email");
-        String email = scanner.next();
-
-        System.out.println("Enter your PAN Number");
-        String panNumber = scanner.next();
-
-        System.out.println("Enter your Card Number");
-        String cardNumber = scanner.next();
-
-        System.out.println("Registered successfully with: ");
-        System.out.println("\t User Name: " + userName);
-        System.out.println("\t email: " + email);
-        System.out.println("\t PAN Number: " + panNumber);
-        System.out.println("\t Card Number: " + cardNumber);
     }
 
     public void gymOwnerChangePassword(String userName,String old_password,String new_password){
-        System.out.println("Successfully changed the password");
+        gymOwnerService.gymOwnerChangePassword(userName, old_password, new_password);
     }
 
     public void gymOwnerClientMainPage() {

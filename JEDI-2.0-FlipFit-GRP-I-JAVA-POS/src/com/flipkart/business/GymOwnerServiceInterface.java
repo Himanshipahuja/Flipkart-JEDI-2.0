@@ -19,4 +19,7 @@ public interface GymOwnerServiceInterface {
 
     public void requestGymCentreApproval(String gymCentreId);
 
+    public boolean gymOwnerLogin(String userName, String password);
+
+    public void gymOwnerChangePassword(String userName,String old_password,String new_password);
 }
