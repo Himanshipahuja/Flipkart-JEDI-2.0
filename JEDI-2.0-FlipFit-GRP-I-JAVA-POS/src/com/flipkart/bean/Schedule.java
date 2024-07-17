@@ -1,5 +1,7 @@
 package com.flipkart.bean;
 
+import java.util.Date;
+
 public class Schedule {
 
     private String scheduleID;

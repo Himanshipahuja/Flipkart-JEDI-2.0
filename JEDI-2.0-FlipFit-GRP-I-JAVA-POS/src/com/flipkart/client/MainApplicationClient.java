@@ -1,6 +1,6 @@
 package com.flipkart.client;
-import com.flipkart.bean.Role;
 
+import com.flipkart.bean.Role;
 
 import java.util.Scanner;
 
@@ -11,9 +11,9 @@ public class MainApplicationClient {
 
     public static int userId = 0;
     public static Scanner scanner = new Scanner(System.in);
-    private static AdminClient adminClient = new AdminClient();
-    private static CustomerClient customerClient = new CustomerClient();
-    private static GymOwnerClient gymOwnerClient = new GymOwnerClient();
+    private static final AdminClient adminClient = new AdminClient();
+//    private static CustomerClient customerClient = new CustomerClient();
+//    private static GymOwnerClient gymOwnerClient = new GymOwnerClient();
 
 
     private static void mainPage(){
@@ -24,13 +24,13 @@ public class MainApplicationClient {
                 login();
                 break;
             case 2:
-                registration("CUSTOMER");
+                registration(Role.CUSTOMER);
                 break;
             case 3:
-                registration("GYMOWNER");
+                registration(Role.GYMOWNER);
                 return;
             case 4:
-                change_password();
+//                change_password();
                 return;
             default:
                 System.out.println(INVALID_CHOICE_ERROR);
@@ -55,10 +55,10 @@ public class MainApplicationClient {
                     adminClient.adminLogin(userName,password);
                     break;
                 case GYMOWNER:
-                    gymOwnerClient.gymOwnerLogin(userName,password);
+//                    gymOwnerClient.gymOwnerLogin(userName,password);
                     break;
                 case CUSTOMER:
-                    customerClient.customerLogin(userName,password);
+//                    customerClient.customerLogin(userName,password);
                     break;
                 default:
                     System.out.println(INVALID_CHOICE_ERROR);
@@ -69,7 +69,7 @@ public class MainApplicationClient {
         }
     }
 
-    private static void registration(String role){
+    private static void registration(Role role){
         try {
             switch (role){
                 case ADMIN:
@@ -77,10 +77,10 @@ public class MainApplicationClient {
                     mainPage();
                     break;
                 case CUSTOMER:
-                    customerClient.register();
+//                    customerClient.register();
                     break;
                 case GYMOWNER:
-                    gymOwnerClient.register();
+//                    gymOwnerClient.register();
                     break;
                 default:
                     System.out.println(INVALID_CHOICE_ERROR);
@@ -90,37 +90,37 @@ public class MainApplicationClient {
             System.out.println(INVALID_CHOICE_ERROR);
         }
     }
-    private static void change_password(){
-        try {
-            System.out.println("Enter your Role");
-            Role role = Role.valueOf(scanner.next().toUpperCase());
-
-            System.out.println("Enter your UserName");
-            String userName = scanner.next();
-
-            System.out.println("Enter your Old Passkey");
-            String old_password = scanner.next();
-            System.out.println("Enter your New Passkey");
-            String new_password = scanner.next();
-
-            switch (role){
-                case ADMIN:
-                    adminClient.adminChangePassword(userName,old_password,new_password);
-                    break;
-                case GYMOWNER:
-                    gymOwnerClient.gymChangePassword(userName,old_password,new_password);
-                    break;
-                case CUSTOMER:
-                    customerClient.customerChangePassword(userName,old_password,new_password);
-                    break;
-                default:
-                    System.out.println(INVALID_CHOICE_ERROR);
-                    break;
-            }
-        }catch (IllegalArgumentException e){
-            System.out.println(INVALID_CHOICE_ERROR);
-        }
-    }
+//    private static void change_password(){
+//        try {
+//            System.out.println("Enter your Role");
+//            Role role = Role.valueOf(scanner.next().toUpperCase());
+//
+//            System.out.println("Enter your UserName");
+//            String userName = scanner.next();
+//
+//            System.out.println("Enter your Old Passkey");
+//            String old_password = scanner.next();
+//            System.out.println("Enter your New Passkey");
+//            String new_password = scanner.next();
+//
+//            switch (role){
+//                case ADMIN:
+//                    adminClient.adminChangePassword(userName,old_password,new_password);
+//                    break;
+//                case GYMOWNER:
+//                    gymOwnerClient.gymChangePassword(userName,old_password,new_password);
+//                    break;
+//                case CUSTOMER:
+//                    customerClient.customerChangePassword(userName,old_password,new_password);
+//                    break;
+//                default:
+//                    System.out.println(INVALID_CHOICE_ERROR);
+//                    break;
+//            }
+//        }catch (IllegalArgumentException e){
+//            System.out.println(INVALID_CHOICE_ERROR);
+//        }
+//    }
 
     public static void main(String[] args) {
         System.out.println(WELCOME_MESSAGE);
