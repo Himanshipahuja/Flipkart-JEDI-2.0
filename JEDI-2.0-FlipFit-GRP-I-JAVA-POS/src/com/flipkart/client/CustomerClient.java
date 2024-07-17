@@ -5,8 +5,9 @@ import java.util.Scanner;
 
 public class CustomerClient {
     public static Scanner scanner = new Scanner(System.in);
+
     public boolean customerLogin(String userName, String password) {
-        System.out.println("Successfully logged in");
+        System.out.println("Successfully logged in as Customer");
         return true;
     }
 
@@ -25,7 +26,13 @@ public class CustomerClient {
 
         System.out.println("Enter your Card Number");
         String cardNumber = scanner.next();
-        System.out.println("Successfully REGISTERED");
+
+        System.out.println("Successfully REGISTERED as Customer");
+
+        System.out.println("\t User Name: " + userName);
+        System.out.println("\t email: " + email);
+        System.out.println("\t PAN Number: " + phoneNumber);
+        System.out.println("\t Card Number: " + cardNumber);
 
     }
 

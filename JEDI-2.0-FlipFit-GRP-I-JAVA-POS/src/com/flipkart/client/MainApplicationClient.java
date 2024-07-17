@@ -12,6 +12,7 @@ public class MainApplicationClient {
     public static int userId = 0;
     public static Scanner scanner = new Scanner(System.in);
     private static final AdminClient adminClient = new AdminClient();
+
     private static final CustomerClient customerClient = new CustomerClient();
     private static final GymOwnerClient gymOwnerClient = new GymOwnerClient();
 
@@ -81,6 +82,7 @@ public class MainApplicationClient {
                     break;
                 case GYMOWNER:
                     gymOwnerClient.register();
+
                     break;
                 default:
                     System.out.println(INVALID_CHOICE_ERROR);

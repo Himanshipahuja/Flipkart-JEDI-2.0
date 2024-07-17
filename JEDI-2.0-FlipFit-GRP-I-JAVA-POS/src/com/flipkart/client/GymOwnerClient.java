@@ -17,7 +17,7 @@ public class GymOwnerClient {
 
     public boolean gymOwnerLogin(String userName, String password) {
         gymOwnerClientMainPage();
-        System.out.println("Successfully logged in");
+        System.out.println("Successfully logged in as Gym Owner");
         return true;
     }
 
