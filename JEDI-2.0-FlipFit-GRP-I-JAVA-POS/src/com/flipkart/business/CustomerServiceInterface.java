@@ -13,6 +13,7 @@ public interface CustomerServiceInterface {
     boolean bookSlot(String userID,Date date, String slotId,String centreId);
     void cancelBooking(String bookingID);
     void registerCustomer(String userName, String password, String email, String phoneNumber, String cardNumber);
-
-
+    public boolean customerLogin(String userName, String password);
+    public void register();
+    public void customerChangePassword(String userName,String old_password,String new_password);
 }

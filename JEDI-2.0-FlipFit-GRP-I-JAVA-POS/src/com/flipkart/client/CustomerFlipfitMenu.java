@@ -1,6 +1,8 @@
 package com.flipkart.client;
 
 
+import com.flipkart.business.CustomerServiceImpl;
+
 import java.time.LocalDateTime;
 import java.util.Scanner;
 
@@ -11,36 +13,20 @@ import static com.flipkart.constants.Constants.PREVIOUS_MENU_MESSAGE;
 public class CustomerFlipfitMenu {
     public static Scanner scanner = new Scanner(System.in);
 
-    public boolean customerLogin(String userName, String password) {
-        System.out.println("Successfully logged in as Customer");
-        customerClientMainPage();
-        return true;
+    CustomerServiceImpl customerService = new CustomerServiceImpl();
+
+    public void customerLogin(String userName, String password) {
+        if(customerService.customerLogin(userName, password)) {
+            customerClientMainPage();
+        }
+        else{
+            System.out.println("Login failed, sorry bro");
+        }
     }
 
     public void register() {
-        System.out.println("Enter your UserName");
-        String userName = scanner.next();
-
-        System.out.println("Enter your Passkey");
-        String password = scanner.next();
-
-        System.out.println("Enter your Email");
-        String email = scanner.next();
-
-        System.out.println("Enter your Phone Number");
-        String phoneNumber = scanner.next();
-
-        System.out.println("Enter your Card Number");
-        String cardNumber = scanner.next();
-
-        System.out.println("Successfully REGISTERED as Customer");
-
-        System.out.println("\t User Name: " + userName);
-        System.out.println("\t email: " + email);
-        System.out.println("\t PAN Number: " + phoneNumber);
-        System.out.println("\t Card Number: " + cardNumber);
+        customerService.register();
         customerClientMainPage();
-
     }
 
     public void customerClientMainPage() {
@@ -78,7 +64,7 @@ public class CustomerFlipfitMenu {
     }
 
     public void customerChangePassword(String userName,String old_password,String new_password){
-        System.out.println("Successfully changed the password");
+        customerService.customerChangePassword(userName, old_password, new_password);
     }
 
 }

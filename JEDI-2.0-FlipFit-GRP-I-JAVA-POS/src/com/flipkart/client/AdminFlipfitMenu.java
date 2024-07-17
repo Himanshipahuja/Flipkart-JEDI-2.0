@@ -21,6 +21,9 @@ public class AdminFlipfitMenu {
         if(adminService.adminLogin(userName, password)){
             adminClientMainPage();
         }
+        else{
+            System.out.println("Login failed, sorry bro");
+        }
     }
 
     public void adminChangePassword(String userName, String old_password, String new_password) {
