@@ -3,6 +3,7 @@ package com.flipkart.client;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Objects;
 import java.util.Scanner;
 
 import static com.flipkart.constants.ColourConstants.RESET_COLOR;
@@ -44,7 +45,9 @@ public class GymOwnerClient {
         System.out.println("\t Card Number: " + cardNumber);
     }
 
-
+    public void gymOwnerChangePassword(String userName,String old_password,String new_password){
+        System.out.println("Successfully changed the password");
+    }
 
     public void gymOwnerClientMainPage() {
         System.out.println("Welcome to gym owner main page!!");

@@ -3,6 +3,8 @@ package com.flipkart.client;
 import com.flipkart.bean.Admin;
 import com.flipkart.exceptions.LoginFailedException;
 
+import java.util.Objects;
+
 
 public class AdminClient {
      Admin admin = new Admin();
@@ -23,5 +25,14 @@ public class AdminClient {
             return false;
         }
         return true;
+    }
+
+    public void adminChangePassword(String userName,String old_password,String new_password){
+        if(Objects.equals(old_password, admin.getPassword())){
+            admin.setPassword(new_password);
+        }
+        else{
+            System.out.println("Entered wrong password");
+        }
     }
 }
