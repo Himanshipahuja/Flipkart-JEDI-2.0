@@ -4,7 +4,7 @@ public class Payment {
 	
 	private String paymentid;
 	private String bookingid;
-	private int amountPaid;
+	private float amountPaid;
 	
 	public String getPaymentid() {
 		return paymentid;
@@ -18,7 +18,7 @@ public class Payment {
 	public void setBookingid(String bookingid) {
 		this.bookingid = bookingid;
 	}
-	public int getAmountPaid() {
+	public float getAmountPaid() {
 		return amountPaid;
 	}
 	public void setAmountPaid(int amountPaid) {
