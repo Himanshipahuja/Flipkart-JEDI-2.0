@@ -1,14 +1,23 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.GymCentre;
+import com.flipkart.bean.GymOwner;
+import com.flipkart.bean.Role;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GymCenterDAO implements GymCenterInterfaceDAO {
+    private List<GymCentre> GymCentersList = new ArrayList<>();
+//    public List<GymCentre> getGymCentersList(){
+//        return GymCentersList;
+//    }
+    public void setGymCentersList(List<GymCentre> GymCentersList){
+        this.GymCentersList = GymCentersList;
 
+    }
     public List<GymCentre> getGymCentersList() {
-        List<GymCentre> gymCentreList = new ArrayList<>();
+//        List<GymCentre> gymCentreList = new ArrayList<>();
 
         GymCentre centre1 = new GymCentre();
         centre1.setCentreId("C001");
@@ -19,7 +28,7 @@ public class GymCenterDAO implements GymCenterInterfaceDAO {
         centre1.setCapacity(50);
         centre1.setApproved(true);
         centre1.setAmountPerSlot(500);
-        gymCentreList.add(centre1);
+        GymCentersList.add(centre1);
 
         GymCentre centre2 = new GymCentre();
         centre2.setCentreId("C002");
@@ -30,7 +39,7 @@ public class GymCenterDAO implements GymCenterInterfaceDAO {
         centre2.setCapacity(100);
         centre2.setApproved(true);
         centre2.setAmountPerSlot(700);
-        gymCentreList.add(centre2);
+        GymCentersList.add(centre2);
 
         GymCentre centre3 = new GymCentre();
         centre3.setCentreId("C003");
@@ -41,7 +50,7 @@ public class GymCenterDAO implements GymCenterInterfaceDAO {
         centre3.setCapacity(75);
         centre3.setApproved(false);
         centre3.setAmountPerSlot(600);
-        gymCentreList.add(centre3);
+        GymCentersList.add(centre3);
 
         GymCentre centre4 = new GymCentre();
         centre4.setCentreId("C004");
@@ -52,7 +61,7 @@ public class GymCenterDAO implements GymCenterInterfaceDAO {
         centre4.setCapacity(80);
         centre4.setApproved(true);
         centre4.setAmountPerSlot(550);
-        gymCentreList.add(centre4);
+        GymCentersList.add(centre4);
 
         GymCentre centre5 = new GymCentre();
         centre5.setCentreId("C005");
@@ -63,9 +72,40 @@ public class GymCenterDAO implements GymCenterInterfaceDAO {
         centre5.setCapacity(60);
         centre5.setApproved(false);
         centre5.setAmountPerSlot(400);
-        gymCentreList.add(centre5);
+        GymCentersList.add(centre5);
 
-        return gymCentreList;
+        return GymCentersList;
+    }
+
+    public List<GymCentre> getAllCentresByOwmerId(String gymOwnerId)  {
+        List<GymCentre> gymCentreListofOwner = new ArrayList<>();
+//        System.out.println("@@ "+gymOwnerId);
+
+        List<GymCentre> allGymCentres = getGymCentersList();
+        for(GymCentre gymcentre:allGymCentres ){
+//            System.out.println("****((((**** "+gymcentre.getOwnerId());
+            String id = gymcentre.getOwnerId();
+            if(id.equalsIgnoreCase(gymOwnerId)){
+                gymCentreListofOwner.add(gymcentre);
+            }
+        }
+//        System.out.println("***^^**** "+gymCentreListofOwner.size());
+
+        return gymCentreListofOwner;
+    }
+    public void addGymCentre(String gymId,String userName,String gymCentreName, String gstin, String city,int capacity,boolean isapproved,float price) {
+        GymCentre curr= new GymCentre();
+
+        curr.setApproved(isapproved);
+        curr.setAmountPerSlot(price);
+        curr.setCentreId(gymId);
+        curr.setCity(city);
+        curr.setOwnerId(userName);
+        curr.setGstNo(gstin);
+
+        curr.setCentreName(gymCentreName);
+        curr.setCapacity(capacity);
+        GymCentersList.add(curr);
     }
 
 }

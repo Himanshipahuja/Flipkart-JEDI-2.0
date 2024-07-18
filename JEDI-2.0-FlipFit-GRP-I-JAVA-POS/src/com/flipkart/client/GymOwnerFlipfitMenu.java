@@ -1,22 +1,29 @@
 package com.flipkart.client;
 
-import com.flipkart.business.GymOwnerServiceImpl;
 
+
+import com.flipkart.bean.GymCentre;
+import com.flipkart.business.GymOwnerServiceImpl;
+import com.flipkart.business.GymCenterServiceImpl;
+
+import java.util.List;
 import java.util.Scanner;
 
 import static com.flipkart.constants.Constants.INVALID_CHOICE_ERROR;
 import static com.flipkart.constants.Constants.PREVIOUS_MENU_MESSAGE;
+
 public class GymOwnerFlipfitMenu {
 
     public static Scanner scanner = new Scanner(System.in);
 
     GymOwnerServiceImpl gymOwnerService = new GymOwnerServiceImpl();
+    GymCenterServiceImpl gymCentreService = new GymCenterServiceImpl();
 
     public boolean gymOwnerLogin(String userName, String password) {
         if(gymOwnerService.gymOwnerLogin(userName, password)){
             System.out.println("---------------------------------------------------------------------------");
             System.out.println("Successfully logged in as Gym Owner");
-            gymOwnerClientMainPage();
+            gymOwnerClientMainPage(userName);
         }
         else{
             System.out.println("Invalid credentials");
@@ -25,15 +32,16 @@ public class GymOwnerFlipfitMenu {
     }
 
     public void register() {
-        gymOwnerService.register();
-        gymOwnerClientMainPage();
+            gymOwnerService.register();
+//        gymOwnerClientMainPage(userName);
+//        return userName;
     }
 
     public void gymOwnerChangePassword(String userName,String old_password,String new_password){
         gymOwnerService.gymOwnerChangePassword(userName, old_password, new_password);
     }
 
-    public void gymOwnerClientMainPage() {
+    public void gymOwnerClientMainPage(String userName) {
         System.out.println("Welcome to gym owner main page!!");
         while(true) {
             System.out.println("---------------------------------------------------------------------------");
@@ -49,7 +57,17 @@ public class GymOwnerFlipfitMenu {
             int choice = scanner.nextInt();
             switch(choice){
                 case 0:
-                    System.out.println("Viewing all gym centers\n");
+//                    System.out.println("Gym cetres viewd\n");
+                    List<GymCentre> allGymCentres = gymCentreService.getAllCentresByOwmerId(userName);
+                    System.out.println("--------------------------------------------------------------------");
+                    System.out.printf("| %-10s | %-10s | %-20s | %-15s |\n",
+                            "Centre Name", "Capacity", "City", "Amount per slot");
+                    for(GymCentre gymcenter:allGymCentres ){
+                        System.out.println("--------------------------------------------------------------------");
+                        System.out.printf("| %-10s | %-10s | %-20s | %-15s |\n",
+                                gymcenter.getCentreName(), gymcenter.getCapacity(), gymcenter.getCity(), gymcenter.getAmountPerSlot());
+                    }
+
                     break;
 
                 case 1:
@@ -57,7 +75,30 @@ public class GymOwnerFlipfitMenu {
                     break;
 
                 case 2:
+                    System.out.println("Enter gym centre id: ");
+                    String gymId = scanner.next();
+
+                    System.out.println("Enter Gym Centre name: ");
+                    String gymCentreName = scanner.next();
+
+                    System.out.println("Enter Gym Centre GSTIN: ");
+                    String gstin = scanner.next();
+
+                    System.out.println("Enter Gym Centre city: ");
+                    String city = scanner.next();
+
+                    System.out.println("Enter Gym Centre capacity: ");
+                    int capacity = scanner.nextInt();
+
+                    System.out.println("Enter price: : ");
+                    float price = scanner.nextInt();
+
+
+
+
+                    gymCentreService.addCenter(gymId,userName,gymCentreName,gstin,city,capacity,false,price );
                     System.out.println("New Gym center added\n");
+
                     break;
 
                 case 3:

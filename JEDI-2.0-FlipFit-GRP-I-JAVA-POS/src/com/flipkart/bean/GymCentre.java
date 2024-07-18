@@ -9,7 +9,7 @@ public class GymCentre {
  private String city;
  private int capacity;
  private boolean isApproved;
- private int amountPerSlot;
+ private float amountPerSlot;
 
     public String getCentreId() {
         return centreId;
@@ -67,11 +67,11 @@ public class GymCentre {
         isApproved = approved;
     }
 
-    public int getAmountPerSlot() {
+    public float getAmountPerSlot() {
         return amountPerSlot;
     }
 
-    public void setAmountPerSlot(int amountPerSlot) {
+    public void setAmountPerSlot(float amountPerSlot) {
         this.amountPerSlot = amountPerSlot;
     }
 }

@@ -47,7 +47,6 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
 //        }
 
 
-
     }
 
     @Override
@@ -96,4 +95,5 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
 
 
     }
+
 }
