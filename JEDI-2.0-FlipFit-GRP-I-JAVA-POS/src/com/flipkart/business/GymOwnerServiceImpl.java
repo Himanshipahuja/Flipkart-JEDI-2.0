@@ -83,14 +83,17 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
     public void viewAllGymOwners() {
         List<GymOwner> gymOwners = gymOwnerDAO.getGymOwnerList();
 
+        System.out.println("--------------------------------------------------------------------");
+        System.out.printf("| %-10s | %-10s | %-20s | %-15s |\n",
+                "Username", "Email", "Card Details", "Pan Number");
+
         for (GymOwner gymOwner : gymOwners) {
-            System.out.println("---------------------------------------------------------------------------");
-            System.out.println("Gym owner's Username: " + gymOwner.getUserName());
-            System.out.println("Gym owner's email: " + gymOwner.getEmail());
-            System.out.println("Gym owner's pan number: " + gymOwner.getPanNumber());
-            System.out.println("Card Details " + gymOwner.getCardDetails());
-            System.out.println("---------------------------------------------------------------------------");
+            System.out.println("--------------------------------------------------------------------");
+            System.out.printf("| %-10s | %-10s | %-20s | %-15s |\n",
+                    gymOwner.getUserName(), gymOwner.getEmail(), gymOwner.getCardDetails(), gymOwner.getPanNumber());
         }
+        System.out.println("--------------------------------------------------------------------");
+
 
     }
 }
