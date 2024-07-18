@@ -37,16 +37,19 @@ public class CustomerFlipfitMenu {
         System.out.println("EMAIL: "+  customer.getEmail());
         System.out.println("CONTACT: "+  customer.getCustomerPhone());
         System.out.println("CARD DETAILS: "+  customer.getCardDetails());
-
+        System.out.println("---------------------------------------------------------------------------");
     }
 
     public void customerClientMainPage(String username) {
+        System.out.println("---------------------------------------------------------------------------");
         System.out.println("Welcome to customer main page!!");
         LocalDateTime currentTime = LocalDateTime.now();
-        System.out.println("WELCOME"+" !!\nWhat you what to do\nLogin TIME: "+currentTime);
+        System.out.println("Login TIME: "+currentTime);
+        System.out.println("---------------------------------------------------------------------------");
 
         while(true) {
             System.out.println("1. View Profile \n2. Book a slot in Gym \n3. View Bookings\n4. Cancel Bookings\n5. Go Back to previous menu");
+            System.out.println("---------------------------------------------------------------------------");
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:

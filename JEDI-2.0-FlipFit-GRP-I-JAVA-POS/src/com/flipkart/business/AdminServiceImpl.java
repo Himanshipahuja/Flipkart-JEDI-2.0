@@ -46,8 +46,11 @@ public class AdminServiceImpl implements AdminServiceInterface {
     @Override
     public boolean adminLogin(String userName, String password) {
         if (isUserValid(userName, password)) {
+            System.out.println("---------------------------------------------------------------------------");
             System.out.println("Successfully logged in as admin");
+            System.out.println("---------------------------------------------------------------------------");
         } else {
+            System.out.println("---------------------------------------------------------------------------");
             new LoginFailedException("Admin Login Failed");
             return false;
         }
@@ -68,20 +71,18 @@ public class AdminServiceImpl implements AdminServiceInterface {
     public void viewAllGymCentres(){
         List<GymCentre> gymCentres = gymCenterDAO.getGymCentersList();
 
-//        List<String> gymCenterNames = new ArrayList<>();
-//        gymCentres.forEach(gymCentre -> {gymCenterNames.add(gymCentre.getCentreName());});
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8s | %-10s | %-15s |\n",
-                "Centre ID", "Owner ID", "Centre Name", "GST No", "City", "Capacity", "Approved", "Amount/Slot");
-
-        for (GymCentre gymCentre : gymCentres) {
-            System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
-            System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8d | %-10b | %-15d |\n",
-                    gymCentre.getCentreId(), gymCentre.getOwnerId(), gymCentre.getCentreName(), gymCentre.getGstNo(), gymCentre.getCity(), gymCentre.getCapacity(), gymCentre.isApproved(), gymCentre.getAmountPerSlot());
+        for(int i=0;i<gymCentres.size();i++){
+            System.out.println("---------------------------------------------------------------------------");
+            System.out.println("Gym Centre Id: " + gymCentres.get(i).getCentreId());
+            System.out.println("Gym Owner Id: " + gymCentres.get(i).getOwnerId());
+            System.out.println("Gym Centre Name: " + gymCentres.get(i).getCentreName());
+            System.out.println("GST No: " + gymCentres.get(i).getGstNo());
+            System.out.println("City: " + gymCentres.get(i).getCity());
+            System.out.println("Capacity: " + gymCentres.get(i).getCapacity());
+            System.out.println("Approved: " + gymCentres.get(i).isApproved());
+            System.out.println("Amount per slot: " + gymCentres.get(i).getAmountPerSlot());
+            System.out.println("---------------------------------------------------------------------------");
         }
-        System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
-
-//        System.out.println(gymCenterNames);
 
     }
 }

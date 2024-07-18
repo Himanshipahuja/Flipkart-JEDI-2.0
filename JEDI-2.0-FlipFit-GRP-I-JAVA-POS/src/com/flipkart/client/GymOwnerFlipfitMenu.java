@@ -8,12 +8,13 @@ import static com.flipkart.constants.Constants.INVALID_CHOICE_ERROR;
 import static com.flipkart.constants.Constants.PREVIOUS_MENU_MESSAGE;
 public class GymOwnerFlipfitMenu {
 
-    public static Scanner scanner = new Scanner(System.in); // has to be imported from main client
+    public static Scanner scanner = new Scanner(System.in);
 
     GymOwnerServiceImpl gymOwnerService = new GymOwnerServiceImpl();
 
     public boolean gymOwnerLogin(String userName, String password) {
         if(gymOwnerService.gymOwnerLogin(userName, password)){
+            System.out.println("---------------------------------------------------------------------------");
             System.out.println("Successfully logged in as Gym Owner");
             gymOwnerClientMainPage();
         }
@@ -35,6 +36,7 @@ public class GymOwnerFlipfitMenu {
     public void gymOwnerClientMainPage() {
         System.out.println("Welcome to gym owner main page!!");
         while(true) {
+            System.out.println("---------------------------------------------------------------------------");
             System.out.println("" +
                     "0. View all Gym Centres\n" +
                     "1. Send Gym Owner Approval Request\n" +
@@ -43,6 +45,7 @@ public class GymOwnerFlipfitMenu {
                     "4. Add Slots to Gym Centre\n" +
                     "5. Go Back to Previous Menu"
             );
+            System.out.println("---------------------------------------------------------------------------");
             int choice = scanner.nextInt();
             switch(choice){
                 case 0:

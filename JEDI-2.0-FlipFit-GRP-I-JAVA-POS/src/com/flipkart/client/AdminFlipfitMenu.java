@@ -34,8 +34,11 @@ public class AdminFlipfitMenu {
         String formattedDate = currentTime.format(myFormat);
         System.out.println("WELCOME ADMIN!!\nLogin Time: " + currentTime);
         while (true) {
+            System.out.println("---------------------------------------------------------------------------");
             System.out.println("0. View All Gym Owners\n1. Approve all gym centre requests\n2. Approve gym centre's request by Id\n" +
                     "3. Approve all gym owners requests\n4. Approve gym owner's request by Id\n5. View All Gym Centers\n6. Go Back To Previous Menu");
+            System.out.println("---------------------------------------------------------------------------");
+
             int pendingChoice = scanner.nextInt();
             switch (pendingChoice) {
                 case 0:
