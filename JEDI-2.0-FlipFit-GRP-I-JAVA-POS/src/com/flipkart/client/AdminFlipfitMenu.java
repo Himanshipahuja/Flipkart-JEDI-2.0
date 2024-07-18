@@ -18,7 +18,7 @@ public class AdminFlipfitMenu {
             adminClientMainPage();
         }
         else{
-            System.out.println("Login failed, sorry bro");
+            System.out.println("Login failed!!");
         }
     }
 
@@ -33,7 +33,7 @@ public class AdminFlipfitMenu {
         System.out.println("WELCOME ADMIN!!\nLogin Time: " + currentTime);
         while (true) {
             System.out.println("0. View All Gym Owners\n1. Approve all gym centre requests\n2. Approve gym centre's request by Id\n" +
-                    "3. Approve all gym owners requests\n 4. Approve gym owner's request by Id\n3. Go Back To Previous Menu");
+                    "3. Approve all gym owners requests\n 4. Approve gym owner's request by Id\n5. View All Gym Centers\n6. Go Back To Previous Menu");
             int pendingChoice = scanner.nextInt();
             switch (pendingChoice) {
                 case 0:
@@ -52,6 +52,9 @@ public class AdminFlipfitMenu {
                     System.out.println("Gym Owner request approved");
                     break;
                 case 5:
+                    adminService.viewAllGymCentres();
+                    break;
+                case 6:
                     return;
             }
         }

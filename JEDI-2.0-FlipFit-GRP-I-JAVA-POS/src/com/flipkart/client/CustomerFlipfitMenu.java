@@ -20,7 +20,7 @@ public class CustomerFlipfitMenu {
             customerClientMainPage();
         }
         else{
-            System.out.println("Login failed, sorry bro");
+            System.out.println("Login failed!!");
         }
     }
 

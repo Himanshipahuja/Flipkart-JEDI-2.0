@@ -1,14 +1,19 @@
 package com.flipkart.business;
 
 import com.flipkart.bean.Admin;
+import com.flipkart.bean.GymCentre;
 import com.flipkart.client.AdminFlipfitMenu;
+import com.flipkart.dao.GymCenterDAO;
 import com.flipkart.exceptions.LoginFailedException;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class AdminServiceImpl implements AdminServiceInterface {
 
     Admin admin = new Admin();
+    GymCenterDAO gymCenterDAO = new GymCenterDAO();
 
     @Override
     public void viewGymOwner(String gymOwnerId) {
@@ -57,5 +62,14 @@ public class AdminServiceImpl implements AdminServiceInterface {
         } else {
             System.out.println("Entered wrong password");
         }
+    }
+
+    @Override
+    public void viewAllGymCentres(){
+        List<GymCentre> gymCentres = gymCenterDAO.getGymCentersList();
+        List<String> gymCenterNames = new ArrayList<>();
+        gymCentres.forEach(gymCentre -> {gymCenterNames.add(gymCentre.getCentreName());});
+        System.out.println(gymCenterNames);
+
     }
 }
