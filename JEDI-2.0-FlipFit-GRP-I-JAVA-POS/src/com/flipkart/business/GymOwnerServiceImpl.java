@@ -72,10 +72,7 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
 
     @Override
     public boolean gymOwnerLogin(String userName, String password) {
-        if(gymOwnerDAO.loginGymOwner(userName,password)){
-            return true;
-        }
-        return false;
+        return gymOwnerDAO.loginGymOwner(userName, password);
     }
     @Override
     public void gymOwnerChangePassword(String userName, String old_password, String new_password) {

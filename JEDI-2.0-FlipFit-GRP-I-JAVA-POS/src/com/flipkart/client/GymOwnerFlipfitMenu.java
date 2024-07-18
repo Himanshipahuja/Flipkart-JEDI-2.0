@@ -15,13 +15,11 @@ public class GymOwnerFlipfitMenu {
     public boolean gymOwnerLogin(String userName, String password) {
         if(gymOwnerService.gymOwnerLogin(userName, password)){
             System.out.println("Successfully logged in as Gym Owner");
-
+            gymOwnerClientMainPage();
         }
         else{
             System.out.println("Invalid credentials");
-
         }
-        gymOwnerClientMainPage();
         return true;
     }
 

@@ -39,7 +39,6 @@ public class GymOwnerDao implements GymOwnerInterfaceDao {
             if(gymowner.getUserName().equals(username) && gymowner.getPassword().equals(password)){
                return true;
             }
-
         }
         return false;
     }
