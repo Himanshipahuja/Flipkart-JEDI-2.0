@@ -36,15 +36,15 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
         String cardNumber = scanner.next();
 
         gymOwnerDAO.registerGymOwner(userName,password,email,panNumber,cardNumber);
-        List<GymOwner>gymOwnerList=gymOwnerDAO.getGymOwnerList();
-        System.out.println("Registered successfully with: ");
+//        List<GymOwner>gymOwnerList=gymOwnerDAO.getGymOwnerList();
+        System.out.println("Registered successfully!! ");
 
-        for(GymOwner gymowner:gymOwnerList){
-            System.out.println("\t User Name: " + gymowner.getUserName());
-            System.out.println("\t email: " + gymowner.getEmail());
-            System.out.println("\t PAN Number: " +  gymowner.getPanNumber());
-            System.out.println("\t Card Number: " +  gymowner.getCardDetails());
-        }
+//        for(GymOwner gymowner:gymOwnerList){
+//            System.out.println("\t User Name: " + gymowner.getUserName());
+//            System.out.println("\t email: " + gymowner.getEmail());
+//            System.out.println("\t PAN Number: " +  gymowner.getPanNumber());
+//            System.out.println("\t Card Number: " +  gymowner.getCardDetails());
+//        }
 
 
 
