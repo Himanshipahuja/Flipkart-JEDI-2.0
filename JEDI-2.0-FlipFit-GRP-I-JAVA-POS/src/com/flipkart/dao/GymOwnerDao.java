@@ -33,6 +33,16 @@ public class GymOwnerDao implements GymOwnerInterfaceDao {
         gymOwnerList.add(curr);
 
     }
+    public boolean loginGymOwner(String username,String password){
+        List<GymOwner>currGymOwner = getGymOwnerList();
+        for(GymOwner gymowner:currGymOwner){
+            if(gymowner.getUserName().equals(username) && gymowner.getPassword().equals(password)){
+               return true;
+            }
+
+        }
+        return false;
+    }
     public List<GymOwner> getPendingGymOwnerList(){
         List<GymOwner>pendingGymOwner = new ArrayList<>();
 

@@ -72,6 +72,7 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
 
     @Override
     public boolean gymOwnerLogin(String userName, String password) {
+        gymOwnerDAO.loginGymOwner(userName,password);
         System.out.println("Successfully logged in as Gym Owner");
         return true;
     }
