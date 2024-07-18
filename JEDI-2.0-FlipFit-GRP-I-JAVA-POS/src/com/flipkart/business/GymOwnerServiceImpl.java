@@ -78,4 +78,19 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
     public void gymOwnerChangePassword(String userName, String old_password, String new_password) {
         System.out.println("Successfully changed the password");
     }
+
+    @Override
+    public void viewAllGymOwners() {
+        List<GymOwner> gymOwners = gymOwnerDAO.getGymOwnerList();
+
+        for (GymOwner gymOwner : gymOwners) {
+            System.out.println("---------------------------------------------------------------------------");
+            System.out.println("Gym owner's Username: " + gymOwner.getUserName());
+            System.out.println("Gym owner's email: " + gymOwner.getEmail());
+            System.out.println("Gym owner's pan number: " + gymOwner.getPanNumber());
+            System.out.println("Card Details " + gymOwner.getCardDetails());
+            System.out.println("---------------------------------------------------------------------------");
+        }
+
+    }
 }

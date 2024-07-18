@@ -1,6 +1,7 @@
 package com.flipkart.client;
 
 import com.flipkart.business.AdminServiceImpl;
+import com.flipkart.business.GymOwnerServiceImpl;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -10,6 +11,7 @@ import java.util.Scanner;
 public class AdminFlipfitMenu {
 
     AdminServiceImpl adminService = new AdminServiceImpl();
+    GymOwnerServiceImpl gymOwnerService = new GymOwnerServiceImpl();
 
     public static Scanner scanner = new Scanner(System.in);
 
@@ -37,6 +39,7 @@ public class AdminFlipfitMenu {
             int pendingChoice = scanner.nextInt();
             switch (pendingChoice) {
                 case 0:
+                    gymOwnerService.viewAllGymOwners();
                     System.out.println("Viewing All Gym Owners");
                     break;
                 case 1:

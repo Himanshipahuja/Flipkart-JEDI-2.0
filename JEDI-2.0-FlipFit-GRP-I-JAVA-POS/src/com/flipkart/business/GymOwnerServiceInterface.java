@@ -22,4 +22,6 @@ public interface GymOwnerServiceInterface {
     public boolean gymOwnerLogin(String userName, String password);
 
     public void gymOwnerChangePassword(String userName,String old_password,String new_password);
+
+    public void viewAllGymOwners();
 }
