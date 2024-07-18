@@ -67,9 +67,24 @@ public class AdminServiceImpl implements AdminServiceInterface {
     @Override
     public void viewAllGymCentres(){
         List<GymCentre> gymCentres = gymCenterDAO.getGymCentersList();
-        List<String> gymCenterNames = new ArrayList<>();
-        gymCentres.forEach(gymCentre -> {gymCenterNames.add(gymCentre.getCentreName());});
-        System.out.println(gymCenterNames);
+
+//        List<String> gymCenterNames = new ArrayList<>();
+//        gymCentres.forEach(gymCentre -> {gymCenterNames.add(gymCentre.getCentreName());});
+
+        for(int i=0;i<gymCentres.size();i++){
+            System.out.println("---------------------------------------------------------------------------");
+            System.out.println("Gym Centre Id: " + gymCentres.get(i).getCentreId());
+            System.out.println("Gym Owner Id: " + gymCentres.get(i).getOwnerId());
+            System.out.println("Gym Centre Name: " + gymCentres.get(i).getCentreName());
+            System.out.println("GST No: " + gymCentres.get(i).getGstNo());
+            System.out.println("City: " + gymCentres.get(i).getCity());
+            System.out.println("Capacity: " + gymCentres.get(i).getCapacity());
+            System.out.println("Approved: " + gymCentres.get(i).isApproved());
+            System.out.println("Amount per slot: " + gymCentres.get(i).getAmountPerSlot());
+            System.out.println("---------------------------------------------------------------------------");
+        }
+
+//        System.out.println(gymCenterNames);
 
     }
 }
