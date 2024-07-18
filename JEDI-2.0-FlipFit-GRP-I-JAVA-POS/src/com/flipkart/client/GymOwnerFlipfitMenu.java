@@ -13,7 +13,14 @@ public class GymOwnerFlipfitMenu {
     GymOwnerServiceImpl gymOwnerService = new GymOwnerServiceImpl();
 
     public boolean gymOwnerLogin(String userName, String password) {
-        gymOwnerService.gymOwnerLogin(userName, password);
+        if(gymOwnerService.gymOwnerLogin(userName, password)){
+            System.out.println("Successfully logged in as Gym Owner");
+
+        }
+        else{
+            System.out.println("Invalid credentials");
+
+        }
         gymOwnerClientMainPage();
         return true;
     }
