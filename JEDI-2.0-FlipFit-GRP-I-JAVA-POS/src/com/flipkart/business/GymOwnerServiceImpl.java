@@ -2,13 +2,15 @@ package com.flipkart.business;
 
 import com.flipkart.bean.GymCentre;
 import com.flipkart.bean.Slot;
+import com.flipkart.dao.GymOwnerDao;
+import com.flipkart.bean.GymOwner;
 
 import java.sql.Date;
 import java.util.List;
 import java.util.Scanner;
 
 public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
-
+    private static GymOwnerDao gymOwnerDAO = new GymOwnerDao();
     public static Scanner scanner = new Scanner(System.in); // has to be imported from main client
 
     @Override
@@ -33,11 +35,19 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
         System.out.println("Enter your Card Number");
         String cardNumber = scanner.next();
 
+        gymOwnerDAO.registerGymOwner(userName,password,email,panNumber,cardNumber);
+        List<GymOwner>gymOwnerList=gymOwnerDAO.getGymOwnerList();
         System.out.println("Registered successfully with: ");
-        System.out.println("\t User Name: " + userName);
-        System.out.println("\t email: " + email);
-        System.out.println("\t PAN Number: " + panNumber);
-        System.out.println("\t Card Number: " + cardNumber);
+
+        for(GymOwner gymowner:gymOwnerList){
+            System.out.println("\t User Name: " + gymowner.getUserName());
+            System.out.println("\t email: " + gymowner.getEmail());
+            System.out.println("\t PAN Number: " +  gymowner.getPanNumber());
+            System.out.println("\t Card Number: " +  gymowner.getCardDetails());
+        }
+
+
+
     }
 
     @Override
@@ -62,8 +72,7 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
 
     @Override
     public boolean gymOwnerLogin(String userName, String password) {
-        System.out.println("Successfully logged in as Gym Owner");
-        return true;
+        return gymOwnerDAO.loginGymOwner(userName, password);
     }
     @Override
     public void gymOwnerChangePassword(String userName, String old_password, String new_password) {

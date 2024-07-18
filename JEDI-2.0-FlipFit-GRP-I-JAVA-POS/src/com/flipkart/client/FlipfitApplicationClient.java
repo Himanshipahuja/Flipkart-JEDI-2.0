@@ -28,10 +28,10 @@ public class FlipfitApplicationClient {
                 break;
             case 3:
                 registration(Role.GYMOWNER);
-                return;
+                break;
             case 4:
                 change_password();
-                return;
+                break;
             case 5:
                 System.out.println(EXIT_MESSAGE);
                 return;
@@ -84,7 +84,6 @@ public class FlipfitApplicationClient {
                     break;
                 case GYMOWNER:
                     gymOwnerFlipfitMenu.register();
-
                     break;
                 default:
                     System.out.println(INVALID_CHOICE_ERROR);

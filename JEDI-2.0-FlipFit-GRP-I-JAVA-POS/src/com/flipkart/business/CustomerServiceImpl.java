@@ -1,7 +1,10 @@
 package com.flipkart.business;
 
 import com.flipkart.bean.Booking;
+import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
+import com.flipkart.dao.CustomerDAO;
+import com.flipkart.dao.CustomerInterfaceDAO;
 
 import java.sql.Date;
 import java.util.List;
@@ -10,6 +13,7 @@ import java.util.Scanner;
 public class CustomerServiceImpl implements  CustomerServiceInterface{
 
     public static Scanner scanner = new Scanner(System.in);
+    private CustomerInterfaceDAO customerDAO = new CustomerDAO();
 
     @Override
     public void CustomerLogin() {
@@ -38,7 +42,7 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
 
     @Override
     public void registerCustomer(String userName, String password, String email, String phoneNumber, String cardNumber) {
-
+        customerDAO.registerCustomer(userName, password, email, phoneNumber, cardNumber);
     }
 
     @Override
@@ -48,7 +52,7 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     }
 
     @Override
-    public void register() {
+    public String register() {
         System.out.println("Enter your UserName");
         String userName = scanner.next();
 
@@ -64,11 +68,19 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
         System.out.println("Enter your Card Number");
         String cardNumber = scanner.next();
 
+        registerCustomer(userName, password, email, phoneNumber, cardNumber);
         System.out.println("Successfully REGISTERED as Customer");
+
+        return userName;
     }
 
     @Override
     public void customerChangePassword(String userName,String old_password,String new_password){
         System.out.println("Successfully changed the password");
+    }
+
+    public Customer viewMyProfile(String username)
+    {
+        return customerDAO.getCustomerById(username);
     }
 }
