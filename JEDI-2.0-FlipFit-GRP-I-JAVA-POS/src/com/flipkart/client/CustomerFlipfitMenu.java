@@ -65,7 +65,6 @@ public class CustomerFlipfitMenu {
                     break;
                 case 4:
                     System.out.println("All bookings for cancel are shown");
-
                     break;
                 case 5:
                     System.out.println(PREVIOUS_MENU_MESSAGE);
