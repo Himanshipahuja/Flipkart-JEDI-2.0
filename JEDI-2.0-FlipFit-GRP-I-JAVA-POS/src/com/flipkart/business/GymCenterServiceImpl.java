@@ -16,7 +16,7 @@ public class GymCenterServiceImpl implements GymCenterServiceInterface {
     public void addCenter(String gymId,String userName,String gymCentreName, String gstin, String city,int capacity,boolean isapproved,float price) {
         //takes gymCenter details
 
-        gymCenterDAO.addGymCentre(gymId,userName,gymCentreName,gstin,city,capacity,isapproved,price );
+//        gymCenterDAO.addGymCentre(gymId,userName,gymCentreName,gstin,city,capacity,isapproved,price );
         return;
 
     }

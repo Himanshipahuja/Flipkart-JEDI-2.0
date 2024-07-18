@@ -9,4 +9,8 @@ public interface GymOwnerInterfaceDao {
     public void registerGymOwner(String userName,String password,String email,String panNumber,String cardNumber);
     public List<GymOwner> getPendingGymOwnerList();
     public boolean loginGymOwner(String username,String password);
+
+    List<GymOwner> getGymOwnersList();
+    public void validateAllGymOwners();
+    public void validateGymOwnerByID(String ownerId, boolean isApproved);
 }

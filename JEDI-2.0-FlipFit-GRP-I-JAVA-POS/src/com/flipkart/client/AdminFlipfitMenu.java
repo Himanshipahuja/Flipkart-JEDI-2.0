@@ -33,32 +33,44 @@ public class AdminFlipfitMenu {
         DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
         String formattedDate = currentTime.format(myFormat);
         System.out.println("WELCOME ADMIN!!\nLogin Time: " + currentTime);
+
+        Scanner scanner = new Scanner(System.in);
+
         while (true) {
             System.out.println("---------------------------------------------------------------------------");
-            System.out.println("0. View All Gym Owners\n1. Approve all gym centre requests\n2. Approve gym centre's request by Id\n" +
-                    "3. Approve all gym owners requests\n4. Approve gym owner's request by Id\n5. View All Gym Centers\n6. Go Back To Previous Menu");
+            System.out.println("0. View All Gym Owners\n1. Approve all gym owners requests\n2. Approve gym owner's request by Id\n" +
+                    "3. View All Gym Centers\n4. Approve all gym centre requests\n5. Approve gym centre's request by Id\n6. Go Back To Previous Menu");
             System.out.println("---------------------------------------------------------------------------");
 
             int pendingChoice = scanner.nextInt();
             switch (pendingChoice) {
                 case 0:
-                    gymOwnerService.viewAllGymOwners();
+//                    gymOwnerService.viewAllGymOwners();
+                    adminService.viewAllGymOwners();
                     System.out.println("Viewing All Gym Owners");
                     break;
                 case 1:
-                    System.out.println("All gym centre requests approved");
-                    break;
-                case 2:
-                    System.out.println("Gym centre request approved");
-                    break;
-                case 3:
+                    adminService.validateAllGymOwners();
                     System.out.println("All gym owner requests approved");
                     break;
+                case 2:
+                    System.out.println("Enter Gym Owner ID to approve");
+                    String gymOwnerId = scanner.next();
+                    adminService.validateGymOwnerByID(gymOwnerId, true);
+                    System.out.println("Gym owner: "+ gymOwnerId + " request approved");
+                    break;
+                case 3:
+                    adminService.viewAllGymCentres();
+                    break;
                 case 4:
-                    System.out.println("Gym Owner request approved");
+                    adminService.validateAllGymCentres();
+                    System.out.println("All gym centre requests approved");
                     break;
                 case 5:
-                    adminService.viewAllGymCentres();
+                    System.out.println("Enter Gym Center ID to approve");
+                    String gymCentreId = scanner.next();
+                    adminService.validateGymCentreByID(gymCentreId, true);
+                    System.out.println("Gym centre: "+ gymCentreId + " request approved");
                     break;
                 case 6:
                     return;
