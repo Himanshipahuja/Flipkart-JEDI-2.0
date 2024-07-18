@@ -31,11 +31,11 @@ public class GymOwnerFlipfitMenu {
         System.out.println("Welcome to gym owner main page!!");
         while(true) {
             System.out.println("" +
-                    "0. View all my Gym Centres\n" +
-                    "1. Sending Gym Owner Approval Request\n" +
-                    "2. Add a new Gym Center\n" +
-                    "3. Send a Gym Centre Approval Request to Admin\n" +
-                    "4. Add Slots to a Gym Centre\n" +
+                    "0. View all Gym Centres\n" +
+                    "1. Send Gym Owner Approval Request\n" +
+                    "2. Add new Gym Center\n" +
+                    "3. Request Gym Centre\n" +
+                    "4. Add Slots to Gym Centre\n" +
                     "5. Go Back to Previous Menu"
             );
             int choice = scanner.nextInt();
