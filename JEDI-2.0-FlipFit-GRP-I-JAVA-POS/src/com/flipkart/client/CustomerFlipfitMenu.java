@@ -38,20 +38,20 @@ public class CustomerFlipfitMenu {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-//                    printCustomerProfile(customer);
+
                     System.out.println("CUSTOMER PROFILE");
                     break;
                 case 2:
                     System.out.println("AVAILABLE SLOTS ARE SHOWN");
-//                    bookSlotSubMenu(userName);
+
                     break;
                 case 3:
-//                    printUserPlan(userName);
+
                     System.out.println("CUSTOMER BOOKINGS ARE SHOWN");
                     break;
                 case 4:
                     System.out.println("BOOKINGS ARE SHOWN");
-//                    cancelBookingSubMenu(userName);
+
                     break;
                 case 5:
                     System.out.println(PREVIOUS_MENU_MESSAGE);

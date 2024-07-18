@@ -10,10 +10,10 @@ public class FlipfitApplicationClient {
 
     public static int userId = 0;
     public static Scanner scanner = new Scanner(System.in);
-    private static final AdminFlipfitMenu ADMIN_FLIPFIT_MENU = new AdminFlipfitMenu();
 
-    private static final CustomerFlipfitMenu CUSTOMER_FLIPFIT_MENU = new CustomerFlipfitMenu();
-    private static final GymOwnerFlipfitMenu GYM_OWNER_FLIPFIT_MENU = new GymOwnerFlipfitMenu();
+    private static final AdminFlipfitMenu adminFlipfitMenu = new AdminFlipfitMenu();
+    private static final CustomerFlipfitMenu customerFlipfitMenu = new CustomerFlipfitMenu();
+    private static final GymOwnerFlipfitMenu gymOwnerFlipfitMenu = new GymOwnerFlipfitMenu();
 
 
     private static void mainPage(){
@@ -55,13 +55,13 @@ public class FlipfitApplicationClient {
 
             switch (role){
                 case ADMIN:
-                    ADMIN_FLIPFIT_MENU.adminLogin(userName,password);
+                    adminFlipfitMenu.adminLogin(userName,password);
                     break;
                 case GYMOWNER:
-                    GYM_OWNER_FLIPFIT_MENU.gymOwnerLogin(userName,password);
+                    gymOwnerFlipfitMenu.gymOwnerLogin(userName,password);
                     break;
                 case CUSTOMER:
-                    CUSTOMER_FLIPFIT_MENU.customerLogin(userName,password);
+                    customerFlipfitMenu.customerLogin(userName,password);
                     break;
                 default:
                     System.out.println(INVALID_CHOICE_ERROR);
@@ -80,10 +80,10 @@ public class FlipfitApplicationClient {
                     mainPage();
                     break;
                 case CUSTOMER:
-                    CUSTOMER_FLIPFIT_MENU.register();
+                    customerFlipfitMenu.register();
                     break;
                 case GYMOWNER:
-                    GYM_OWNER_FLIPFIT_MENU.register();
+                    gymOwnerFlipfitMenu.register();
 
                     break;
                 default:
@@ -109,13 +109,13 @@ public class FlipfitApplicationClient {
 
             switch (role){
                 case ADMIN:
-                    ADMIN_FLIPFIT_MENU.adminChangePassword(userName,old_password,new_password);
+                    adminFlipfitMenu.adminChangePassword(userName,old_password,new_password);
                     break;
                 case GYMOWNER:
-                    GYM_OWNER_FLIPFIT_MENU.gymOwnerChangePassword(userName,old_password,new_password);
+                    gymOwnerFlipfitMenu.gymOwnerChangePassword(userName,old_password,new_password);
                     break;
                 case CUSTOMER:
-                    CUSTOMER_FLIPFIT_MENU.customerChangePassword(userName,old_password,new_password);
+                    customerFlipfitMenu.customerChangePassword(userName,old_password,new_password);
                     break;
                 default:
                     System.out.println(INVALID_CHOICE_ERROR);

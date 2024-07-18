@@ -1,13 +1,9 @@
 package com.flipkart.client;
 
-import com.flipkart.bean.Admin;
 import com.flipkart.business.AdminServiceImpl;
-import com.flipkart.business.AdminServiceInterface;
-import com.flipkart.exceptions.LoginFailedException;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Objects;
 import java.util.Scanner;
 
 
