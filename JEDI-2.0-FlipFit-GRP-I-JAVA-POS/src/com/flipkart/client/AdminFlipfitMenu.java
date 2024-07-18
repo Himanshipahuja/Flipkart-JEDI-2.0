@@ -32,24 +32,24 @@ public class AdminFlipfitMenu {
         String formattedDate = currentTime.format(myFormat);
         System.out.println("WELCOME ADMIN!!\nLogin Time: " + currentTime);
         while (true) {
-            System.out.println("0. View All Gym Owners\n1. approve all gym centre requests\n2.approve gym centre request by Id\n" +
-                    "3.approve all gym owner's requests\n 4. approve gym owner's request by Id\n3. Go Back To Previous Menu");
+            System.out.println("0. View All Gym Owners\n1. Approve all gym centre requests\n2. Approve gym centre's request by Id\n" +
+                    "3. Approve all gym owners requests\n 4. Approve gym owner's request by Id\n3. Go Back To Previous Menu");
             int pendingChoice = scanner.nextInt();
             switch (pendingChoice) {
                 case 0:
-                    System.out.println("Viewing. All Gym Owners");
+                    System.out.println("Viewing All Gym Owners");
                     break;
                 case 1:
-                    System.out.println("approve all gym centre requests");
+                    System.out.println("All gym centre requests approved");
                     break;
                 case 2:
-                    System.out.println("approve gym centre request by Id");
+                    System.out.println("Gym centre request approved");
                     break;
                 case 3:
-                    System.out.println("approve all gym owner's requests");
+                    System.out.println("All gym owner requests approved");
                     break;
                 case 4:
-                    System.out.println("approve gym owner's request by Id");
+                    System.out.println("Gym Owner request approved");
                     break;
                 case 5:
                     return;

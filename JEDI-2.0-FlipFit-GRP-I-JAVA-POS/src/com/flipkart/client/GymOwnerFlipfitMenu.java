@@ -45,7 +45,7 @@ public class GymOwnerFlipfitMenu {
                     break;
 
                 case 1:
-                    System.out.println("Gym owner request sent\n");
+                    System.out.println("Gym owner request sent to Admin\n");
                     break;
 
                 case 2:

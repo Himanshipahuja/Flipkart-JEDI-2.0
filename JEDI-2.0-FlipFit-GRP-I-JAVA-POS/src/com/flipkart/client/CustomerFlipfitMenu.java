@@ -39,18 +39,18 @@ public class CustomerFlipfitMenu {
             switch (choice) {
                 case 1:
 
-                    System.out.println("CUSTOMER PROFILE");
+                    System.out.println("Viewing Customer Profile");
                     break;
                 case 2:
-                    System.out.println("AVAILABLE SLOTS ARE SHOWN");
+                    System.out.println("Viewing all Available slots");
 
                     break;
                 case 3:
 
-                    System.out.println("CUSTOMER BOOKINGS ARE SHOWN");
+                    System.out.println("Viewing all Bookings");
                     break;
                 case 4:
-                    System.out.println("BOOKINGS ARE SHOWN");
+                    System.out.println("All bookings for cancel are shown");
 
                     break;
                 case 5:
