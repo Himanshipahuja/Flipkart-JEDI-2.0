@@ -21,7 +21,7 @@ public class CustomerFlipfitMenu {
             customerClientMainPage(userName);
         }
         else{
-            System.out.println("Login failed!!");
+            System.out.println("Invalid Credentials!");
         }
     }
 

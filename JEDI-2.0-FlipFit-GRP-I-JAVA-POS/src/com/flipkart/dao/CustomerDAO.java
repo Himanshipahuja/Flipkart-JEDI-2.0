@@ -23,4 +23,13 @@ public class CustomerDAO implements  CustomerInterfaceDAO{
         return null;
 
     }
+
+    public boolean checkCustomerDetails(String username, String password) {
+        for (Customer customer : customerList) {
+            if (customer.getUserName().equals(username)
+                    && customer.getPassword().equals(password))
+                return true;
+        }
+        return false;
+    }
 }
