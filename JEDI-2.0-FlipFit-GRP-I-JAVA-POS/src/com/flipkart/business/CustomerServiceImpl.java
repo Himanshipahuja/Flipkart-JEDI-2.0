@@ -47,9 +47,12 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
 
     @Override
     public boolean customerLogin(String userName, String password) {
-        System.out.println("---------------------------------------------------------------------------");
-        System.out.println("Successfully logged in as Customer");
-        return true;
+        if (customerDAO.checkCustomerDetails(userName, password)) {
+            System.out.println("Successfully logged in as Customer");
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
