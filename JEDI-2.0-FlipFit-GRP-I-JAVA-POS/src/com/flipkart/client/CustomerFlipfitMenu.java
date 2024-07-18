@@ -34,7 +34,7 @@ public class CustomerFlipfitMenu {
         LocalDateTime currentTime = LocalDateTime.now();
         System.out.println("WELCOME"+" !!\nWhat you what to do\nLogin TIME: "+currentTime);
         while(true) {
-            System.out.println("1. View My Profile \n2. Book a slot in a Gym \n3. View Bookings\n4. Cancel Bookings\n5. Go Back to previous menu");
+            System.out.println("1. View Profile \n2. Book a slot in Gym \n3. View Bookings\n4. Cancel Bookings\n5. Go Back to previous menu");
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:

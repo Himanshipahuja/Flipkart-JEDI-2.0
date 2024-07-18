@@ -34,7 +34,7 @@ public class GymOwnerFlipfitMenu {
                     "0. View all Gym Centres\n" +
                     "1. Send Gym Owner Approval Request\n" +
                     "2. Add new Gym Center\n" +
-                    "3. Request Gym Centre\n" +
+                    "3. Request Gym Centre Approval\n" +
                     "4. Add Slots to Gym Centre\n" +
                     "5. Go Back to Previous Menu"
             );

@@ -37,7 +37,7 @@ public class AdminFlipfitMenu {
             int pendingChoice = scanner.nextInt();
             switch (pendingChoice) {
                 case 0:
-                    System.out.println("All Gym Owners");
+                    System.out.println("Viewing. All Gym Owners");
                     break;
                 case 1:
                     System.out.println("Pending GymOwner Approval Requests");
