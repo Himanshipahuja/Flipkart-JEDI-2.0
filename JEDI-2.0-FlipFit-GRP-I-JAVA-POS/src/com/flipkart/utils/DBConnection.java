@@ -10,7 +10,7 @@ public class DBConnection {
     public static Connection connect() throws SQLException
      {
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/flipfit-schema";
             Connection connection = DriverManager.getConnection(url,"root","29@Himanshi");
                 System.out.println("Database Connected");

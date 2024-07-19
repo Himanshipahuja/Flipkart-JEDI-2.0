@@ -16,12 +16,12 @@ public class GymCenterServiceImpl implements GymCenterServiceInterface {
     public void addCenter(String gymId,String userName,String gymCentreName, String gstin, String city,int capacity,boolean isapproved,float price) {
         //takes gymCenter details
 
-        gymCenterDAOImpl.addGymCentre(gymId,userName,gymCentreName,gstin,city,capacity,isapproved,price );
+//        gymCenterDAOImpl.addGymCentre(gymId,userName,gymCentreName,gstin,city,capacity,isapproved,price );
         return;
 
     }
     public void requestGymCentreApproval(String gymCentreId){
-        gymCenterDAOImpl.sendRequestForApprovalOfCentre(gymCentreId);
+//        gymCenterDAOImpl.sendRequestForApprovalOfCentre(gymCentreId);
     }
 
 

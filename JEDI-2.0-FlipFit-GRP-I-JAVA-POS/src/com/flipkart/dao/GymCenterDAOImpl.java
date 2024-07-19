@@ -3,7 +3,6 @@ package com.flipkart.dao;
 import com.flipkart.bean.GymCentre;
 import com.flipkart.constants.SQLConstants;
 import com.flipkart.utils.DBConnection;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GymCenterDAOImpl implements GymCenterDAO {
-    private Connection conn = null;
+    private Connection conn=null;
     private PreparedStatement statement = null;
     public List<GymCentre> getGymCentersList() {
         try {
