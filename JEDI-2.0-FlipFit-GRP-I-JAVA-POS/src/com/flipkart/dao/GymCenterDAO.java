@@ -11,6 +11,6 @@ public interface GymCenterDAO {
     List<GymCentre> getAllCentresByOwmerId(String gymOwnerId) ;
 
     public void validateAllGymCentres();
-    public void validateGymCentreByID(String gymCentreId, boolean isApproved);
-    public void sendRequestForApprovalOfCentre(String gymCentreId);
+    public void validateGymCentreByID(String gymCentreId, int isApproved);
+
 }

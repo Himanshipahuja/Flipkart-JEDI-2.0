@@ -2,27 +2,24 @@ package com.flipkart.bean;
 
 public class GymCentre {
 
-     private String centreId;
-     private String ownerId;
-     private String centreName;
-     private String gstNo;
-     private String city;
-     private int capacity;
-     private boolean isApproved;
-     private float amountPerSlot;
+ private String centreId;
+ private String ownerId;
+ private String centreName;
+ private String gstNo;
+ private String city;
+ private int capacity;
+ private int isApproved;
+ private float amountPerSlot;
 
-    public GymCentre() {
-    }
-
-    public GymCentre(String gymCentreID, String ownerID, String gymCenterName, String gstin, String city, int capacity, float price) {
-        this.centreId = gymCentreID;
-        this.ownerId = ownerID;
-        this.centreName = gymCenterName;
-        this.gstNo = gstin;
+    public GymCentre(String centreId, String ownerId, String centreName, String gstNo, String city, int capacity, int isApproved, float amountPerSlot) {
+        this.centreId = centreId;
+        this.ownerId = ownerId;
+        this.centreName = centreName;
+        this.gstNo = gstNo;
         this.city = city;
         this.capacity = capacity;
-        this.amountPerSlot = price;
-        this.isApproved = false;
+        this.isApproved = isApproved;
+        this.amountPerSlot = amountPerSlot;
     }
 
     public String getCentreId() {
@@ -73,11 +70,11 @@ public class GymCentre {
         this.capacity = capacity;
     }
 
-    public boolean isApproved() {
+    public int isApproved() {
         return isApproved;
     }
 
-    public void setApproved(boolean approved) {
+    public void setApproved(int approved) {
         isApproved = approved;
     }
 

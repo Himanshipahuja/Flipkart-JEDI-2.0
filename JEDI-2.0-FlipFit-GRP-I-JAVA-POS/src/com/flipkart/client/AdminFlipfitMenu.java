@@ -69,7 +69,7 @@ public class AdminFlipfitMenu {
                 case 5:
                     System.out.println("Enter Gym Center ID to approve");
                     String gymCentreId = scanner.next();
-                    adminService.validateGymCentreByID(gymCentreId, true);
+                    adminService.validateGymCentreByID(gymCentreId, 1);
                     System.out.println("Gym centre: "+ gymCentreId + " request approved");
                     break;
                 case 6:

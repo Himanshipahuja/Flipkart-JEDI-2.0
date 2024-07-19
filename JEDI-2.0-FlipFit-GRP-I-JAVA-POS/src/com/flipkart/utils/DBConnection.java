@@ -6,15 +6,27 @@ import java.sql.SQLException;
 
 public class DBConnection {
 
-    public static Connection connect() throws SQLException {
+//    private static Connection singleInstance = null;
+    public static Connection connect() throws SQLException
+     {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/flipfit-schema";
-            Connection connection = DriverManager.getConnection(url, "root", "avnihere1234");
-            System.out.println("Database Connected");
+            Connection connection = DriverManager.getConnection(url,"root","29@Himanshi");
+                System.out.println("Database Connected");
+
             return connection;
-        } catch (Exception e) {
-            System.out.println("Could not connect to DB: " + e.getMessage());
+//            PreparedStatement stmt=connection.prepareStatement("insert into role values(?,?,?)");
+//            stmt.setString(1,"sampleRoleId"); //1 specifies the first parameter in the query
+//            stmt.setString(2,"sampleRole");
+//            stmt.setString(3,"sampleRoleDesc");
+//
+//            int i=stmt.executeUpdate();
+//            System.out.println(i+" records inserted");
+
+        }
+        catch (Exception e) {
+            System.out.println("Could not connect to DB: " + e.getMessage() + " " + e);
             return null;
         }
     }

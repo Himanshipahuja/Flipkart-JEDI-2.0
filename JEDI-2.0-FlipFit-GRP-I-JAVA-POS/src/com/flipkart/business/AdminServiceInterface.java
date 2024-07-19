@@ -16,5 +16,5 @@ public interface AdminServiceInterface {
 
     public void viewAllGymCentres();
     public void validateAllGymCentres();
-    public void validateGymCentreByID(String gymCentreId, boolean isApproved);
+    public void validateGymCentreByID(String gymCentreId, int isApproved);
 }

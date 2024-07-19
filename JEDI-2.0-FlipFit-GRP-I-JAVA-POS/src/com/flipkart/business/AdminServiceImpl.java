@@ -110,7 +110,7 @@ public class AdminServiceImpl implements AdminServiceInterface {
     }
 
     @Override
-    public void validateGymCentreByID(String gymCentreId, boolean isApproved) {
+    public void validateGymCentreByID(String gymCentreId, int isApproved) {
         gymCenterDAOImpl.validateGymCentreByID(gymCentreId,isApproved);
     }
 
