@@ -6,6 +6,7 @@ import com.flipkart.bean.GymOwner;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,8 +17,10 @@ import com.flipkart.constants.SQLConstants;
 import com.flipkart.utils.DBConnection;
 
 public class GymOwnerDAOImpl implements GymOwnerDAO {
+
     private Connection conn = null;
     private PreparedStatement statement = null;
+
     private List<GymOwner> gymOwnerList = new ArrayList<>();
     public List<GymOwner> getGymOwnerList(){
         return gymOwnerList;
@@ -28,28 +31,58 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
     }
 
     public GymOwner registerGymOwner(String userName,String password,String email,String panNumber,String cardNumber){
-        int initialSize= gymOwnerList.size();
-        String userId= String.valueOf(initialSize+1);
-        GymOwner curr= new GymOwner();
+        GymOwner gymOwner = new GymOwner();
+        try{
+            conn  = DBConnection.connect();
+            statement = conn.prepareStatement(SQLConstants.REGISTER_GYM_OWNER);
 
-        curr.setUserID(userId);
-        curr.setPassword(password);
-        curr.setEmail(email);
-        curr.setCardDetails(cardNumber);
-        curr.setPanNumber(panNumber);
-        curr.setApproved(false);
-        curr.setUserName(userName);
-        curr.setRole(Role.GYMOWNER);
-        curr.setGymCentreLists(new ArrayList<>());
-        gymOwnerList.add(curr);
-        return curr;
+            statement.setString(1,panNumber);
+            statement.setBoolean(2,false);
+            statement.setString(3, cardNumber);
+            statement.setString(4,userName);
+
+            System.out.println(statement);
+
+            statement.executeUpdate();
+
+            System.out.println("Registration Success\n");
+            gymOwner.setUserName(userName);
+            gymOwner.setPassword(password);
+            gymOwner.setEmail(email);
+            gymOwner.setPanNumber(panNumber);
+            gymOwner.setCardDetails(cardNumber);
+
+            return gymOwner;
+
+        }catch(SQLException e){
+            e.printStackTrace();
+            System.out.println("Try again with a different Username \n");
+        }
+        return gymOwner;
     }
     public boolean loginGymOwner(String username,String password){
-        List<GymOwner>currGymOwner = getGymOwnerList();
-        for(GymOwner gymowner:currGymOwner){
-            if(gymowner.getUserName().equals(username) && gymowner.getPassword().equals(password)){
-               return true;
+        try {
+            conn = DBConnection.connect();
+            ResultSet result;
+            try {
+                statement = conn.prepareStatement(SQLConstants.LOGIN_GYM_OWNER);
+                statement.setString(1, username);
+                statement.setString(2, password);
+                result = statement.executeQuery();
+                while (result.next()) {
+                    if (username.equals(result.getString("userName")) && password.equals(result.getString("password"))) {
+                        System.out.println("Login Success\n");
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("SQL Exception\n");
+                return false;
             }
+        }catch (SQLException e){
+            System.out.println("SQL Exception\n");
         }
         return false;
     }
