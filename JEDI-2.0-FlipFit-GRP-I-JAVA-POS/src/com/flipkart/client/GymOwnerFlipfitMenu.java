@@ -122,17 +122,21 @@ public class GymOwnerFlipfitMenu {
                 case 4:
                     boolean isAdding = true;
                     String centreId = null;
+                    String slotId = null;
+                    String time = null;
 
                     List<Slot> newSlotList = new ArrayList<>();
                     while (isAdding) {
                         System.out.println("Enter new slot id: ");
-                        String slotId = scanner.next();
+                        slotId = scanner.next();
 
                         System.out.println("Enter Gym Centre Id: ");
                         centreId = scanner.next();
 
+                        scanner.nextLine();
+
                         System.out.println("Enter time in 24h format (hh:mm:ss) : ");
-                        String time = scanner.next();
+                        time = scanner.nextLine();
 
                         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
                         Date localTime = formatter.parse(time);
@@ -143,8 +147,9 @@ public class GymOwnerFlipfitMenu {
                                 localTime
                         ));
 
+                        String addChoice = null;
                         System.out.println("Do you want to enter more slots (y/n)?: ");
-                        String addChoice = scanner.next();
+                        addChoice = scanner.next();
                         addChoice = addChoice.toLowerCase();
 
                         if(addChoice.equals("n") || addChoice.equals("no")) {
