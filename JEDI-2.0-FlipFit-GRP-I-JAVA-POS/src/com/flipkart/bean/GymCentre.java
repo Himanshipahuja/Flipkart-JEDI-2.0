@@ -14,7 +14,7 @@ public class GymCentre {
     public GymCentre() {
     }
 
-    public GymCentre(String gymCentreID, String ownerID, String gymCenterName, String gstin, String city, int capacity, int price) {
+    public GymCentre(String gymCentreID, String ownerID, String gymCenterName, String gstin, String city, int capacity, float price) {
         this.centreId = gymCentreID;
         this.ownerId = ownerID;
         this.centreName = gymCenterName;

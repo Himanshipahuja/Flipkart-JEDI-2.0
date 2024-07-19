@@ -86,24 +86,25 @@ public class GymCenterDAOImpl implements GymCenterDAO {
             conn = DBConnection.connect();
             statement = conn.prepareStatement(SQLConstants.FETCH_GYM_CENTRES_BY_OWNER_ID);
             statement.setString(1, gymOwnerId);
-
+//            System.out.println("***"+conn);
             ResultSet rs = statement.executeQuery();
             while(rs.next()) {
                 GymCentre gymCentre = new GymCentre(
-                        rs.getString("centreId"),
+                        rs.getString("centerId"),
                         rs.getString("ownerId"),
-                        rs.getString("centreName"),
-                        rs.getString("gstin"),
+                        rs.getString("centerName"),
+                        rs.getString("gstNumber"),
                         rs.getString("city"),
                         rs.getInt("capacity"),
-                        rs.getInt("price")
+                        Float.parseFloat(rs.getString("amountPerSlot"))
                 );
-//                gymCentre.setApproved(rs.getInt("isApproved"));
+                boolean bool = (rs.getInt("approved")!=0)?true:false;
+                gymCentre.setApproved( bool);
                 allGymCentres.add(gymCentre);
             }
 
         } catch (Exception e) {
-//            e.printStackTrace();
+            e.printStackTrace();
         }
 
         return allGymCentres;
