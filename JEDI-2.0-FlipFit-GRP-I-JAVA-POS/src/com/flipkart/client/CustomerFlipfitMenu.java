@@ -3,6 +3,7 @@ package com.flipkart.client;
 
 import com.flipkart.bean.Booking;
 import com.flipkart.bean.Customer;
+import com.flipkart.bean.GymCentre;
 import com.flipkart.business.CustomerServiceImpl;
 
 import java.time.LocalDateTime;
@@ -30,6 +31,24 @@ public class CustomerFlipfitMenu {
     public void register() {
         String username = customerService.register();
         customerClientMainPage(username);
+    }
+
+    private void bookSlotSubMenu(String userName){
+        //Get Location for filter
+        System.out.println("Provide Location to search :");
+        String location = scanner.next();
+        List<GymCentre> centreListByLocation = customerService.getAllGymCenterDetailsByCity(location);
+        // Print All Centres
+        for(GymCentre gymCentreAtLocation : centreListByLocation){
+            System.out.println("The gym centre id:"+gymCentreAtLocation.getCentreId());
+        }
+
+        System.out.print("Choose a gymCentre ID to proceed:");
+        String chosenGym = scanner.next();
+        //Select Date
+//        Date sqlDate = selectDate();
+//        //Choose Slot
+//        chooseSlot(chosenGym,userName,sqlDate,chosenGym);
     }
 
     public void printCustomerProfile(Customer customer) {
@@ -82,7 +101,7 @@ public class CustomerFlipfitMenu {
                     break;
                 case 2:
                     System.out.println("Viewing all Available slots");
-
+                    bookSlotSubMenu(username);
                     break;
                 case 3:
 

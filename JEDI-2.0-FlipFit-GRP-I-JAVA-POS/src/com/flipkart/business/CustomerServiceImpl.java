@@ -5,6 +5,8 @@ import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
 import com.flipkart.dao.CustomerDAOImpl;
 import com.flipkart.dao.CustomerDAO;
+import com.flipkart.dao.GymCenterDAO;
+import com.flipkart.dao.GymCenterDAOImpl;
 
 import java.sql.Date;
 import java.util.List;
@@ -14,6 +16,7 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
 
     public static Scanner scanner = new Scanner(System.in);
     private final CustomerDAO customerDAO = new CustomerDAOImpl();
+    private final GymCenterDAO gymCenterDAO = new GymCenterDAOImpl();
     private final BookingServiceInterface bookingService = new BookingServiceImpl();
 
     @Override
@@ -23,7 +26,7 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
 
     @Override
     public List<GymCentre> getAllGymCenterDetailsByCity(String city) {
-        return List.of();
+        return gymCenterDAO.getGymCentreListByCity(city);
     }
 
     @Override
