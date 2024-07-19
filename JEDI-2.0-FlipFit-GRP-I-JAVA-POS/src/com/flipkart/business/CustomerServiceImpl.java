@@ -45,8 +45,8 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     }
 
     @Override
-    public void registerCustomer(String userName, String password, String email, String phoneNumber, String cardNumber) {
-        customerDAO.registerCustomer(userName, password, email, phoneNumber, cardNumber);
+    public Customer registerCustomer(String userName, String password, String email, String phoneNumber, String cardNumber) {
+        return customerDAO.registerCustomer(userName, password, email, phoneNumber, cardNumber);
     }
 
     @Override
@@ -60,7 +60,7 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     }
 
     @Override
-    public String register() {
+    public Customer register() {
         System.out.println("Enter your UserName");
         String userName = scanner.next();
 
@@ -76,19 +76,25 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
         System.out.println("Enter your Card Number");
         String cardNumber = scanner.next();
 
-        registerCustomer(userName, password, email, phoneNumber, cardNumber);
-        System.out.println("Successfully REGISTERED as Customer");
+        Customer registeredCustomer = registerCustomer(userName, password, email, phoneNumber, cardNumber);
+        System.out.println("Successfully registered as Customer");
 
-        return userName;
+        return registeredCustomer;
     }
 
     @Override
-    public void customerChangePassword(String userName,String old_password,String new_password){
-        System.out.println("Successfully changed the password");
+    public String getCustomerIdFromNameAndPass(String userName, String password) {
+        return customerDAO.getCustomerIdFromNameAndPass(userName, password);
     }
 
+    @Override
     public Customer viewMyProfile(String username)
     {
         return customerDAO.getCustomerById(username);
+    }
+
+    @Override
+    public void customerChangePassword(String userName,String old_password,String new_password) {
+        customerDAO.changeCustomerPassword(userName, old_password, new_password);
     }
 }

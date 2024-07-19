@@ -21,7 +21,8 @@ public class CustomerFlipfitMenu {
 
     public void customerLogin(String userName, String password) {
         if(customerService.customerLogin(userName, password)) {
-            customerClientMainPage(userName);
+            String customerId = customerService.getCustomerIdFromNameAndPass(userName, password);
+            customerClientMainPage(userName, customerId);
         }
         else{
             System.out.println("Invalid Credentials!");
@@ -29,8 +30,10 @@ public class CustomerFlipfitMenu {
     }
 
     public void register() {
-        String username = customerService.register();
-        customerClientMainPage(username);
+        Customer customer = customerService.register();
+        String customerId = customerService.getCustomerIdFromNameAndPass(customer.getUserName(),
+                customer.getPassword());
+        customerClientMainPage(customer.getUserName(), customerId);
     }
 
     private void bookSlotSubMenu(String userName){
@@ -81,7 +84,7 @@ public class CustomerFlipfitMenu {
                     booking.getScheduleId());
         }
     }
-    public void customerClientMainPage(String username) {
+    public void customerClientMainPage(String username, String customerId) {
         System.out.println("---------------------------------------------------------------------------");
         System.out.println("Welcome to customer main page!!");
         LocalDateTime currentTime = LocalDateTime.now();
@@ -94,26 +97,27 @@ public class CustomerFlipfitMenu {
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-
-                    System.out.println("Hi "+username);
-                    Customer customer= customerService.viewMyProfile(username);
-                    printCustomerProfile(customer);
+                    Customer customerProfile = customerService.viewMyProfile(customerId);
+                    printCustomerProfile(customerProfile);
                     break;
+
                 case 2:
                     System.out.println("Viewing all Available slots");
                     bookSlotSubMenu(username);
                     break;
+
                 case 3:
-
                     printUserPlan(username);
-
                     break;
+
                 case 4:
                     System.out.println("All bookings for cancel are shown");
                     break;
+
                 case 5:
                     System.out.println(PREVIOUS_MENU_MESSAGE);
                     return;
+
                 default:
                     System.out.println(INVALID_CHOICE_ERROR);
                     break;

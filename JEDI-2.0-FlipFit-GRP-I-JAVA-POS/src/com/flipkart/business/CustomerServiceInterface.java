@@ -13,9 +13,11 @@ public interface CustomerServiceInterface {
     List<Booking> getCustomerBookings(String customerId);
     boolean bookSlot(String userID,Date date, String slotId,String centreId);
     void cancelBooking(String bookingID);
-    void registerCustomer(String userName, String password, String email, String phoneNumber, String cardNumber);
+    public Customer registerCustomer(String userName, String password, String email,
+                                     String phoneNumber, String cardNumber);
     public boolean customerLogin(String userName, String password);
-    public String register();
+    public Customer register();
     public Customer viewMyProfile(String username);
     public void customerChangePassword(String userName,String old_password,String new_password);
+    public String getCustomerIdFromNameAndPass(String userName, String password);
 }

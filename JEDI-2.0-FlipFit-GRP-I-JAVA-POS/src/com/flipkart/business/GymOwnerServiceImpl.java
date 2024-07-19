@@ -95,10 +95,12 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
 
     }
 
+    @Override
     public void requestGymOwnerApproval(String gymOwnerId) {
         gymOwnerDAOImpl.sendOwnerApprovalRequest(gymOwnerId);
     }
 
+    @Override
     public String getGymOwnerId(String userName, String password) {
         return gymOwnerDAOImpl.getGymOwnerId(userName, password);
     }
