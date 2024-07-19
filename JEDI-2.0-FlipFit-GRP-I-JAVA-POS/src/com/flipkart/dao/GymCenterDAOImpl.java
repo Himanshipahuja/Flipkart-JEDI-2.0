@@ -1,12 +1,20 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.GymCentre;
+import com.flipkart.utils.DBConnection;
+import com.flipkart.constants.SQLConstants;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class GymCenterDAOImpl implements GymCenterDAO {
 //    private List<GymCentre> GymCentersList = new ArrayList<>();
+    private Connection conn = null;
+    private PreparedStatement statement = null;
 
     public List<GymCentre> getGymCentersList() {
         List<GymCentre> gymCentreList = new ArrayList<>();
@@ -71,20 +79,32 @@ public class GymCenterDAOImpl implements GymCenterDAO {
 
 
     public List<GymCentre> getAllCentresByOwmerId(String gymOwnerId) {
-        List<GymCentre> gymCentreListofOwner = new ArrayList<>();
-//        System.out.println("@@ "+gymOwnerId);
+        List<GymCentre> allGymCentres = new ArrayList<>();
+        try {
+            conn = DBConnection.connect();
+            statement = conn.prepareStatement(SQLConstants.FETCH_GYM_CENTRES_BY_OWNER_ID);
+            statement.setString(1, gymOwnerId);
 
-        List<GymCentre> allGymCentres = getGymCentersList();
-        for (GymCentre gymcentre : allGymCentres) {
-//            System.out.println("****((((**** "+gymcentre.getOwnerId());
-            String id = gymcentre.getOwnerId();
-            if (id.equalsIgnoreCase(gymOwnerId)) {
-                gymCentreListofOwner.add(gymcentre);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) {
+                GymCentre gymCentre = new GymCentre(
+                        rs.getString("centreId"),
+                        rs.getString("ownerId"),
+                        rs.getString("centreName"),
+                        rs.getString("gstin"),
+                        rs.getString("city"),
+                        rs.getInt("capacity"),
+                        rs.getInt("price")
+                );
+//                gymCentre.setApproved(rs.getInt("isApproved"));
+                allGymCentres.add(gymCentre);
             }
-        }
-//        System.out.println("***^^**** "+gymCentreListofOwner.size());
 
-        return gymCentreListofOwner;
+        } catch (Exception e) {
+//            e.printStackTrace();
+        }
+
+        return allGymCentres;
     }
 
     @Override
