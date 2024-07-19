@@ -1,10 +1,15 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Slot;
+import com.flipkart.utils.DBConnection;
 
-import java.text.ParseException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class SlotDAOImpl implements SlotDAO {
@@ -13,15 +18,26 @@ public class SlotDAOImpl implements SlotDAO {
 
     public List<Slot> getSlotList() {
         List<Slot> slotList = new ArrayList<>();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-        try {
-            slotList.add(new Slot("slot1", "centre1", sdf.parse("2024-07-17 09:00:00")));
-            slotList.add(new Slot("slot2", "centre1", sdf.parse("2024-07-17 10:00:00")));
-            slotList.add(new Slot("slot3", "centre2", sdf.parse("2024-07-17 11:00:00")));
-            slotList.add(new Slot("slot4", "centre2", sdf.parse("2024-07-17 12:00:00")));
-            slotList.add(new Slot("slot5", "centre3", sdf.parse("2024-07-17 13:00:00")));
-        } catch (ParseException e) {
+        String query = "SELECT slotId, centreId, time FROM slots"; // Adjust query according to your table schema
+
+        try (Connection connection = DBConnection.connect()) {
+            assert connection != null;
+            try (PreparedStatement stmt = connection.prepareStatement(query);
+                 ResultSet resultSet = stmt.executeQuery()) {
+
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+                while (resultSet.next()) {
+                    String slotId = resultSet.getString("slotId");
+                    String centreId = resultSet.getString("centreId");
+                    Date slotTime = resultSet.getTimestamp("time");
+
+                    slotList.add(new Slot(slotId, centreId, slotTime));
+                }
+
+            }
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return slotList;
@@ -29,38 +45,98 @@ public class SlotDAOImpl implements SlotDAO {
 
     @Override
     public List<Slot> getSlotByCentreId(String gymCentreId) {
-        List<Slot> slotList = getSlotList();
-        List<Slot> filteredSlotList = getSlotList();
-        for (Slot slot : slotList) {
-            if (slot.getCentreId().equals(gymCentreId)) {
-                filteredSlotList.add(slot);
+        List<Slot> filteredSlotList = new ArrayList<>();
+        String query = "SELECT slotId, centreId, time FROM slots WHERE centreId = ?"; // Adjust query according to your table schema
+
+        try (Connection connection = DBConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setString(1, gymCentreId);
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                while (resultSet.next()) {
+                    String slotId = resultSet.getString("slotId");
+                    String centreName = resultSet.getString("centreId");
+                    Date slotTime = resultSet.getTimestamp("time");
+
+                    filteredSlotList.add(new Slot(slotId, centreName, slotTime));
+                }
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
+
         return filteredSlotList;
     }
 
-    public void addSlot(Slot slot){
-    }
-    public Slot getSlotById(String slotID) {
-        List<Slot> slotList = getSlotList();
-        for (Slot slot : slotList) {
-            if (slot.getSlotId().equals(slotID)) {
-                return slot;
-            }
+    public void addSlot(Slot slot) {
+        String query = "INSERT INTO slots (slotId, centreId, time) VALUES (?, ?, ?)"; // Adjust query according to your table schema
+
+        try (Connection connection = DBConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setString(1, slot.getSlotId());
+            stmt.setString(2, slot.getCentreId());
+            stmt.setTimestamp(3, new java.sql.Timestamp(slot.getTime().getTime()));
+
+            int rowsInserted = stmt.executeUpdate();
+            System.out.println(rowsInserted + " record(s) inserted");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return null;
+    }
+
+    public Slot getSlotById(String slotID) {
+        Slot foundSlot = null;
+        String query = "SELECT slotId, centreId, time FROM slots WHERE slotId = ?"; // Adjust query according to your table schema
+
+        try (Connection connection = DBConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setString(1, slotID);
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                if (resultSet.next()) {
+                    String slotId = resultSet.getString("slotId");
+                    String centreName = resultSet.getString("centreId");
+                    Date slotTime = resultSet.getTimestamp("time");
+
+                    foundSlot = new Slot(slotId, centreName, slotTime);
+                }
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return foundSlot;
     }
 
     public Slot getSlotByIdAndCentreId(String slotID, String gymCentreId) {
-        List<Slot> slotList = getSlotList();
-        for (Slot slot : slotList) {
-            if (slot.getCentreId().equals(gymCentreId)) {
-                if (slot.getSlotId().equals(slotID)) {
-                    return slot;
+        Slot foundSlot = null;
+        String query = "SELECT slotId, centreId, time FROM slots WHERE slotId = ? AND centreId = ?";
+
+        try (Connection connection = DBConnection.connect();
+             PreparedStatement stmt = connection.prepareStatement(query)) {
+
+            stmt.setString(1, slotID);
+            stmt.setString(2, gymCentreId);
+
+            try (ResultSet resultSet = stmt.executeQuery()) {
+                if (resultSet.next()) {
+                    String slotId = resultSet.getString("slotId");
+                    String centreId = resultSet.getString("centreId");
+                    Date slotTime = resultSet.getTimestamp("time");
+
+                    foundSlot = new Slot(slotId, centreId, slotTime);
                 }
             }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-        return null;
+
+        return foundSlot;
     }
 
 }
