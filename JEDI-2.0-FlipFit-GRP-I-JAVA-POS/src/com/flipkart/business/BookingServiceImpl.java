@@ -1,6 +1,6 @@
 package com.flipkart.business;
 
-import com.flipkart.bean.Booking;
+import com.flipkart.bean.BookingDetails;
 import com.flipkart.dao.BookingDAOImpl;
 
 import java.util.Date;
@@ -17,8 +17,8 @@ public class BookingServiceImpl implements BookingServiceInterface{
     public void addBooking(String userName, String scheduleID) {
     }
 
-    public List<Booking> getBookingByCustomerId(String customerId){
-        return bookingDAO.getBookingByCustomerId(customerId);
+    public List<BookingDetails> getBookingByCustomerId(String username){
+        return bookingDAO.getBookingByCustomerId(username);
     }
 
 //

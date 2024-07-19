@@ -1,6 +1,6 @@
 package com.flipkart.business;
 
-import com.flipkart.bean.Booking;
+import com.flipkart.bean.BookingDetails;
 import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
 
@@ -10,7 +10,7 @@ import java.util.List;
 public interface CustomerServiceInterface {
     void CustomerLogin();
     List<GymCentre> getAllGymCenterDetailsByCity(String city);
-    List<Booking> getCustomerBookings(String customerId);
+    List<BookingDetails> getCustomerBookings(String customerId);
     boolean bookSlot(String userID,Date date, String slotId,String centreId);
     void cancelBooking(String bookingID);
     public Customer registerCustomer(String userName, String password, String email,

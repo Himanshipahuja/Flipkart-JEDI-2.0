@@ -1,10 +1,10 @@
 package com.flipkart.business;
 
-import com.flipkart.bean.Booking;
+import com.flipkart.bean.BookingDetails;
 import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
-import com.flipkart.dao.CustomerDAOImpl;
 import com.flipkart.dao.CustomerDAO;
+import com.flipkart.dao.CustomerDAOImpl;
 import com.flipkart.dao.GymCenterDAO;
 import com.flipkart.dao.GymCenterDAOImpl;
 
@@ -30,9 +30,9 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     }
 
     @Override
-    public List<Booking> getCustomerBookings(String customerId){
+    public List<BookingDetails> getCustomerBookings(String username){
         //takes userId and returns List<Bookings>
-        return bookingService.getBookingByCustomerId(customerId);
+        return bookingService.getBookingByCustomerId(username);
     }
     @Override
     public boolean bookSlot(String userID, Date date, String slotId, String centreId) {

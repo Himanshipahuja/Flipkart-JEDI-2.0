@@ -1,7 +1,7 @@
 package com.flipkart.client;
 
 
-import com.flipkart.bean.Booking;
+import com.flipkart.bean.BookingDetails;
 import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
 import com.flipkart.business.CustomerServiceImpl;
@@ -66,22 +66,23 @@ public class CustomerFlipfitMenu {
     private void printUserPlan(String userName){
         System.out.println("Bookings : ");
 //        List<UserPlan> allUserPlan= customerService.getCustomerPlan(userName);
-        List<Booking> bookingList = customerService.getCustomerBookings(userName);
+        List<BookingDetails> bookingList = customerService.getCustomerBookings(userName);
         if (bookingList.isEmpty()) {
             System.out.println("No bookings found for user: " + userName);
             return;
         }
 
         // Print header
-        System.out.printf("%-15s %-10s %-10s %-20s%n", "Booking ID", "User ID", "Slot ID", "Time");
+        System.out.printf("%-15s %-10s %-10s %-20s%n",  "Booking ID", "Date", "Center Name", "City");
         System.out.println("---------------------------------------------------------------");
 
         // Iterate over the list and print each booking
-        for (Booking booking : bookingList) {
-            System.out.printf("%-15s %-10s %-10s %n",
+        for (BookingDetails booking : bookingList) {
+            System.out.printf("%-15s %-15s %-20s %-15s %n",
                     booking.getBookingId(),
-                    booking.getUserId(),
-                    booking.getScheduleId());
+                    booking.getDate().toString(),
+                    booking.getCentreName(),
+                    booking.getCity());
         }
     }
     public void customerClientMainPage(String username, String customerId) {
