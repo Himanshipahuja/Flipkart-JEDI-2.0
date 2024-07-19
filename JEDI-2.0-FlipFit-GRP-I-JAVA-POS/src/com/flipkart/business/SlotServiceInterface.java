@@ -1,5 +1,17 @@
 package com.flipkart.business;
 
+import com.flipkart.bean.Slot;
+
+import java.util.List;
+
 public interface SlotServiceInterface {
-    void addSlot();
+    List<Slot> getAllSlotsByCentre(String centreID);
+
+    Slot getSlotByID(String slotID);
+
+    List<Slot> getSlotList();
+
+    void addSlotsForGym(String gymCentreId, List<Slot> slotList);
+
+    boolean isSlotValid(String slotID, String centreId);
 }
