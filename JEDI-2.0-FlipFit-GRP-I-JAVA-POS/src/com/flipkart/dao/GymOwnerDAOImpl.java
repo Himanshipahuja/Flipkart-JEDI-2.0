@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.flipkart.bean.Role;
 
-public class GymOwnerDao implements GymOwnerInterfaceDao {
+public class GymOwnerDAOImpl implements GymOwnerDAO {
     private List<GymOwner> gymOwnerList = new ArrayList<>();
     public List<GymOwner> getGymOwnerList(){
         return gymOwnerList;
@@ -58,8 +58,8 @@ public class GymOwnerDao implements GymOwnerInterfaceDao {
     public List<GymOwner> getGymOwnersList() {
         List<GymOwner> gymOwnerList = new ArrayList<>();
 
-        GymCenterDAO gymCenterDAO = new GymCenterDAO();
-        List<GymCentre> gymCentreList = gymCenterDAO.getGymCentersList();
+        GymCenterDAOImpl gymCenterDAOImpl = new GymCenterDAOImpl();
+        List<GymCentre> gymCentreList = gymCenterDAOImpl.getGymCentersList();
 
         List<String> list1 = new ArrayList<>();
         list1.add(gymCentreList.get(0).getCentreName());

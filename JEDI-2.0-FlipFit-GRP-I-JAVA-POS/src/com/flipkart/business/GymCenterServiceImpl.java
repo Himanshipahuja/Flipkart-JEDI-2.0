@@ -1,17 +1,17 @@
 package com.flipkart.business;
 
-import com.flipkart.dao.GymCenterDAO;
+import com.flipkart.dao.GymCenterDAOImpl;
 import com.flipkart.bean.GymCentre;
 
 import java.util.List;
 
 public class GymCenterServiceImpl implements GymCenterServiceInterface {
-    GymCenterDAO gymCenterDAO = new GymCenterDAO();
+    GymCenterDAOImpl gymCenterDAOImpl = new GymCenterDAOImpl();
 
 
 
     public List<GymCentre> getAllCentresByOwmerId(String gymOwnerId) {
-        return gymCenterDAO.getAllCentresByOwmerId(gymOwnerId);
+        return gymCenterDAOImpl.getAllCentresByOwmerId(gymOwnerId);
     }
     public void addCenter(String gymId,String userName,String gymCentreName, String gstin, String city,int capacity,boolean isapproved,float price) {
         //takes gymCenter details

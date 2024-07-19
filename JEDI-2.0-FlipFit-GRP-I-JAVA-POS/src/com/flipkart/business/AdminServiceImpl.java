@@ -3,20 +3,18 @@ package com.flipkart.business;
 import com.flipkart.bean.Admin;
 import com.flipkart.bean.GymCentre;
 import com.flipkart.bean.GymOwner;
-import com.flipkart.client.AdminFlipfitMenu;
-import com.flipkart.dao.GymCenterDAO;
-import com.flipkart.dao.GymOwnerDao;
+import com.flipkart.dao.GymCenterDAOImpl;
+import com.flipkart.dao.GymOwnerDAOImpl;
 import com.flipkart.exceptions.LoginFailedException;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class AdminServiceImpl implements AdminServiceInterface {
 
     Admin admin = new Admin();
-    GymCenterDAO gymCenterDAO = new GymCenterDAO();
-    GymOwnerDao gymOwnerDAO = new GymOwnerDao();
+    GymCenterDAOImpl gymCenterDAOImpl = new GymCenterDAOImpl();
+    GymOwnerDAOImpl gymOwnerDAOImpl = new GymOwnerDAOImpl();
 
     @Override
     public void viewGymOwner(String gymOwnerId) {
@@ -72,7 +70,7 @@ public class AdminServiceImpl implements AdminServiceInterface {
 
     @Override
     public void viewAllGymOwners() {
-        List<GymOwner> gymOwnerList = gymOwnerDAO.getGymOwnersList();
+        List<GymOwner> gymOwnerList = gymOwnerDAOImpl.getGymOwnersList();
         System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
         System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8s | %-30s | %-15s |\n",
                 "User ID", "User Name", "Email", "Role", "PAN", "Approved", "GymCentre List", "Card Details");
@@ -88,7 +86,7 @@ public class AdminServiceImpl implements AdminServiceInterface {
 
     @Override
     public void viewAllGymCentres(){
-        List<GymCentre> gymCentres = gymCenterDAO.getGymCentersList();
+        List<GymCentre> gymCentres = gymCenterDAOImpl.getGymCentersList();
 
 //        List<String> gymCenterNames = new ArrayList<>();
 //        gymCentres.forEach(gymCentre -> {gymCenterNames.add(gymCentre.getCentreName());});
@@ -108,21 +106,21 @@ public class AdminServiceImpl implements AdminServiceInterface {
     }
     @Override
     public void validateAllGymCentres() {
-        gymCenterDAO.validateAllGymCentres();
+        gymCenterDAOImpl.validateAllGymCentres();
     }
 
     @Override
     public void validateGymCentreByID(String gymCentreId, boolean isApproved) {
-        gymCenterDAO.validateGymCentreByID(gymCentreId,isApproved);
+        gymCenterDAOImpl.validateGymCentreByID(gymCentreId,isApproved);
     }
 
     @Override
     public void validateAllGymOwners() {
-        gymOwnerDAO.validateAllGymOwners();
+        gymOwnerDAOImpl.validateAllGymOwners();
     }
 
     @Override
     public void validateGymOwnerByID(String ownerId, boolean isApproved) {
-        gymOwnerDAO.validateGymOwnerByID(ownerId,isApproved);
+        gymOwnerDAOImpl.validateGymOwnerByID(ownerId,isApproved);
     }
 }

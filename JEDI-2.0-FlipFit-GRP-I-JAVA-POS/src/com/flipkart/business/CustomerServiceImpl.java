@@ -3,8 +3,8 @@ package com.flipkart.business;
 import com.flipkart.bean.Booking;
 import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
+import com.flipkart.dao.CustomerDAOImpl;
 import com.flipkart.dao.CustomerDAO;
-import com.flipkart.dao.CustomerInterfaceDAO;
 
 import java.sql.Date;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class CustomerServiceImpl implements  CustomerServiceInterface{
 
     public static Scanner scanner = new Scanner(System.in);
-    private CustomerInterfaceDAO customerDAO = new CustomerDAO();
+    private CustomerDAO customerDAO = new CustomerDAOImpl();
 
     @Override
     public void CustomerLogin() {
