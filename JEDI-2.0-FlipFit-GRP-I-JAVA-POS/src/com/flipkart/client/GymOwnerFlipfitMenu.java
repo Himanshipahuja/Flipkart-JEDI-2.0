@@ -68,6 +68,7 @@ public class GymOwnerFlipfitMenu {
             );
             System.out.println("---------------------------------------------------------------------------");
             int choice = scanner.nextInt();
+            System.out.println("&&&&&------"+choice);
             switch(choice){
                 case 0:
 //                    System.out.println("Gym cetres viewd\n");
@@ -106,9 +107,9 @@ public class GymOwnerFlipfitMenu {
                     int capacity = scanner.nextInt();
 
                     System.out.println("Enter price: : ");
-                    float price = scanner.nextInt();
-
-                    gymCentreService.addCenter(gymId,userName,gymCentreName,gstin,city,capacity,false,price );
+                    float price = scanner.nextFloat();
+                    boolean isapproved = false;
+                    gymCentreService.addCenter(gymId,userName,gymCentreName,gstin,city,capacity,isapproved,price );
                     System.out.println("New Gym center added\n");
 
                     break;
