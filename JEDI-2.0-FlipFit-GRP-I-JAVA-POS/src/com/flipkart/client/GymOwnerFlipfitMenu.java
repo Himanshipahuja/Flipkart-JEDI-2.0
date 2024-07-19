@@ -114,7 +114,9 @@ public class GymOwnerFlipfitMenu {
                     break;
 
                 case 3:
-                    System.out.println("Gym Centre Approval Request sent to Admin\n");
+                    System.out.println("Enter gym centre id: ");
+                    String gymCentreId = scanner.next();
+                    gymCentreService.requestGymCentreApproval(gymCentreId);
                     break;
 
                 case 4:

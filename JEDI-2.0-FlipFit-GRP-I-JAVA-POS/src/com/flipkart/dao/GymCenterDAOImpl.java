@@ -11,6 +11,8 @@ import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.flipkart.constants.SQLConstants.SQL_APPROVE_GYM_CENTRE_BY_ID_QUERY;
+
 public class GymCenterDAOImpl implements GymCenterDAO {
 //    private List<GymCentre> GymCentersList = new ArrayList<>();
     private Connection conn = null;
@@ -163,4 +165,18 @@ public class GymCenterDAOImpl implements GymCenterDAO {
 //        GymCentersList.add(curr);
 //    }
 
+    public void sendRequestForApprovalOfCentre(String gymCentreId) {
+        try {
+            conn = DBConnection.connect();
+            System.out.println("Gym Centre Approval Request sent to Admin\n");
+            statement = conn.prepareStatement(SQL_APPROVE_GYM_CENTRE_BY_ID_QUERY);
+            statement.setInt(1, 2);
+            statement.setString(2, gymCentreId);
+            statement.executeUpdate();
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
