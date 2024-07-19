@@ -26,4 +26,5 @@ public interface GymOwnerServiceInterface {
 
     public void viewAllGymOwners();
     public String getGymOwnerId(String userName, String password);
+    public void requestGymOwnerApproval(String gymOwnerId);
 }

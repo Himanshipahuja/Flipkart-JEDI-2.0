@@ -3,13 +3,21 @@ package com.flipkart.dao;
 
 import com.flipkart.bean.GymCentre;
 import com.flipkart.bean.GymOwner;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 import com.flipkart.bean.Role;
+import com.flipkart.constants.SQLConstants;
+import com.flipkart.utils.DBConnection;
 
 public class GymOwnerDAOImpl implements GymOwnerDAO {
+    private Connection conn = null;
+    private PreparedStatement statement = null;
     private List<GymOwner> gymOwnerList = new ArrayList<>();
     public List<GymOwner> getGymOwnerList(){
         return gymOwnerList;
@@ -155,11 +163,15 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
 
     @Override
     public void sendOwnerApprovalRequest(String gymOwnerId){
-        for (GymOwner gymOwner : gymOwnerList) {
-            if (Objects.equals(gymOwnerId, gymOwner.getUserID())) {
-                gymOwner.setApproved(false);
-            }
-        }
+        try {
+            conn = DBConnection.connect();
+            System.out.println("Sending gym owner approval request..");
+            statement = conn.prepareStatement(SQLConstants.SEND_GYM_OWNER_APPROVAL_REQ_QUERY);
+            statement.setString(1,gymOwnerId);
+            statement.executeUpdate();
+
+        } catch (SQLException se) { se.printStackTrace(); }
+        catch (Exception e) { e.printStackTrace(); }
     }
 
     @Override
