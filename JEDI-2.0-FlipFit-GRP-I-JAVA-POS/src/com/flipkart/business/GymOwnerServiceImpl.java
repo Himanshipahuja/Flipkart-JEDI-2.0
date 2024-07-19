@@ -79,7 +79,7 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
 
     @Override
     public void viewAllGymOwners() {
-        List<GymOwner> gymOwners = gymOwnerDAOImpl.getGymOwnerList();
+        List<GymOwner> gymOwners = gymOwnerDAOImpl.getGymOwnersList();
 
         System.out.println("--------------------------------------------------------------------");
         System.out.printf("| %-10s | %-10s | %-20s | %-15s |\n",
@@ -91,7 +91,6 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
                     gymOwner.getUserName(), gymOwner.getEmail(), gymOwner.getCardDetails(), gymOwner.getPanNumber());
         }
         System.out.println("--------------------------------------------------------------------");
-
 
     }
 

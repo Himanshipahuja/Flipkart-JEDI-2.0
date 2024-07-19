@@ -3,6 +3,7 @@ package com.flipkart.business;
 import com.flipkart.bean.Admin;
 import com.flipkart.bean.GymCentre;
 import com.flipkart.bean.GymOwner;
+import com.flipkart.bean.Role;
 import com.flipkart.dao.GymCenterDAOImpl;
 import com.flipkart.dao.GymOwnerDAOImpl;
 import com.flipkart.exceptions.LoginFailedException;
@@ -71,15 +72,15 @@ public class AdminServiceImpl implements AdminServiceInterface {
     @Override
     public void viewAllGymOwners() {
         List<GymOwner> gymOwnerList = gymOwnerDAOImpl.getGymOwnersList();
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8s | %-30s | %-15s |\n",
-                "User ID", "User Name", "Email", "Role", "PAN", "Approved", "GymCentre List", "Card Details");
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("| %-10s | %-11s | %-20s | %-15s | %-16s | %-17s | %-8s | %-30s | %-14s |\n",
+                "User ID", "User Name", "Email","Password", "Role", "PAN", "Approved","Card Details","Owner Id");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         for(GymOwner gymOwner : gymOwnerList) {
-            System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8b | %-30s | %-15s |\n",
-                    gymOwner.getUserID(), gymOwner.getUserName(), gymOwner.getEmail(), gymOwner.getRole(), gymOwner.getPanNumber(), gymOwner.isApproved(), gymOwner.getGymCentreLists(), gymOwner.getCardDetails());
+            System.out.printf("| %-10s | %-11s | %-20s | %-15s | %-16s | %-17s | %-8s | %-30s | %-14s |\n",
+                    gymOwner.getUserID(), gymOwner.getUserName(), gymOwner.getEmail(), gymOwner.getPassword(), Role.GYMOWNER, gymOwner.getPanNumber(), gymOwner.isApproved(), gymOwner.getCardDetails(), gymOwner.getUserID());
 
-            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println("------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 
         }
     }
@@ -101,7 +102,7 @@ public class AdminServiceImpl implements AdminServiceInterface {
         }
         System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
 
-//        System.out.println(gymCenterNames);
+// System.out.println(gymCenterNames);
 
     }
     @Override
@@ -120,7 +121,7 @@ public class AdminServiceImpl implements AdminServiceInterface {
     }
 
     @Override
-    public void validateGymOwnerByID(String ownerId, boolean isApproved) {
+    public void validateGymOwnerByID(String ownerId, int isApproved) {
         gymOwnerDAOImpl.validateGymOwnerByID(ownerId,isApproved);
     }
 }

@@ -56,7 +56,7 @@ public class AdminFlipfitMenu {
                 case 2:
                     System.out.println("Enter Gym Owner ID to approve");
                     String gymOwnerId = scanner.next();
-                    adminService.validateGymOwnerByID(gymOwnerId, true);
+                    adminService.validateGymOwnerByID(gymOwnerId, 1);
                     System.out.println("Gym owner: "+ gymOwnerId + " request approved");
                     break;
                 case 3:
@@ -69,7 +69,11 @@ public class AdminFlipfitMenu {
                 case 5:
                     System.out.println("Enter Gym Center ID to approve");
                     String gymCentreId = scanner.next();
+<<<<<<< HEAD
                     adminService.validateGymCentreByID(gymCentreId, 1);
+=======
+                    adminService.validateGymCentreByID(gymCentreId,true);
+>>>>>>> 2f16e16 (added gym owner approval for admin)
                     System.out.println("Gym centre: "+ gymCentreId + " request approved");
                     break;
                 case 6:

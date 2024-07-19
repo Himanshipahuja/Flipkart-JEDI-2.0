@@ -12,7 +12,7 @@ public interface AdminServiceInterface {
 
     public void viewAllGymOwners();
     public void validateAllGymOwners();
-    public void validateGymOwnerByID(String ownerId, boolean isApproved);
+    public void validateGymOwnerByID(String ownerId, int isApproved);
 
     public void viewAllGymCentres();
     public void validateAllGymCentres();
