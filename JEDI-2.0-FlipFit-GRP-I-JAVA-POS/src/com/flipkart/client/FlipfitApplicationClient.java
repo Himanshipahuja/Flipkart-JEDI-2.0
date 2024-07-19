@@ -2,6 +2,7 @@ package com.flipkart.client;
 
 import com.flipkart.bean.Role;
 
+import java.text.ParseException;
 import java.util.Scanner;
 
 import static com.flipkart.constants.Constants.*;
@@ -69,7 +70,7 @@ public class FlipfitApplicationClient {
                     System.out.println(INVALID_CHOICE_ERROR);
                     break;
             }
-        }catch (IllegalArgumentException e){
+        }catch (Exception e){
             System.out.println(INVALID_CHOICE_ERROR);
         }
     }
@@ -91,7 +92,7 @@ public class FlipfitApplicationClient {
                     System.out.println(INVALID_CHOICE_ERROR);
                     break;
             }
-        }catch (IllegalArgumentException e){
+        }catch (Exception e){
             System.out.println(INVALID_CHOICE_ERROR);
         }
     }

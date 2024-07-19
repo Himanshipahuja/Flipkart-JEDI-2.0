@@ -4,9 +4,19 @@ package com.flipkart.client;
 
 import com.flipkart.bean.GymCentre;
 import com.flipkart.bean.GymOwner;
+import com.flipkart.bean.Slot;
 import com.flipkart.business.GymOwnerServiceImpl;
 import com.flipkart.business.GymCenterServiceImpl;
+import com.flipkart.business.SlotService;
+import com.flipkart.business.SlotServiceInterface;
 
+import javax.swing.text.DateFormatter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,8 +29,9 @@ public class GymOwnerFlipfitMenu {
 
     GymOwnerServiceImpl gymOwnerService = new GymOwnerServiceImpl();
     GymCenterServiceImpl gymCentreService = new GymCenterServiceImpl();
+    private SlotService slotService = new SlotService();
 
-    public boolean gymOwnerLogin(String userName, String password) {
+    public boolean gymOwnerLogin(String userName, String password) throws ParseException {
         if(gymOwnerService.gymOwnerLogin(userName, password)){
             System.out.println("---------------------------------------------------------------------------");
             System.out.println("Successfully logged in as Gym Owner");
@@ -32,7 +43,7 @@ public class GymOwnerFlipfitMenu {
         return true;
     }
 
-    public void register() {
+    public void register() throws ParseException {
         GymOwner registeredGymOwner = gymOwnerService.register();
         gymOwnerClientMainPage(registeredGymOwner.getUserName(), registeredGymOwner.getPassword());
 //        gymOwnerClientMainPage(userName);
@@ -43,7 +54,7 @@ public class GymOwnerFlipfitMenu {
         gymOwnerService.gymOwnerChangePassword(userName, old_password, new_password);
     }
 
-    public void gymOwnerClientMainPage(String userName, String password) {
+    public void gymOwnerClientMainPage(String userName, String password) throws ParseException {
         System.out.println("Welcome to gym owner main page!!");
         while(true) {
             System.out.println("---------------------------------------------------------------------------");
@@ -97,9 +108,6 @@ public class GymOwnerFlipfitMenu {
                     System.out.println("Enter price: : ");
                     float price = scanner.nextInt();
 
-
-
-
                     gymCentreService.addCenter(gymId,userName,gymCentreName,gstin,city,capacity,false,price );
                     System.out.println("New Gym center added\n");
 
@@ -110,6 +118,39 @@ public class GymOwnerFlipfitMenu {
                     break;
 
                 case 4:
+                    boolean isAdding = true;
+                    String centreId = null;
+
+                    List<Slot> newSlotList = new ArrayList<>();
+                    while (isAdding) {
+                        System.out.println("Enter new slot id: ");
+                        String slotId = scanner.next();
+
+                        System.out.println("Enter Gym Centre Id: ");
+                        centreId = scanner.next();
+
+                        System.out.println("Enter time in 24h format (hh:mm:ss) : ");
+                        String time = scanner.next();
+
+                        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+                        Date localTime = formatter.parse(time);
+
+                        newSlotList.add(new Slot(
+                                slotId,
+                                centreId,
+                                localTime
+                        ));
+
+                        System.out.println("Do you want to enter more slots (y/n)?: ");
+                        String addChoice = scanner.next();
+                        addChoice = addChoice.toLowerCase();
+
+                        if(addChoice.equals("n") || addChoice.equals("no")) {
+                            isAdding = false;
+                        }
+                    }
+
+                    slotService.addSlotsForGym(centreId, newSlotList);
                     System.out.println("Slots added in the Gym centre\n");
                     break;
 
