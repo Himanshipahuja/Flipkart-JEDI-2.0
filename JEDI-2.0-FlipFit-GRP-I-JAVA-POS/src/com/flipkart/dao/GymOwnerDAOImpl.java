@@ -78,6 +78,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
                     }
                 }
             } catch (Exception e) {
+                e.printStackTrace();
                 System.out.println("SQL Exception\n");
                 return false;
             }
