@@ -34,7 +34,7 @@ public class SlotDAOImpl implements SlotDAO {
                 while (resultSet.next()) {
                     String slotId = resultSet.getString("slotId");
                     String centreId = resultSet.getString("centreId");
-                    Date slotTime = resultSet.getTimestamp("time");
+                    Date slotTime = resultSet.getDate("time");
 
                     slotList.add(new Slot(slotId, centreId, slotTime));
                 }
@@ -59,7 +59,7 @@ public class SlotDAOImpl implements SlotDAO {
                 while (resultSet.next()) {
                     String slotId = resultSet.getString("slotId");
                     String centreName = resultSet.getString("centreId");
-                    Date slotTime = resultSet.getTimestamp("time");
+                    Date slotTime = resultSet.getDate("time");
 
                     filteredSlotList.add(new Slot(slotId, centreName, slotTime));
                 }
@@ -102,7 +102,7 @@ public class SlotDAOImpl implements SlotDAO {
                 if (resultSet.next()) {
                     String slotId = resultSet.getString("slotId");
                     String centreName = resultSet.getString("centreId");
-                    Date slotTime = resultSet.getTimestamp("time");
+                    Date slotTime = resultSet.getDate("time");
 
                     foundSlot = new Slot(slotId, centreName, slotTime);
                 }
@@ -129,7 +129,7 @@ public class SlotDAOImpl implements SlotDAO {
                 if (resultSet.next()) {
                     String slotId = resultSet.getString("slotId");
                     String centreId = resultSet.getString("centreId");
-                    Date slotTime = resultSet.getTimestamp("time");
+                    Date slotTime = resultSet.getDate("time");
 
                     foundSlot = new Slot(slotId, centreId, slotTime);
                 }
