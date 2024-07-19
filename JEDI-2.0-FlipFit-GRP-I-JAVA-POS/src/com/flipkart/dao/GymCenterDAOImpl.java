@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class GymCenterDAOImpl implements GymCenterDAO {
     private Connection conn = null;
@@ -67,6 +68,28 @@ public class GymCenterDAOImpl implements GymCenterDAO {
 //        System.out.println("***^^**** "+gymCentreListofOwner.size());
 
         return gymCentreListofOwner;
+    }
+    public static String generateRandomString(int length) {
+        // Character set from which to generate the random string
+        String charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+        // Random object to select characters from the charset
+        Random random = new Random();
+
+        // StringBuilder to build the resulting random string
+        StringBuilder sb = new StringBuilder();
+
+        // Generate random characters
+        for (int i = 0; i < length; i++) {
+            // Generate a random index between 0 and charset.length()-1
+            int randomIndex = random.nextInt(charset.length());
+
+            // Append the character at the random index to the string builder
+            sb.append(charset.charAt(randomIndex));
+        }
+
+        // Convert StringBuilder to String and return the generated random string
+        return sb.toString();
     }
 
     @Override
@@ -150,19 +173,32 @@ public class GymCenterDAOImpl implements GymCenterDAO {
         return allCentreByCity;
     }
 
-//    public void addGymCentre(String gymId,String userName,String gymCentreName, String gstin, String city,int capacity,boolean isapproved,float price) {
-//        GymCentre curr= new GymCentre();
-//
-//        curr.setApproved(isapproved);
-//        curr.setAmountPerSlot(price);
-//        curr.setCentreId(gymId);
-//        curr.setCity(city);
-//        curr.setOwnerId(userName);
-//        curr.setGstNo(gstin);
-//
-//        curr.setCentreName(gymCentreName);
-//        curr.setCapacity(capacity);
-//        GymCentersList.add(curr);
-//    }
+    public void addGymCentre(String gymId,String ownerId,String gymCentreName, String gstin, String city,int capacity,boolean isapproved,float price) {
+        try{
+            System.out.println("Heyy%%%%%");
+            String priceee = Float.toString(price);
+            conn = DBConnection.connect();
+            statement = conn.prepareStatement(SQLConstants.ADD_GYM_CENTRE_QUERY);
+            statement.setString(1, generateRandomString(6));
+            statement.setString(2, ownerId);
+            statement.setString(3, gymCentreName);
+            statement.setString(4, gstin);
+            statement.setString(5, city);
+            statement.setInt(6, capacity);
+            statement.setInt(7,(isapproved==true?1:0));
+            statement.setString(8,priceee );
+            boolean i=statement.execute();
+            System.out.println("&&&&&"+i);
+            if (i) {
+                System.out.println("ROW INSERTED");
+            } else {
+                System.out.println("ROW NOT INSERTED");
+            }
 
+        } catch (SQLException e) {
+            System.out.println("Heyy%%%%%");
+            e.printStackTrace();
+            throw new RuntimeException(e);
+        }
+    }
 }
