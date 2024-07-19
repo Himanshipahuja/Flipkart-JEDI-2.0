@@ -3,6 +3,7 @@ package com.flipkart.client;
 
 
 import com.flipkart.bean.GymCentre;
+import com.flipkart.bean.GymOwner;
 import com.flipkart.business.GymOwnerServiceImpl;
 import com.flipkart.business.GymCenterServiceImpl;
 
@@ -23,7 +24,7 @@ public class GymOwnerFlipfitMenu {
         if(gymOwnerService.gymOwnerLogin(userName, password)){
             System.out.println("---------------------------------------------------------------------------");
             System.out.println("Successfully logged in as Gym Owner");
-            gymOwnerClientMainPage(userName);
+            gymOwnerClientMainPage(userName, password);
         }
         else{
             System.out.println("Invalid credentials");
@@ -32,7 +33,8 @@ public class GymOwnerFlipfitMenu {
     }
 
     public void register() {
-            gymOwnerService.register();
+        GymOwner registeredGymOwner = gymOwnerService.register();
+        gymOwnerClientMainPage(registeredGymOwner.getUserName(), registeredGymOwner.getPassword());
 //        gymOwnerClientMainPage(userName);
 //        return userName;
     }
@@ -41,7 +43,7 @@ public class GymOwnerFlipfitMenu {
         gymOwnerService.gymOwnerChangePassword(userName, old_password, new_password);
     }
 
-    public void gymOwnerClientMainPage(String userName) {
+    public void gymOwnerClientMainPage(String userName, String password) {
         System.out.println("Welcome to gym owner main page!!");
         while(true) {
             System.out.println("---------------------------------------------------------------------------");
@@ -71,6 +73,8 @@ public class GymOwnerFlipfitMenu {
                     break;
 
                 case 1:
+                    String gymOwnerId = gymOwnerService.getGymOwnerId(userName, password);
+                    gymOwnerService.requestGymOwnerApproval(gymOwnerId);
                     System.out.println("Gym owner request sent to Admin\n");
                     break;
 

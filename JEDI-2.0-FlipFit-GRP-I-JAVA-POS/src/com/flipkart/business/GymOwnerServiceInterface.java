@@ -1,6 +1,7 @@
 package com.flipkart.business;
 
 import com.flipkart.bean.GymCentre;
+import com.flipkart.bean.GymOwner;
 import com.flipkart.bean.Slot;
 
 import java.sql.Date;
@@ -9,7 +10,7 @@ import java.util.List;
 public interface GymOwnerServiceInterface {
     public void login();
 
-    public void register();
+    public GymOwner register();
 
     public List<GymCentre> getAllCentresByOwnerId(String gymOwnerId);
 
@@ -24,4 +25,5 @@ public interface GymOwnerServiceInterface {
     public void gymOwnerChangePassword(String userName,String old_password,String new_password);
 
     public void viewAllGymOwners();
+    public String getGymOwnerId(String userName, String password);
 }

@@ -5,6 +5,8 @@ import com.flipkart.bean.GymCentre;
 import com.flipkart.bean.GymOwner;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import com.flipkart.bean.Role;
 
 public class GymOwnerDAOImpl implements GymOwnerDAO {
@@ -17,7 +19,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
 
     }
 
-    public void registerGymOwner(String userName,String password,String email,String panNumber,String cardNumber){
+    public GymOwner registerGymOwner(String userName,String password,String email,String panNumber,String cardNumber){
         int initialSize= gymOwnerList.size();
         String userId= String.valueOf(initialSize+1);
         GymOwner curr= new GymOwner();
@@ -32,7 +34,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         curr.setRole(Role.GYMOWNER);
         curr.setGymCentreLists(new ArrayList<>());
         gymOwnerList.add(curr);
-
+        return curr;
     }
     public boolean loginGymOwner(String username,String password){
         List<GymOwner>currGymOwner = getGymOwnerList();
@@ -151,4 +153,22 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         }
     }
 
+    @Override
+    public void sendOwnerApprovalRequest(String gymOwnerId){
+        for (GymOwner gymOwner : gymOwnerList) {
+            if (Objects.equals(gymOwnerId, gymOwner.getUserID())) {
+                gymOwner.setApproved(false);
+            }
+        }
+    }
+
+    @Override
+    public String getGymOwnerId(String userName, String password) {
+        for (GymOwner gymowner: gymOwnerList) {
+            if (gymowner.getUserName().equals(userName) && gymowner.getPassword().equals(password)) {
+                return gymowner.getUserID();
+            }
+        }
+        return "";
+    }
 }

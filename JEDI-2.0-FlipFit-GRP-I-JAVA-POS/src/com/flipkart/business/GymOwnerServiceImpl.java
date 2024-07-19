@@ -19,7 +19,7 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
     }
 
     @Override
-    public void register() {
+    public GymOwner register() {
         System.out.println("Enter your UserName");
         String userName = scanner.next();
 
@@ -35,7 +35,7 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
         System.out.println("Enter your Card Number");
         String cardNumber = scanner.next();
 
-        gymOwnerDAOImpl.registerGymOwner(userName,password,email,panNumber,cardNumber);
+        GymOwner registeredOwner = gymOwnerDAOImpl.registerGymOwner(userName,password,email,panNumber,cardNumber);
 //        List<GymOwner>gymOwnerList=gymOwnerDAO.getGymOwnerList();
         System.out.println("Registered successfully!! ");
 
@@ -45,8 +45,7 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
 //            System.out.println("\t PAN Number: " +  gymowner.getPanNumber());
 //            System.out.println("\t Card Number: " +  gymowner.getCardDetails());
 //        }
-
-
+        return registeredOwner;
     }
 
     @Override
@@ -96,4 +95,11 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
 
     }
 
+    public void requestGymOwnerApproval(String gymOwnerId) {
+        gymOwnerDAOImpl.sendOwnerApprovalRequest(gymOwnerId);
+    }
+
+    public String getGymOwnerId(String userName, String password) {
+        return gymOwnerDAOImpl.getGymOwnerId(userName, password);
+    }
 }
