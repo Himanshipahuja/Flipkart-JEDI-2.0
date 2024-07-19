@@ -13,7 +13,8 @@ import java.util.Scanner;
 public class CustomerServiceImpl implements  CustomerServiceInterface{
 
     public static Scanner scanner = new Scanner(System.in);
-    private CustomerDAO customerDAO = new CustomerDAOImpl();
+    private final CustomerDAO customerDAO = new CustomerDAOImpl();
+    private final BookingServiceInterface bookingService = new BookingServiceImpl();
 
     @Override
     public void CustomerLogin() {
@@ -26,10 +27,10 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     }
 
     @Override
-    public List<Booking> getCustomerBookings(String customerId) {
-        return List.of();
+    public List<Booking> getCustomerBookings(String customerId){
+        //takes userId and returns List<Bookings>
+        return bookingService.getBookingByCustomerId(customerId);
     }
-
     @Override
     public boolean bookSlot(String userID, Date date, String slotId, String centreId) {
         return false;

@@ -1,10 +1,12 @@
 package com.flipkart.client;
 
 
+import com.flipkart.bean.Booking;
 import com.flipkart.bean.Customer;
 import com.flipkart.business.CustomerServiceImpl;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Scanner;
 
 import static com.flipkart.constants.Constants.INVALID_CHOICE_ERROR;
@@ -39,7 +41,27 @@ public class CustomerFlipfitMenu {
         System.out.println("CARD DETAILS: "+  customer.getCardDetails());
         System.out.println("---------------------------------------------------------------------------");
     }
+    private void printUserPlan(String userName){
+        System.out.println("Bookings : ");
+//        List<UserPlan> allUserPlan= customerService.getCustomerPlan(userName);
+        List<Booking> bookingList = customerService.getCustomerBookings(userName);
+        if (bookingList.isEmpty()) {
+            System.out.println("No bookings found for user: " + userName);
+            return;
+        }
 
+        // Print header
+        System.out.printf("%-15s %-10s %-10s %-20s%n", "Booking ID", "User ID", "Slot ID", "Time");
+        System.out.println("---------------------------------------------------------------");
+
+        // Iterate over the list and print each booking
+        for (Booking booking : bookingList) {
+            System.out.printf("%-15s %-10s %-10s %n",
+                    booking.getBookingId(),
+                    booking.getUserId(),
+                    booking.getScheduleId());
+        }
+    }
     public void customerClientMainPage(String username) {
         System.out.println("---------------------------------------------------------------------------");
         System.out.println("Welcome to customer main page!!");
@@ -64,7 +86,8 @@ public class CustomerFlipfitMenu {
                     break;
                 case 3:
 
-                    System.out.println("Viewing all Bookings");
+                    printUserPlan(username);
+
                     break;
                 case 4:
                     System.out.println("All bookings for cancel are shown");
