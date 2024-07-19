@@ -2,12 +2,12 @@ package com.flipkart.dao;
 
 
 import com.flipkart.bean.GymOwner;
-<<<<<<< HEAD
-=======
+
+
 import com.flipkart.bean.Role;
 import com.flipkart.constants.SQLConstants;
 import com.flipkart.utils.DBConnection;
->>>>>>> 2f16e16 (added gym owner approval for admin)
+
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,25 +17,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-<<<<<<< HEAD
+
 import com.flipkart.bean.Role;
 import com.flipkart.constants.SQLConstants;
 import com.flipkart.utils.DBConnection;
 
-=======
->>>>>>> 2f16e16 (added gym owner approval for admin)
+
+
 public class GymOwnerDAOImpl implements GymOwnerDAO {
 
     private Connection conn = null;
     private PreparedStatement statement = null;
-<<<<<<< HEAD
 
-=======
->>>>>>> 2f16e16 (added gym owner approval for admin)
+
+
+
     private List<GymOwner> gymOwnerList = new ArrayList<>();
 
 
-<<<<<<< HEAD
     public GymOwner registerGymOwner(String userName,String password,String email,String panNumber,String cardNumber){
         GymOwner gymOwner = new GymOwner();
         try{
@@ -87,7 +86,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
                 e.printStackTrace();
                 System.out.println("SQL Exception\n");
                 return false;
-=======
+
     public GymOwner registerGymOwner(String userName, String password, String email, String panNumber, String cardNumber) {
         int initialSize = gymOwnerList.size();
         String userId = String.valueOf(initialSize + 1);
@@ -111,7 +110,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         for (GymOwner gymowner : currGymOwner) {
             if (gymowner.getUserName().equals(username) && gymowner.getPassword().equals(password)) {
                 return true;
->>>>>>> 2f16e16 (added gym owner approval for admin)
+
             }
         }catch (SQLException e){
             System.out.println("SQL Exception\n");
@@ -198,7 +197,7 @@ public void validateGymOwnerByID(String gymOwnerId, int isApproved) {
         conn = DBConnection.connect();
         System.out.println("Fetching gyms owners..");
 
-<<<<<<< HEAD
+
             System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
 
         }
@@ -225,7 +224,7 @@ public void validateGymOwnerByID(String gymOwnerId, int isApproved) {
             }
         }
         return "";
-=======
+
         statement = conn.prepareStatement(SQLConstants.SQL_APPROVE_GYM_OWNER_BY_ID_QUERY);
         //statement.setInt(1, isApproved);
         statement.setString(1, gymOwnerId);
@@ -236,7 +235,7 @@ public void validateGymOwnerByID(String gymOwnerId, int isApproved) {
     } catch (Exception e) {
         // Handle errors for Class.forName
         e.printStackTrace();
->>>>>>> 2f16e16 (added gym owner approval for admin)
+
     }
 }
 
