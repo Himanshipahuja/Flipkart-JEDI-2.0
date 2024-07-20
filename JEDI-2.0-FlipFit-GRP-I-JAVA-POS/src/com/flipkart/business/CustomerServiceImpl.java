@@ -16,6 +16,7 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     private final CustomerDAO customerDAO = new CustomerDAOImpl();
     private final GymCenterDAO gymCenterDAO = new GymCenterDAOImpl();
     private final SlotDAO slotDAO = new SlotDAOImpl();
+    private final ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
     private final BookingServiceInterface bookingService = new BookingServiceImpl();
 
     @Override
@@ -84,6 +85,11 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     @Override
     public String getCustomerIdFromNameAndPass(String userName, String password) {
         return customerDAO.getCustomerIdFromNameAndPass(userName, password);
+    }
+
+    @Override
+    public Integer getBookingCountFromSlotId(String slotId) {
+        return scheduleDAO.getSlotsBookedCountFromSlotId(slotId);
     }
 
     @Override

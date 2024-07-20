@@ -36,4 +36,9 @@ public class SQLConstants {
     public static final String GET_SLOT_FROM_GYMOWNER_AND_TIMESTAMP = "SELECT slotId from slot where centreId = ? and time = ?";
 
 
+    // -------------------------------------- SCHEDULE ------------------------------------------------------------
+    public static final  String GET_BOOKED_SLOT_COUNT_FROM_SLOTID = "SELECT count(*) FROM schedule where slotId = ?";
+
+
+
 }

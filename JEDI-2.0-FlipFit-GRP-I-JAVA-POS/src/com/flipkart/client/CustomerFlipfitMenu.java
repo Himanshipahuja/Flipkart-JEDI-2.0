@@ -58,6 +58,10 @@ public class CustomerFlipfitMenu {
         String slotId = customerService.getSlotIdFromGymCentreAndTimestamp(chosenGym,sqlTimestamp);
         System.out.println("Slot id is as follows:" + slotId);
 
+        Integer currBookingCount = customerService.getBookingCountFromSlotId(slotId);
+
+        System.out.println("The no. of  bookings under my slot currently are: " + currBookingCount);
+
 
     }
 

@@ -22,4 +22,5 @@ public interface CustomerServiceInterface {
     public void customerChangePassword(String userName,String old_password,String new_password);
     public String getSlotIdFromGymCentreAndTimestamp(String gymOwner, Timestamp timestamp);
     public String getCustomerIdFromNameAndPass(String userName, String password);
+    public Integer getBookingCountFromSlotId(String slotId);
 }
