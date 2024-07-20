@@ -25,4 +25,15 @@ public class SQLConstants {
     public static final String ADD_NEW_USER = "INSERT INTO `flipfit-schema`.`user` (userId,userName,email,password,role) VALUES (?, ?, ?, ?, ?);";
     public static final String CUSTOMER_LOGIN_QUERY = "SELECT * FROM `flipfit-schema`.`user` WHERE userName = ? AND password = ? AND role = ?";
     public static final String UPDATE_CUSTOMER_PASSWORD = "UPDATE `flipfit-schema`.`user` SET password = ? WHERE userId = ? AND role = ?;";
+
+    // -----------------------------------GYM OWNER -----------------------------------------------------------------------
+    public static final String SQL_APPROVE_GYM_OWNER_BY_ID_QUERY="Update gym_owner Set Approved=1 WHERE ownerId=?";
+    public static final String SQL_APPROVE_GYM_OWNER_ALL="Update gym_owner Set Approved=1";
+    public static final String FETCH_ALL_GYM_OWNERS_QUERY = "SELECT * FROM user u JOIN gym_owner g on u.userID=g.ownerID";
+
+
+    // -------------------------------------- SLOT ------------------------------------------------------------
+    public static final String GET_SLOT_FROM_GYMOWNER_AND_TIMESTAMP = "SELECT slotId from slot where centreId = ? and time = ?";
+
+
 }

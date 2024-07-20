@@ -3,12 +3,10 @@ package com.flipkart.business;
 import com.flipkart.bean.BookingDetails;
 import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
-import com.flipkart.dao.CustomerDAO;
-import com.flipkart.dao.CustomerDAOImpl;
-import com.flipkart.dao.GymCenterDAO;
-import com.flipkart.dao.GymCenterDAOImpl;
+import com.flipkart.dao.*;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,6 +15,7 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     public static Scanner scanner = new Scanner(System.in);
     private final CustomerDAO customerDAO = new CustomerDAOImpl();
     private final GymCenterDAO gymCenterDAO = new GymCenterDAOImpl();
+    private final SlotDAO slotDAO = new SlotDAOImpl();
     private final BookingServiceInterface bookingService = new BookingServiceImpl();
 
     @Override
@@ -88,6 +87,10 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     }
 
     @Override
+    public String getSlotIdFromGymCentreAndTimestamp(String gymOwner, Timestamp timestamp) {
+        return slotDAO.getSlotbyCentreIdAndTimeStamp(gymOwner,timestamp);
+    }
+
     public Customer viewMyProfile(String username)
     {
         return customerDAO.getCustomerById(username);

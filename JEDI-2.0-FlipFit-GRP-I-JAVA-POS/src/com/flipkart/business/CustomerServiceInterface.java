@@ -5,6 +5,7 @@ import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.List;
 
 public interface CustomerServiceInterface {
@@ -19,5 +20,6 @@ public interface CustomerServiceInterface {
     public Customer register();
     public Customer viewMyProfile(String username);
     public void customerChangePassword(String userName,String old_password,String new_password);
+    public String getSlotIdFromGymCentreAndTimestamp(String gymOwner, Timestamp timestamp);
     public String getCustomerIdFromNameAndPass(String userName, String password);
 }

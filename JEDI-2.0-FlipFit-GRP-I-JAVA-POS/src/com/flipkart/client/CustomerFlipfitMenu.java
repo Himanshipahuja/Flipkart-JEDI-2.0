@@ -6,9 +6,13 @@ import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
 import com.flipkart.business.CustomerServiceImpl;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 
 import static com.flipkart.constants.Constants.INVALID_CHOICE_ERROR;
 import static com.flipkart.constants.Constants.PREVIOUS_MENU_MESSAGE;
@@ -48,10 +52,32 @@ public class CustomerFlipfitMenu {
 
         System.out.print("Choose a gymCentre ID to proceed:");
         String chosenGym = scanner.next();
+        System.out.print("Enter the date and time you want to pick");
         //Select Date
-//        Date sqlDate = selectDate();
-//        //Choose Slot
-//        chooseSlot(chosenGym,userName,sqlDate,chosenGym);
+        Timestamp sqlTimestamp = getTimestamp();
+        String slotId = customerService.getSlotIdFromGymCentreAndTimestamp(chosenGym,sqlTimestamp);
+        System.out.println("Slot id is as follows:" + slotId);
+
+
+    }
+
+    private Timestamp getTimestamp(){
+        //Select Date
+        System.out.println("Enter date and time (yyyy-MM-dd HH:mm:ss): ");
+        String userInput = scanner.nextLine();
+
+        // Parse and format the date
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Date date = null;
+        try {
+            date = dateFormat.parse(userInput);
+        } catch (Exception e) {
+            System.out.println("Invalid date format. Please use yyyy-MM-dd HH:mm:ss");
+            return getTimestamp();
+        }
+
+        // Convert date to SQL timestamp
+        return new Timestamp(date.getTime());
     }
 
     public void printCustomerProfile(Customer customer) {
