@@ -126,7 +126,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         List<GymOwner>pendingGymOwner = new ArrayList<>();
 
         for(GymOwner gymowner:gymOwnerList){
-            if(!gymowner.isApproved()){
+            if(gymowner.isApproved()==0){
                 pendingGymOwner.add(gymowner);
             }
 
@@ -137,98 +137,62 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
     public List<GymOwner> getGymOwnersList() {
         List<GymOwner> gymOwnerList = new ArrayList<>();
 
-        GymCenterDAOImpl gymCenterDAOImpl = new GymCenterDAOImpl();
-        List<GymCentre> gymCentreList = gymCenterDAOImpl.getGymCentersList();
-
-        List<String> list1 = new ArrayList<>();
-        list1.add(gymCentreList.get(0).getCentreName());
-        list1.add(gymCentreList.get(1).getCentreName());
-
-        List<String> list2 = new ArrayList<>();
-        list2.add(gymCentreList.get(2).getCentreName());
-        list2.add(gymCentreList.get(3).getCentreName());
-
-        List<String> list3 = new ArrayList<>();
-        list3.add(gymCentreList.get(4).getCentreName());
-
-        GymOwner owner1 = new GymOwner();
-        owner1.setUserID("G001");
-        owner1.setUserName("GymOwner1");
-        owner1.setEmail("owner1@gmail.com");
-        owner1.setPassword("own1");
-        owner1.setRole(Role.GYMOWNER);
-        owner1.setPanNumber("BQRPH0014");
-        owner1.setApproved(true);
-        owner1.setGymCentreLists(list1);
-        owner1.setCardDetails("1234");
-        gymOwnerList.add(owner1);
-
-        GymOwner owner2 = new GymOwner();
-        owner2.setUserID("G002");
-        owner2.setUserName("GymOwner2");
-        owner2.setEmail("owner2@gmail.com");
-        owner2.setPassword("own2");
-        owner2.setRole(Role.GYMOWNER);
-        owner2.setPanNumber("BQRPH00142");
-        owner2.setApproved(false);
-        owner2.setGymCentreLists(list2);
-        owner2.setCardDetails("12345");
-        gymOwnerList.add(owner2);
-
-        GymOwner owner3 = new GymOwner();
-        owner3.setUserID("G003");
-        owner3.setUserName("GymOwner3");
-        owner3.setEmail("owner3@gmail.com");
-        owner3.setPassword("own3");
-        owner3.setRole(Role.GYMOWNER);
-        owner3.setPanNumber("BQRPH00143");
-        owner3.setApproved(false);
-        owner3.setGymCentreLists(list3);
-        owner3.setCardDetails("123456");
-        gymOwnerList.add(owner3);
-
+        try {
+            conn = DBConnection.connect();
+            statement = conn.prepareStatement(SQLConstants.FETCH_ALL_GYM_OWNERS_QUERY);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                GymOwner owner = new GymOwner(
+                        rs.getString("userId"),
+                        rs.getString("userName"),
+                        rs.getString("email"),
+                        rs.getString("password"),
+                        rs.getString("panNumber"),
+                        rs.getInt("Approved"),
+                        rs.getString("cardDetails")
+                );
+                gymOwnerList.add(owner);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return gymOwnerList;
     }
 
     @Override
     public void validateAllGymOwners() {
-        List<GymOwner> gymOwnerList = getGymOwnersList();
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8s | %-30s | %-15s |\n",
-                "User ID", "User Name", "Email", "Role", "PAN", "Approved", "GymCentre List", "Card Details");
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-        for(GymOwner gymOwner : gymOwnerList) {
-            if(gymOwner!=null) {
-                gymOwner.setApproved(true);
-            }
+        try {
+            conn = DBConnection.connect();
+            System.out.println("Fetching gyms owners..");
 
-            System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8b | %-30s | %-15s |\n",
-                    gymOwner.getUserID(), gymOwner.getUserName(), gymOwner.getEmail(), gymOwner.getRole(), gymOwner.getPanNumber(), gymOwner.isApproved(), gymOwner.getGymCentreLists(), gymOwner.getCardDetails());
+            statement = conn.prepareStatement(SQLConstants.SQL_APPROVE_GYM_OWNER_ALL);
+            statement.executeUpdate();
 
-            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
     @Override
-    public void validateGymOwnerByID(String ownerId, boolean isApproved) {
-        List<GymOwner> gymOwnerList = getGymOwnersList();
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8s | %-30s | %-15s |\n",
-                "User ID", "User Name", "Email", "Role", "PAN", "Approved", "GymCentre List", "Card Details");
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-        for (GymOwner gymOwner : gymOwnerList) {
-            if (gymOwner.getUserID().equals(ownerId)) {
-                gymOwner.setApproved(isApproved);
-            }
+    public void validateGymOwnerByID(String ownerId, int isApproved) {
+        try {
+            conn = DBConnection.connect();
+            System.out.println("Fetching gyms centres..");
 
-            System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8b | %-30s | %-15s |\n",
-                    gymOwner.getUserID(), gymOwner.getUserName(), gymOwner.getEmail(), gymOwner.getRole(), gymOwner.getPanNumber(), gymOwner.isApproved(), gymOwner.getGymCentreLists(), gymOwner.getCardDetails());
+            statement = conn.prepareStatement(SQLConstants.SQL_APPROVE_GYM_OWNER_BY_ID_QUERY);
+            statement.setString(1, ownerId);
+            statement.executeUpdate();
 
-            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
+
 
     @Override
     public void sendOwnerApprovalRequest(String gymOwnerId){

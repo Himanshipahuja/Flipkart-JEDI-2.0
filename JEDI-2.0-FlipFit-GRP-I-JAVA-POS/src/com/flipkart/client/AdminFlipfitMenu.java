@@ -47,7 +47,6 @@ public class AdminFlipfitMenu {
                 case 0:
 //                    gymOwnerService.viewAllGymOwners();
                     adminService.viewAllGymOwners();
-                    System.out.println("Viewing All Gym Owners");
                     break;
                 case 1:
                     adminService.validateAllGymOwners();
@@ -56,7 +55,7 @@ public class AdminFlipfitMenu {
                 case 2:
                     System.out.println("Enter Gym Owner ID to approve");
                     String gymOwnerId = scanner.next();
-                    adminService.validateGymOwnerByID(gymOwnerId, true);
+                    adminService.validateGymOwnerByID(gymOwnerId, 1);
                     System.out.println("Gym owner: "+ gymOwnerId + " request approved");
                     break;
                 case 3:

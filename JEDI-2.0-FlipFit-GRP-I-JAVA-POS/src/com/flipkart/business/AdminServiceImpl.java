@@ -71,17 +71,16 @@ public class AdminServiceImpl implements AdminServiceInterface {
     @Override
     public void viewAllGymOwners() {
         List<GymOwner> gymOwnerList = gymOwnerDAOImpl.getGymOwnersList();
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-        System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8s | %-30s | %-15s |\n",
-                "User ID", "User Name", "Email", "Role", "PAN", "Approved", "GymCentre List", "Card Details");
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("------------------------------------------------------------------------------------------------------------------------");
+        System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8s | %-20s |\n",
+                "User ID", "User Name", "Email", "Role", "PAN", "Approved", "Card Details" );
         for(GymOwner gymOwner : gymOwnerList) {
-            System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8b | %-30s | %-15s |\n",
-                    gymOwner.getUserID(), gymOwner.getUserName(), gymOwner.getEmail(), gymOwner.getRole(), gymOwner.getPanNumber(), gymOwner.isApproved(), gymOwner.getGymCentreLists(), gymOwner.getCardDetails());
+            System.out.println("--------------------------------------------------------------------------------------------------------------------");
+            System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8b | %-20s |\n",
+                    gymOwner.getUserID(), gymOwner.getUserName(), gymOwner.getEmail(), gymOwner.getRole(), gymOwner.getPanNumber(), gymOwner.isApproved(),gymOwner.getCardDetails());
+}
+            System.out.println("----------------------------------------------------------------------------------------------------------------------");
 
-            System.out.println("---------------------------------------------------------------------------------------------------------------------------------------------------");
-
-        }
     }
 
     @Override
@@ -120,7 +119,8 @@ public class AdminServiceImpl implements AdminServiceInterface {
     }
 
     @Override
-    public void validateGymOwnerByID(String ownerId, boolean isApproved) {
+    public void validateGymOwnerByID(String ownerId, int isApproved) {
         gymOwnerDAOImpl.validateGymOwnerByID(ownerId,isApproved);
     }
 }
+

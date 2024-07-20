@@ -11,11 +11,12 @@ public class GymOwner extends User {
         this.panNumber = panNumber;
     }
 
-    public boolean isApproved() {
+    public int isApproved() {
         return isApproved;
     }
 
-    public void setApproved(boolean approved) {
+    public void setApproved(int approved) {
+
         isApproved = approved;
     }
 
@@ -38,16 +39,15 @@ public class GymOwner extends User {
     public GymOwner() {
     }
 
-    public GymOwner(String userId, String userName, String email, String password, String panNumber, boolean isApproved, List<String> gymCentreLists, String cardDetails) {
+    public GymOwner(String userId, String userName, String email, String password, String panNumber, int isApproved, String cardDetails) {
         super(userId, userName, email, password, Role.GYMOWNER);
         this.panNumber = panNumber;
         this.isApproved = isApproved;
-        this.gymCentreLists = gymCentreLists;
         this.cardDetails = cardDetails;
     }
 
     private String panNumber;
-    private boolean isApproved;
+    private int isApproved;
     private List<String> gymCentreLists;
     private String cardDetails;
 }

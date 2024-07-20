@@ -13,5 +13,5 @@ public interface GymOwnerDAO {
     public String getGymOwnerId(String userName, String password);
     List<GymOwner> getGymOwnersList();
     public void validateAllGymOwners();
-    public void validateGymOwnerByID(String ownerId, boolean isApproved);
+    public void validateGymOwnerByID(String ownerId, int isApproved);
 }
