@@ -73,15 +73,19 @@ public class GymOwnerFlipfitMenu {
                 case 0:
 //                    System.out.println("Gym cetres viewd\n");
                     List<GymCentre> allGymCentres = gymCentreService.getAllCentresByOwmerId(userName);
-                    System.out.println("--------------------------------------------------------------------");
-                    System.out.printf("| %-10s | %-10s | %-20s | %-15s |\n",
-                            "Centre Name", "Capacity", "City", "Amount per slot");
-                    for(GymCentre gymcenter:allGymCentres ){
+                    if(allGymCentres.size()>0){
                         System.out.println("--------------------------------------------------------------------");
                         System.out.printf("| %-10s | %-10s | %-20s | %-15s |\n",
-                                gymcenter.getCentreName(), gymcenter.getCapacity(), gymcenter.getCity(), gymcenter.getAmountPerSlot());
+                                "Centre Name", "Capacity", "City", "Amount per slot");
+                        for(GymCentre gymcenter:allGymCentres ){
+                            System.out.println("--------------------------------------------------------------------");
+                            System.out.printf("| %-10s | %-10s | %-20s | %-15s |\n",
+                                    gymcenter.getCentreName(), gymcenter.getCapacity(), gymcenter.getCity(), gymcenter.getAmountPerSlot());
+                        }
                     }
-
+                    else{
+                        System.out.println("No gym centres to view");
+                    }
                     break;
 
                 case 1:
