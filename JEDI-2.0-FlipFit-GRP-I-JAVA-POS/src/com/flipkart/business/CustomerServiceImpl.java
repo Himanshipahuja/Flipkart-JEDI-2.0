@@ -98,6 +98,11 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     }
 
     @Override
+    public void addSchedule(Timestamp timestamp, String slotId) {
+        scheduleDAO.addSchedule(timestamp,slotId);
+    }
+
+    @Override
     public String getSlotIdFromGymCentreAndTimestamp(String gymOwner, Timestamp timestamp) {
         return slotDAO.getSlotbyCentreIdAndTimeStamp(gymOwner,timestamp);
     }

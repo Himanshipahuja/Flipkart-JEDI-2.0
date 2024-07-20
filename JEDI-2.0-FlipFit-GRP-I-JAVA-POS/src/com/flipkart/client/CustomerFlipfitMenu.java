@@ -67,6 +67,7 @@ public class CustomerFlipfitMenu {
         System.out.println("The maximum number of bookings in the given slot possible are : " + maximumBookingCapacity);
 
         if(currBookingCount < maximumBookingCapacity){
+            customerService.addSchedule(sqlTimestamp,slotId);
 //            update schedule table
 //            update booking table
         }

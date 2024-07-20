@@ -39,6 +39,7 @@ public class SQLConstants {
 
     // -------------------------------------- SCHEDULE ------------------------------------------------------------
     public static final  String GET_BOOKED_SLOT_COUNT_FROM_SLOTID = "SELECT count(*) FROM schedule where slotId = ?";
+    public static final String ADD_SCHEDULE = "INSERT INTO schedule (scheduleId,date,slotid) VALUES (?,?,?)";
 
 
 

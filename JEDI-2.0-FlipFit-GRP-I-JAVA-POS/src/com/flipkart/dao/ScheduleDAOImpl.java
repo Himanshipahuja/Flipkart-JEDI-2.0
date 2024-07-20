@@ -1,18 +1,41 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.GymCentre;
+import com.flipkart.bean.Schedule;
 import com.flipkart.constants.SQLConstants;
 import com.flipkart.utils.DBConnection;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.UUID;
+
+import static com.flipkart.constants.SQLConstants.ADD_SCHEDULE;
+
 
 public class ScheduleDAOImpl implements ScheduleDAO{
 
     private Connection conn = null;
     private PreparedStatement statement = null;
+
+    @Override
+    public void addSchedule(Timestamp timestamp, String  slotId) {
+        String scheduleId = UUID.randomUUID().toString();
+        Connection conn = null;
+        try {
+            conn = DBConnection.connect();
+            SimpleDateFormat sdf = new SimpleDateFormat("yy:MM:dd");
+            String formattedDate = sdf.format(timestamp);
+            statement = conn.prepareStatement(ADD_SCHEDULE);
+            statement.setString(1, scheduleId);
+            statement.setString(2, formattedDate);
+            statement.setString(3, slotId);
+            statement.executeUpdate();
+            statement.close();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
 
     @Override
     public Integer getSlotsBookedCountFromSlotId(String slotId) {

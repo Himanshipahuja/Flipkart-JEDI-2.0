@@ -5,6 +5,7 @@ import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
 
 import java.sql.Date;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -24,4 +25,5 @@ public interface CustomerServiceInterface {
     public String getCustomerIdFromNameAndPass(String userName, String password);
     public Integer getBookingCountFromSlotId(String slotId);
     public Integer getGymCentreCapacityFromCentreId(String centerId);
+    public void addSchedule(Timestamp timestamp, String slotId);
 }
