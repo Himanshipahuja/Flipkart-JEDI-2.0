@@ -13,4 +13,5 @@ public interface GymCenterDAO {
     public void validateAllGymCentres();
     public void validateGymCentreByID(String gymCentreId, int isApproved);
     public List<GymCentre> getGymCentreListByCity(String city);
+    public Integer getCapacityFromCenterId(String centerId);
 }

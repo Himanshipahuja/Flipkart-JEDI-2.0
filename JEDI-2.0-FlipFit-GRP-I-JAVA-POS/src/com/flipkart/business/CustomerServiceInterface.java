@@ -23,4 +23,5 @@ public interface CustomerServiceInterface {
     public String getSlotIdFromGymCentreAndTimestamp(String gymOwner, Timestamp timestamp);
     public String getCustomerIdFromNameAndPass(String userName, String password);
     public Integer getBookingCountFromSlotId(String slotId);
+    public Integer getGymCentreCapacityFromCentreId(String centerId);
 }

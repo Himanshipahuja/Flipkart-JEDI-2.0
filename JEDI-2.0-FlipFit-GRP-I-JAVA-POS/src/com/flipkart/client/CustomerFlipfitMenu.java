@@ -62,6 +62,14 @@ public class CustomerFlipfitMenu {
 
         System.out.println("The no. of  bookings under my slot currently are: " + currBookingCount);
 
+        Integer maximumBookingCapacity = customerService.getGymCentreCapacityFromCentreId(chosenGym);
+
+        System.out.println("The maximum number of bookings in the given slot possible are : " + maximumBookingCapacity);
+
+        if(currBookingCount < maximumBookingCapacity){
+//            update schedule table
+//            update booking table
+        }
 
     }
 

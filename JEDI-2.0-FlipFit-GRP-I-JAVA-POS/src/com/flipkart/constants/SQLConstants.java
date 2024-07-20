@@ -9,6 +9,7 @@ public class SQLConstants {
     public static final String FETCH_GYM_CENTRES_BY_OWNER_ID = "SELECT * FROM `FlipFit-Schema`.gym_center where ownerId = ?";
     public static final String ADD_GYM_CENTRE_QUERY = "INSERT INTO `FlipFit-Schema`.gym_center VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
     public static final String FETCH_GYM_CENTRES_BY_CITY = "SELECT * FROM gym_center where city = ?";
+    public static final String FETCH_GYM_CENTRE_CAPACITY =  "SELECT capacity FROM gym_center WHERE centerId = ?";
 
     // -------------------------------------- USER ------------------------------------------------------------
     public static final String GET_USER_BY_ID = "SELECT * FROM `flipfit-schema`.`user` WHERE userId = ?;";

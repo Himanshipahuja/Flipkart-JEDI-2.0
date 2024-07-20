@@ -93,6 +93,11 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     }
 
     @Override
+    public Integer getGymCentreCapacityFromCentreId(String centerId) {
+        return gymCenterDAO.getCapacityFromCenterId(centerId);
+    }
+
+    @Override
     public String getSlotIdFromGymCentreAndTimestamp(String gymOwner, Timestamp timestamp) {
         return slotDAO.getSlotbyCentreIdAndTimeStamp(gymOwner,timestamp);
     }

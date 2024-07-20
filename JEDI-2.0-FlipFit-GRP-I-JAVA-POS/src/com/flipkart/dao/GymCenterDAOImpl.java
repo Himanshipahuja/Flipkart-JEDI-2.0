@@ -173,6 +173,24 @@ public class GymCenterDAOImpl implements GymCenterDAO {
         return allCentreByCity;
     }
 
+    @Override
+    public Integer getCapacityFromCenterId(String centerId) {
+        Integer gymCentreCapacity = 0;
+        try {
+            conn = DBConnection.connect();
+            System.out.println("Fetching gyms centre capacity");
+            statement = conn.prepareStatement(SQLConstants.FETCH_GYM_CENTRE_CAPACITY);
+            statement.setString(1, centerId);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) {
+                gymCentreCapacity = rs.getInt("capacity");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return gymCentreCapacity;
+    }
+
     public void addGymCentre(String gymId,String ownerId,String gymCentreName, String gstin, String city,int capacity,boolean isapproved,float price) {
         try{
             System.out.println("Heyy%%%%%");
