@@ -111,7 +111,7 @@ public class CustomerFlipfitMenu {
         }
 
         // Print header
-        System.out.printf("%-15s %-10s %-10s %-20s%n",  "Booking ID", "Date", "Center Name", "City");
+        System.out.printf("%-15s %-15s %-20s %-15s %n",  "Booking ID", "Date", "Center Name", "City");
         System.out.println("---------------------------------------------------------------");
 
         // Iterate over the list and print each booking

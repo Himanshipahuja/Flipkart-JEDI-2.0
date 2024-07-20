@@ -38,7 +38,7 @@ public class BookingDAOImpl {
 
 
             while (bookingsRs.next()) {
-                System.out.println("Result set has data");
+//                System.out.println("Result set has data");
                 BookingDetails bookingDetails = new BookingDetails(
                         bookingsRs.getString("bookingId"),
                         bookingsRs.getDate("date"),
