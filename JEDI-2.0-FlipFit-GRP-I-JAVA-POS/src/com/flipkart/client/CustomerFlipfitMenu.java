@@ -46,7 +46,12 @@ public class CustomerFlipfitMenu {
         List<GymCentre> centreListByLocation = customerService.getAllGymCenterDetailsByCity(location);
         // Print All Centres
         for(GymCentre gymCentreAtLocation : centreListByLocation){
+            System.out.println(" -------------------------------------------------------");
             System.out.println("The gym centre id:"+gymCentreAtLocation.getCentreId());
+            System.out.println("The gym centre Name:"+gymCentreAtLocation.getCentreName());
+            System.out.println("The gym amount:"+gymCentreAtLocation.getAmountPerSlot());
+            System.out.println(" -------------------------------------------------------");
+
         }
 
         System.out.print("Choose a gymCentre ID to proceed:");
