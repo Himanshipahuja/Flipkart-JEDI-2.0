@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.Random;
 
 import com.flipkart.bean.Role;
 import com.flipkart.constants.SQLConstants;
@@ -29,21 +30,55 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         this.gymOwnerList = gymOwnerList;
 
     }
+    public static String generateRandomString(int length) {
+        // Character set from which to generate the random string
+        String charset = "0123456789";
 
+        // Random object to select characters from the charset
+        Random random = new Random();
+
+        // StringBuilder to build the resulting random string
+        StringBuilder sb = new StringBuilder();
+
+        // Generate random characters
+        for (int i = 0; i < length; i++) {
+            // Generate a random index between 0 and charset.length()-1
+            int randomIndex = random.nextInt(charset.length());
+
+            // Append the character at the random index to the string builder
+            sb.append(charset.charAt(randomIndex));
+        }
+
+        // Convert StringBuilder to String and return the generated random string
+        return sb.toString();
+    }
     public GymOwner registerGymOwner(String userName,String password,String email,String panNumber,String cardNumber){
         GymOwner gymOwner = new GymOwner();
         try{
             conn  = DBConnection.connect();
+            statement = conn.prepareStatement(SQLConstants.ADD_USER);
+            String userid = generateRandomString(8);
+            statement.setString(1,userid);
+            statement.setString(2,userName);
+            statement.setString(3, email);
+            statement.setString(4,password);
+            String role = "roleId3";
+            statement.setString(5,role);
+
+            System.out.println(statement);
+
+            statement.execute();
+            statement = null;
             statement = conn.prepareStatement(SQLConstants.REGISTER_GYM_OWNER);
 
             statement.setString(1,panNumber);
             statement.setBoolean(2,false);
             statement.setString(3, cardNumber);
-            statement.setString(4,userName);
+            statement.setString(4,userid);
 
             System.out.println(statement);
 
-            statement.executeUpdate();
+            statement.execute();
 
             System.out.println("Registration Success\n");
             gymOwner.setUserName(userName);

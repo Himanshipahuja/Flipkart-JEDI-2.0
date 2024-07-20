@@ -68,7 +68,7 @@ public class GymOwnerFlipfitMenu {
             );
             System.out.println("---------------------------------------------------------------------------");
             int choice = scanner.nextInt();
-            System.out.println("&&&&&------"+choice);
+//            System.out.println("&&&&&------"+choice);
             switch(choice){
                 case 0:
 //                    System.out.println("Gym cetres viewd\n");

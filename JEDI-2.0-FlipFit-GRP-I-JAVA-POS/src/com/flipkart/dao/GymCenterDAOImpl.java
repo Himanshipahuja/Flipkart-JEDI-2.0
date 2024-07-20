@@ -19,7 +19,6 @@ public class GymCenterDAOImpl implements GymCenterDAO {
         try {
             conn = DBConnection.connect();
             System.out.println("Fetching gyms centres..");
-
             statement = conn.prepareStatement(SQLConstants.SQL_VIEW_ALL_GYM_CENTRES);
             ResultSet rs = statement.executeQuery();
 
@@ -55,13 +54,29 @@ public class GymCenterDAOImpl implements GymCenterDAO {
 
         public List<GymCentre> getAllCentresByOwmerId(String gymOwnerId) {
         List<GymCentre> gymCentreListofOwner = new ArrayList<>();
-//        System.out.println("@@ "+gymOwnerId);
+//        System.out.println("@@ "+gymOwnerId);'
+            String fetcehdOwnerID = "";
+            try {
+                conn = DBConnection.connect();
+                statement = conn.prepareStatement(SQLConstants.GET_USER_ID_FRROM_USER);
+                statement.setString(1, gymOwnerId);
+
+//                System.out.println(statement);
+//            statement.setString(2, "gymowner");
+                ResultSet rs = statement.executeQuery();
+                while (rs.next()) {
+                    fetcehdOwnerID = rs.getString("userId");
+                }
+            }catch (SQLException se) {
+                    se.printStackTrace();
+                }
+
 
         List<GymCentre> allGymCentres = getGymCentersList();
         for (GymCentre gymcentre : allGymCentres) {
 //            System.out.println("****((((**** "+gymcentre.getOwnerId());
             String id = gymcentre.getOwnerId();
-            if (id.equalsIgnoreCase(gymOwnerId)) {
+            if (id.equalsIgnoreCase(fetcehdOwnerID)) {
                 gymCentreListofOwner.add(gymcentre);
             }
         }
@@ -193,12 +208,23 @@ public class GymCenterDAOImpl implements GymCenterDAO {
 
     public void addGymCentre(String gymId,String ownerId,String gymCentreName, String gstin, String city,int capacity,boolean isapproved,float price) {
         try{
-            System.out.println("Heyy%%%%%");
+//            System.out.println("Heyy%%%%%");
             String priceee = Float.toString(price);
             conn = DBConnection.connect();
+
+            statement = conn.prepareStatement(SQLConstants.GET_USER_ID_FRROM_USER);
+            statement.setString(1, ownerId);
+//            System.out.println(statement);
+//            statement.setString(2, "gymowner");
+            ResultSet rs = statement.executeQuery();
+            String fetcehdOwnerID="";
+            while(rs.next()) {
+                fetcehdOwnerID = rs.getString("userId");
+            }
+            statement=null;
             statement = conn.prepareStatement(SQLConstants.ADD_GYM_CENTRE_QUERY);
             statement.setString(1, generateRandomString(6));
-            statement.setString(2, ownerId);
+            statement.setString(2, fetcehdOwnerID);
             statement.setString(3, gymCentreName);
             statement.setString(4, gstin);
             statement.setString(5, city);
@@ -206,15 +232,15 @@ public class GymCenterDAOImpl implements GymCenterDAO {
             statement.setInt(7,(isapproved==true?1:0));
             statement.setString(8,priceee );
             boolean i=statement.execute();
-            System.out.println("&&&&&"+i);
-            if (i) {
-                System.out.println("ROW INSERTED");
-            } else {
-                System.out.println("ROW NOT INSERTED");
-            }
+//            System.out.println("&&&&&"+i);
+//            if (i) {
+//                System.out.println("ROW INSERTED");
+//            } else {
+//                System.out.println("ROW NOT INSERTED");
+//            }
 
         } catch (SQLException e) {
-            System.out.println("Heyy%%%%%");
+//            System.out.println("Heyy%%%%%");
             e.printStackTrace();
             throw new RuntimeException(e);
         }

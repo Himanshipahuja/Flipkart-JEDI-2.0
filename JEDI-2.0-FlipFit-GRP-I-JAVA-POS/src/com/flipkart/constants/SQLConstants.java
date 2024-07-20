@@ -13,6 +13,9 @@ public class SQLConstants {
 
     // -------------------------------------- USER ------------------------------------------------------------
     public static final String GET_USER_BY_ID = "SELECT * FROM `flipfit-schema`.`user` WHERE userId = ?;";
+    public static final String ADD_USER = "INSERT INTO `flipfit-schema`.`user` values (?,?,?,?,?);";
+    public static final String GET_USER_ID_FRROM_USER = "select userId from `FlipFit-Schema`.user where userName=? AND role = (select roleId from `FlipFit-Schema`.role where roleName='gymowner');";
+
 
     // -------------------------------------- GYM OWNER ------------------------------------------------------------
     public static final String SEND_GYM_OWNER_APPROVAL_REQ_QUERY = "UPDATE gym_owner SET approved = 2 WHERE ownerId=?;";
