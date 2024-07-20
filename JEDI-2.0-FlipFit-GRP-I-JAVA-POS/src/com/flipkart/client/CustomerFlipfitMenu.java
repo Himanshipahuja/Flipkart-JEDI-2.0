@@ -1,6 +1,5 @@
 package com.flipkart.client;
 
-
 import com.flipkart.bean.BookingDetails;
 import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
@@ -67,9 +66,13 @@ public class CustomerFlipfitMenu {
         System.out.println("The maximum number of bookings in the given slot possible are : " + maximumBookingCapacity);
 
         if(currBookingCount < maximumBookingCapacity){
-            customerService.addSchedule(sqlTimestamp,slotId);
+             String scheduleId = customerService.addSchedule(sqlTimestamp,slotId);
+             System.out.println("Booking successfull!, schedule Id for my brother's booking: " + scheduleId);
 //            update schedule table
 //            update booking table
+        }
+        else{
+            System.out.println("Sorry brother, no slots available");
         }
 
     }

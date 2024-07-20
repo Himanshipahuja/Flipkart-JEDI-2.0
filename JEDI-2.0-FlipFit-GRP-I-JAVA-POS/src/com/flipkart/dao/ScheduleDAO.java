@@ -6,6 +6,6 @@ import java.sql.Time;
 import java.sql.Timestamp;
 
 public interface ScheduleDAO {
-    public void addSchedule(Timestamp timestamp,String slotId);
+    public String addSchedule(Timestamp timestamp,String slotId);
     public Integer getSlotsBookedCountFromSlotId(String slotId);
 }

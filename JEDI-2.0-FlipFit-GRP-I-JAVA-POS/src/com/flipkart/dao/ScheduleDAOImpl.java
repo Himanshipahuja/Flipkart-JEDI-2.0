@@ -18,7 +18,7 @@ public class ScheduleDAOImpl implements ScheduleDAO{
     private PreparedStatement statement = null;
 
     @Override
-    public void addSchedule(Timestamp timestamp, String  slotId) {
+    public String addSchedule(Timestamp timestamp, String  slotId) {
         String scheduleId = UUID.randomUUID().toString();
         Connection conn = null;
         try {
@@ -34,7 +34,7 @@ public class ScheduleDAOImpl implements ScheduleDAO{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-
+        return  scheduleId;
     }
 
     @Override
