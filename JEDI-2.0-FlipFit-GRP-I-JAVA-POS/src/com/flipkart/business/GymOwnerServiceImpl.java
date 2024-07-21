@@ -4,6 +4,7 @@ import com.flipkart.bean.GymCentre;
 import com.flipkart.bean.Slot;
 import com.flipkart.dao.GymOwnerDAOImpl;
 import com.flipkart.bean.GymOwner;
+import com.flipkart.exceptions.LoginFailedException;
 
 import java.sql.Date;
 import java.util.List;
@@ -70,7 +71,13 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
 
     @Override
     public boolean gymOwnerLogin(String userName, String password) {
+        try{
         return gymOwnerDAOImpl.loginGymOwner(userName, password);
+        }
+        catch (LoginFailedException e) {
+            System.out.println(e.getMessage());
+        }
+        return false;
     }
     @Override
     public void gymOwnerChangePassword(String userName, String old_password, String new_password) {
