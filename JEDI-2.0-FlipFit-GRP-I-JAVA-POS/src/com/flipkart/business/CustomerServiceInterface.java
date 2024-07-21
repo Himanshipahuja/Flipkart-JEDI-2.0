@@ -3,6 +3,7 @@ package com.flipkart.business;
 import com.flipkart.bean.BookingDetails;
 import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
+import com.flipkart.exceptions.WrongCredentialsException;
 
 import java.sql.Date;
 import java.sql.Time;
@@ -20,7 +21,7 @@ public interface CustomerServiceInterface {
     public boolean customerLogin(String userName, String password);
     public Customer register();
     public Customer viewMyProfile(String username);
-    public void customerChangePassword(String userName,String old_password,String new_password);
+    public void customerChangePassword(String userName,String old_password,String new_password) throws WrongCredentialsException;
     public String getSlotIdFromGymCentreAndTimestamp(String gymOwner, Timestamp timestamp);
     public String getCustomerIdFromNameAndPass(String userName, String password);
     public Integer getBookingCountFromSlotId(String slotId);

@@ -1,6 +1,8 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Customer;
+import com.flipkart.exceptions.RegistrationFailedException;
+import com.flipkart.exceptions.WrongCredentialsException;
 import com.flipkart.utils.DBConnection;
 
 import java.sql.Connection;
@@ -17,7 +19,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     List<Customer> customerList = new ArrayList<>();
 
     @Override
-    public Customer registerCustomer(String username, String password, String email, String phoneNumber, String cardNumber) {
+    public Customer registerCustomer(String username, String password, String email, String phoneNumber, String cardNumber) throws RegistrationFailedException{
         String customerId = UUID.randomUUID().toString();
         Customer newCustomer = new Customer(customerId, username, email, password, phoneNumber, cardNumber);
         try {
@@ -38,7 +40,9 @@ public class CustomerDAOImpl implements CustomerDAO {
             stmt.executeUpdate();
             stmt.close();
             System.out.println("Customer Registered!!");
-        } catch (Exception e) {
+        }catch (SQLException exp) {
+            throw new RegistrationFailedException("Failed to register the user. Try again.");
+        }  catch (Exception e) {
             System.out.println("Error occurred while registration: \n" + e.getMessage() + "\n" + e);
         }
         return newCustomer;
@@ -103,9 +107,11 @@ public class CustomerDAOImpl implements CustomerDAO {
             stmt.setString(1, userName);
             stmt.setString(2, password);
             ResultSet rs = stmt.executeQuery();
-            rs.next();
-            customerId =  rs.getString("userId");
-            stmt.close();
+            if (rs.next()) {
+                customerId = rs.getString("userId");
+            } else {
+                throw new SQLException("User not found with provided credentials");
+            }
         } catch (Exception exp) {
             exp.printStackTrace();
         }
@@ -113,7 +119,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public void changeCustomerPassword(String userName, String oldPassword, String newPassword) {
+    public void changeCustomerPassword(String userName, String oldPassword, String newPassword) throws WrongCredentialsException {
         try {
             String customerId = getCustomerIdFromNameAndPass(userName, oldPassword);
             Connection conn = DBConnection.connect();
@@ -126,10 +132,12 @@ public class CustomerDAOImpl implements CustomerDAO {
                 stmt.close();
                 return;
             }
-            System.out.println("UserName or old Password not valid");
             stmt.close();
+
+    } catch (SQLException exp) {
+        throw new WrongCredentialsException();
     } catch (Exception exp) {
         exp.printStackTrace();
-    }
+     }
     }
 }

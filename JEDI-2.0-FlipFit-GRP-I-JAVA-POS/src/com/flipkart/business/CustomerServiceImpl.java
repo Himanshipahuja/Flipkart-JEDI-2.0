@@ -10,6 +10,12 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Scanner;
 
+import com.flipkart.exceptions.BookingFailedException;
+import com.flipkart.exceptions.RegistrationFailedException;
+import com.flipkart.exceptions.UserInvalidException;
+import com.flipkart.exceptions.WrongCredentialsException;
+
+
 public class CustomerServiceImpl implements  CustomerServiceInterface{
 
     public static Scanner scanner = new Scanner(System.in);
@@ -46,7 +52,14 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
 
     @Override
     public Customer registerCustomer(String userName, String password, String email, String phoneNumber, String cardNumber) {
-        return customerDAO.registerCustomer(userName, password, email, phoneNumber, cardNumber);
+        try {
+            return customerDAO.registerCustomer(userName, password, email, phoneNumber, cardNumber);
+        } catch (RegistrationFailedException e) {
+            e.getMessage();
+        }
+        return null;
+
+
     }
 
     @Override
@@ -76,10 +89,15 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
         System.out.println("Enter your Card Number");
         String cardNumber = scanner.next();
 
-        Customer registeredCustomer = registerCustomer(userName, password, email, phoneNumber, cardNumber);
-        System.out.println("Successfully registered as Customer");
+        try {
+            Customer registeredCustomer= customerDAO.registerCustomer(userName, password, email, phoneNumber, cardNumber);
+            System.out.println("Successfully registered as Customer");
+            return registeredCustomer;
 
-        return registeredCustomer;
+        } catch (RegistrationFailedException e) {
+            e.getMessage();
+        }
+        return null;
     }
 
     @Override
@@ -113,7 +131,8 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     }
 
     @Override
-    public void customerChangePassword(String userName,String old_password,String new_password) {
+    public void customerChangePassword(String userName,String old_password,String new_password) throws WrongCredentialsException {
         customerDAO.changeCustomerPassword(userName, old_password, new_password);
     }
+
 }

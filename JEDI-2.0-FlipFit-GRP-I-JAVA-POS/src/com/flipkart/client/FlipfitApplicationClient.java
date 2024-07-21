@@ -1,6 +1,7 @@
 package com.flipkart.client;
 
 import com.flipkart.bean.Role;
+import com.flipkart.exceptions.WrongCredentialsException;
 
 import java.text.ParseException;
 import java.util.Scanner;
@@ -123,8 +124,10 @@ public class FlipfitApplicationClient {
                     System.out.println(INVALID_CHOICE_ERROR);
                     break;
             }
-        }catch (IllegalArgumentException e){
+        } catch (IllegalArgumentException e){
             System.out.println(INVALID_CHOICE_ERROR);
+        } catch (WrongCredentialsException e) {
+            throw new RuntimeException(e);
         }
     }
 

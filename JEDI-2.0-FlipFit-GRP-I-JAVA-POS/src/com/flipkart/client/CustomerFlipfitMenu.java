@@ -4,6 +4,7 @@ import com.flipkart.bean.BookingDetails;
 import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
 import com.flipkart.business.CustomerServiceImpl;
+import com.flipkart.exceptions.WrongCredentialsException;
 
 import java.sql.Time;
 import java.sql.Timestamp;
@@ -173,7 +174,7 @@ public class CustomerFlipfitMenu {
         }
     }
 
-    public void customerChangePassword(String userName,String old_password,String new_password){
+    public void customerChangePassword(String userName,String old_password,String new_password) throws WrongCredentialsException {
         customerService.customerChangePassword(userName, old_password, new_password);
     }
 

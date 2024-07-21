@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Customer;
+import com.flipkart.exceptions.WrongCredentialsException;
 
 public interface CustomerDAO {
 
@@ -8,5 +9,5 @@ public interface CustomerDAO {
     Customer getCustomerById(String userName);
     public boolean checkCustomerDetails(String username, String password);
     public String getCustomerIdFromNameAndPass(String userName, String password);
-    public void changeCustomerPassword(String userName, String oldPassword, String newPassword);
+    public void changeCustomerPassword(String userName, String oldPassword, String newPassword) throws WrongCredentialsException;
 }

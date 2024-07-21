@@ -5,6 +5,7 @@ import com.flipkart.dao.BookingDAOImpl;
 
 import java.util.Date;
 import java.util.List;
+import com.flipkart.exceptions.BookingFailedException;
 
 public class BookingServiceImpl implements BookingServiceInterface{
     private final BookingDAOImpl bookingDAO = new BookingDAOImpl();
