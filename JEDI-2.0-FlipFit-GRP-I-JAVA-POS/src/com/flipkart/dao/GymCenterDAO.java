@@ -14,4 +14,5 @@ public interface GymCenterDAO {
     public void validateGymCentreByID(String gymCentreId, int isApproved);
     public List<GymCentre> getGymCentreListByCity(String city);
     public Integer getCapacityFromCenterId(String centerId);
+    public void addGymCentre(String gymId,String ownerId,String gymCentreName, String gstin, String city,int capacity,boolean isapproved,float price);
 }
