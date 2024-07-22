@@ -7,14 +7,10 @@ import com.flipkart.bean.GymOwner;
 import com.flipkart.bean.Slot;
 import com.flipkart.business.GymOwnerServiceImpl;
 import com.flipkart.business.GymCenterServiceImpl;
-import com.flipkart.business.SlotService;
-import com.flipkart.business.SlotServiceInterface;
+import com.flipkart.business.SlotServiceImpl;
 
-import javax.swing.text.DateFormatter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +31,7 @@ public class GymOwnerFlipfitMenu {
 
     GymOwnerServiceImpl gymOwnerService = new GymOwnerServiceImpl();
     GymCenterServiceImpl gymCentreService = new GymCenterServiceImpl();
-    private SlotService slotService = new SlotService();
+    private SlotServiceImpl slotServiceImpl = new SlotServiceImpl();
     /**
      * Logs in the Gym Owner with the given userName and password.
      *
@@ -189,7 +185,7 @@ public class GymOwnerFlipfitMenu {
                         }
                     }
 
-                    slotService.addSlotsForGym(centreId, newSlotList);
+                    slotServiceImpl.addSlotsForGym(centreId, newSlotList);
                     System.out.println("Slots added in the Gym centre\n");
                     break;
 

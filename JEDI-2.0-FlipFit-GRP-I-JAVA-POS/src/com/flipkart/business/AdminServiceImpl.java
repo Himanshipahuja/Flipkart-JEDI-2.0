@@ -18,28 +18,6 @@ public class AdminServiceImpl implements AdminServiceInterface {
     GymCenterDAOImpl gymCenterDAOImpl = new GymCenterDAOImpl();
     GymOwnerDAOImpl gymOwnerDAOImpl = new GymOwnerDAOImpl();
 
-    @Override
-    public void viewGymOwner(String gymOwnerId) {
-    }
-
-    @Override
-    public void removeGymOwner(String gymOwnerId) {
-    }
-
-    @Override
-    public boolean approveRequest(String requestId) {
-        return false;
-    }
-
-    @Override
-    public boolean cancelRequest(String requestId) {
-        return false;
-    }
-
-    @Override
-    public void viewPendingRequest(String requestId) {
-
-    }
 
     @Override
     public boolean isUserValid(String userName, String password) {

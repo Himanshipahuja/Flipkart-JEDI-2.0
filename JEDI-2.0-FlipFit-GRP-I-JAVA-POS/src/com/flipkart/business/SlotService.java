@@ -1,20 +1,20 @@
 package com.flipkart.business;
 
 import com.flipkart.bean.Slot;
-import com.flipkart.dao.SlotDAOImpl;
 
 import java.util.List;
 
-public class SlotService implements SlotServiceInterface{
+/**
+ * Interface for Slot Service
+ */
+public interface SlotService {
 
-    private static SlotDAOImpl slotDAO = new SlotDAOImpl();
+    /**
+     * Adds the slot to the Gym
+     *
+     * @param  gymCentreId  id of gym center
+     * @param  slotList     a list of slots
+     */
+    void addSlotsForGym(String gymCentreId, List<Slot> slotList);
 
-    @Override
-    public void addSlotsForGym(String gymCentreId, List<Slot> slotList) {
-        System.out.println("Adding all slots to gym: " + gymCentreId);
-        for(Slot slot : slotList) {
-            slot.setCentreId(gymCentreId);
-            slotDAO.addSlot(slot);
-        }
-    }
 }
