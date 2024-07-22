@@ -4,14 +4,17 @@ import com.flipkart.bean.Slot;
 
 import java.util.List;
 
+/**
+ * Interface for Slot Service
+ */
 public interface SlotServiceInterface {
-    List<Slot> getAllSlotsByCentre(String centreID);
 
-    Slot getSlotByID(String slotID);
-
-    List<Slot> getSlotList();
-
+    /**
+     * Adds the slot to the Gym
+     *
+     * @param  gymCentreId  id of gym center
+     * @param  slotList     a list of slots
+     */
     void addSlotsForGym(String gymCentreId, List<Slot> slotList);
 
-    boolean isSlotValid(String slotID, String centreId);
 }
