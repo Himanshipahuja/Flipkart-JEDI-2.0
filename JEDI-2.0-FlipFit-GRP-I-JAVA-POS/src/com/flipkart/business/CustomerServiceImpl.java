@@ -4,16 +4,13 @@ import com.flipkart.bean.BookingDetails;
 import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
 import com.flipkart.dao.*;
+import com.flipkart.exceptions.RegistrationFailedException;
+import com.flipkart.exceptions.WrongCredentialsException;
 
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.List;
 import java.util.Scanner;
-
-import com.flipkart.exceptions.BookingFailedException;
-import com.flipkart.exceptions.RegistrationFailedException;
-import com.flipkart.exceptions.UserInvalidException;
-import com.flipkart.exceptions.WrongCredentialsException;
 
 
 public class CustomerServiceImpl implements  CustomerServiceInterface{
@@ -24,7 +21,7 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     private final SlotDAO slotDAO = new SlotDAOImpl();
     private final ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
     private final BookingServiceInterface bookingService = new BookingServiceImpl();
-
+    private final BookingDAOImpl bookingDAO = new BookingDAOImpl();
     @Override
     public List<GymCentre> getAllGymCenterDetailsByCity(String city) {
         return gymCenterDAO.getGymCentreListByCity(city);
@@ -113,6 +110,9 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     @Override
     public String addSchedule(Timestamp timestamp, String slotId) {
         return scheduleDAO.addSchedule(timestamp,slotId);
+    }
+    public String addBooking(String username, String scheduleId) {
+        return bookingDAO.addBooking(username, scheduleId);
     }
 
     @Override

@@ -6,13 +6,12 @@ import com.flipkart.bean.GymCentre;
 import com.flipkart.business.CustomerServiceImpl;
 import com.flipkart.exceptions.WrongCredentialsException;
 
-import java.sql.Time;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Date;
-import java.text.SimpleDateFormat;
 
 import static com.flipkart.constants.Constants.INVALID_CHOICE_ERROR;
 import static com.flipkart.constants.Constants.PREVIOUS_MENU_MESSAGE;
@@ -73,7 +72,8 @@ public class CustomerFlipfitMenu {
 
         if(currBookingCount < maximumBookingCapacity){
              String scheduleId = customerService.addSchedule(sqlTimestamp,slotId);
-             System.out.println("Booking successfull!, schedule Id for my brother's booking: " + scheduleId);
+            String BookingId = customerService.addBooking(userName,scheduleId);
+             System.out.println("Booking successfull!, schedule Id for my brother's booking: " + BookingId);
 //            update schedule table
 //            update booking table
         }
