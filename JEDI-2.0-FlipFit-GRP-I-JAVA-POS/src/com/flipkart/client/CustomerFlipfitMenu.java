@@ -102,7 +102,7 @@ public class CustomerFlipfitMenu {
                 String bookingId = customerService.addBooking(userName,scheduleId);
                 String paymentId = customerService.addPayment(bookingId,gymCentreCost);
                 System.out.println(" -------------------------------------------------------------------------------------------------");
-                System.out.println("Booking successfull!, schedule Id for my brother's booking: " + bookingId);
+                System.out.println("Booking successfull!, booking Id for my brother's booking: " + bookingId);
                 System.out.println(" -------------------------------------------------------------------------------------------------");
             }
             else{
