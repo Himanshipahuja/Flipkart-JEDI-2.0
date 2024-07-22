@@ -76,7 +76,8 @@ public class AdminDAOImpl implements AdminDAO{
             System.out.println("Fetching gyms centres..");
 
             statement = conn.prepareStatement(SQLConstants.SQL_APPROVE_GYM_CENTRE_BY_ID_QUERY);
-            statement.setString(1, gymCentreId);
+            statement.setInt(1, isApproved);
+            statement.setString(2, gymCentreId);
             statement.executeUpdate();
 
         } catch (SQLException se) {

@@ -115,6 +115,17 @@ public class BookingDAOImpl implements BookingDAO{
             stmt.setString(1, bookingID);
             System.out.println("for cancelling bookingId  "+bookingID);
             int rowsAffected = stmt.executeUpdate();
+            stmt.close();
+
+            if (rowsAffected > 0) {
+                System.out.println("---------------------------------------------------------------------------");
+                System.out.println("Booking successfully cancelled with bookingId: " + bookingID);
+                System.out.println("---------------------------------------------------------------------------");
+            } else {
+                System.out.println("---------------------------------------------------------------------------");
+                System.out.println("Failed to cancel booking with bookingId: " + bookingID);
+                System.out.println("---------------------------------------------------------------------------");
+            }
 
         } catch (SQLException se)
         {

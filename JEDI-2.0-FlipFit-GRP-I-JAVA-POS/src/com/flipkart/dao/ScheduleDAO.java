@@ -8,7 +8,7 @@ import java.sql.Timestamp;
      */
 public interface ScheduleDAO {
         /**
-         * A description of the entire Java function.
+         * Adds a new schedule to the database.
          *
          * @param  timestamp description of parameter
          * @param  slotId	description of parameter

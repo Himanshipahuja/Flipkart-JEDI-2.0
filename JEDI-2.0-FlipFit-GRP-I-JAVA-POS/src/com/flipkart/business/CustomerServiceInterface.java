@@ -94,7 +94,7 @@ public interface CustomerServiceInterface {
     public String getSlotIdFromGymCentreAndTimestamp(String gymOwner, Timestamp timestamp);
 
     /**
-     * A description of the entire Java function.
+     * Returns customerId from name and password
      *
      * @param  userName	description of parameter
      * @param  password	description of parameter

@@ -64,10 +64,9 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
             statement.setString(2,userName);
             statement.setString(3, email);
             statement.setString(4,password);
-            String role = "roleId3";
+            String role = "GymOwner";
             statement.setString(5,role);
 
-//            System.out.println(statement);
 
             statement.execute();
             statement = null;
@@ -77,8 +76,6 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
             statement.setBoolean(2,false);
             statement.setString(3, cardNumber);
             statement.setString(4,userid);
-
-//            System.out.println(statement);
 
             statement.execute();
 
@@ -143,7 +140,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
             System.out.println("Sending gym owner approval request..");
             statement = conn.prepareStatement(SQLConstants.SEND_GYM_OWNER_APPROVAL_REQ_QUERY);
             statement.setString(1,gymOwnerId);
-//            System.out.println(statement);
+
             statement.executeUpdate();
 
         } catch (SQLException se) { se.printStackTrace(); }

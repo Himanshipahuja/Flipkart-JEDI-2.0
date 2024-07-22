@@ -36,7 +36,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             stmtUser.setString(2, username);
             stmtUser.setString(3, email);
             stmtUser.setString(4, password);
-            stmtUser.setString(5, "roleId2");
+            stmtUser.setString(5, "Customer");
             stmtUser.executeUpdate();
             stmtUser.close();
             PreparedStatement stmt = conn.prepareStatement(ADD_NEW_CUSTOMER);
@@ -91,7 +91,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             PreparedStatement stmt = conn.prepareStatement(CUSTOMER_LOGIN_QUERY);
             stmt.setString(1, username);
             stmt.setString(2, password);
-            stmt.setString(3, "roleId2");
+            stmt.setString(3, "Customer");
             ResultSet rs = stmt.executeQuery();
             if (rs.next()){
                 stmt.close();
@@ -133,7 +133,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             PreparedStatement stmt = conn.prepareStatement(UPDATE_CUSTOMER_PASSWORD);
             stmt.setString(1, newPassword);
             stmt.setString(2, customerId);
-            stmt.setString(3, "roleId2");
+            stmt.setString(3, "Customer");
             int rs = stmt.executeUpdate();
             if (rs != 0){
                 stmt.close();

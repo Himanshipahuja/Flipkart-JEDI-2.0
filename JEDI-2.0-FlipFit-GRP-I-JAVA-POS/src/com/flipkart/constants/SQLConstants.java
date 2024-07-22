@@ -15,7 +15,7 @@ public class SQLConstants {
     // -------------------------------------- USER ------------------------------------------------------------
     public static final String GET_USER_BY_ID = "SELECT * FROM `flipfit-schema`.`user` WHERE userId = ?;";
     public static final String ADD_USER = "INSERT INTO `flipfit-schema`.`user` values (?,?,?,?,?);";
-    public static final String GET_USER_ID_FRROM_USER = "select userId from `FlipFit-Schema`.user where userName=? AND role = (select roleId from `FlipFit-Schema`.role where roleName='gymowner');";
+    public static final String GET_USER_ID_FRROM_USER = "select userId from `FlipFit-Schema`.user where userName=? AND roleName= (select roleName from `FlipFit-Schema`.role where roleName='GymOwner');";
 
 
     // -------------------------------------- GYM OWNER ------------------------------------------------------------
@@ -24,16 +24,16 @@ public class SQLConstants {
     public static final String LOGIN_GYM_OWNER = "Select * from `FlipFit-Schema`.user where userName=? and password=?";
     public static final String SQL_APPROVE_GYM_OWNER_BY_ID_QUERY="Update gym_owner Set Approved=? WHERE ownerId=?";
     public static final String SQL_APPROVE_GYM_OWNER_ALL="Update gym_owner Set Approved=1";
-    public static final String FETCH_ALL_GYM_OWNERS_QUERY = "SELECT u.userID, u.userName, u.email, u.password, u.role, g.panNUmber, g.Approved, g.cardDetails FROM user u JOIN gym_owner g on u.userID=g.ownerID";
+    public static final String FETCH_ALL_GYM_OWNERS_QUERY = "SELECT u.userID, u.userName, u.email, u.password, u.roleName, g.panNUmber, g.Approved, g.cardDetails FROM user u JOIN gym_owner g on u.userID=g.ownerID";
 
 
     // -------------------------------------- CUSTOMER ------------------------------------------------------------
     public static final String GET_CUSTOMER_ID_BY_USERNAME_PASSWORD = "SELECT * FROM `flipfit-schema`.`user` WHERE userName = ? AND password = ?;";
     public static final String GET_CUSTOMER_BY_ID = "SELECT * FROM `flipfit-schema`.`customer` WHERE customerId = ?;";
     public static final String ADD_NEW_CUSTOMER = "INSERT INTO `flipfit-schema`.`customer` (customerPhone,cardDetails,customerId) VALUES (?, ?, ?);";
-    public static final String ADD_NEW_USER = "INSERT INTO `flipfit-schema`.`user` (userId,userName,email,password,role) VALUES (?, ?, ?, ?, ?);";
-    public static final String CUSTOMER_LOGIN_QUERY = "SELECT * FROM `flipfit-schema`.`user` WHERE userName = ? AND password = ? AND role = ?";
-    public static final String UPDATE_CUSTOMER_PASSWORD = "UPDATE `flipfit-schema`.`user` SET password = ? WHERE userId = ? AND role = ?;";
+    public static final String ADD_NEW_USER = "INSERT INTO `flipfit-schema`.`user` (userId,userName,email,password,roleName) VALUES (?, ?, ?, ?, ?);";
+    public static final String CUSTOMER_LOGIN_QUERY = "SELECT * FROM `flipfit-schema`.`user` WHERE userName = ? AND password = ? AND roleName = ?";
+    public static final String UPDATE_CUSTOMER_PASSWORD = "UPDATE `flipfit-schema`.`user` SET password = ? WHERE userId = ? AND roleName = ?;";
 
 
     //  --------------------------------------BOOKING -----------
