@@ -73,7 +73,7 @@ public class CustomerFlipfitMenu {
         if(currBookingCount < maximumBookingCapacity){
              String scheduleId = customerService.addSchedule(sqlTimestamp,slotId);
             String BookingId = customerService.addBooking(userName,scheduleId);
-             System.out.println("Booking successfull!, schedule Id for my brother's booking: " + BookingId);
+//             System.out.println("Booking successfull!, schedule Id for my brother's booking: " + BookingId);
 //            update schedule table
 //            update booking table
         }
@@ -121,12 +121,12 @@ public class CustomerFlipfitMenu {
         }
 
         // Print header
-        System.out.printf("%-15s %-15s %-20s %-15s %n",  "Booking ID", "Date", "Center Name", "City");
+        System.out.printf("%-40s %-15s %-20s %-15s %n",  "Booking ID", "Date", "Center Name", "City");
         System.out.println("---------------------------------------------------------------");
 
         // Iterate over the list and print each booking
         for (BookingDetails booking : bookingList) {
-            System.out.printf("%-15s %-15s %-20s %-15s %n",
+            System.out.printf("%-40s %-15s %-20s %-15s %n",
                     booking.getBookingId(),
                     booking.getDate().toString(),
                     booking.getCentreName(),
