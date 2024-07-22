@@ -64,7 +64,7 @@ public class BookingDAOImpl implements BookingDAO{
         return allBookingDetailsList;
     }
 
-    public String addBooking(String username, String scheduleId) {
+    public String addBooking(String username, String scheduleId) throws BookingFailedException{
         String bookingId = UUID.randomUUID().toString();
         String getUserIdQuery = "SELECT userId FROM user WHERE userName = ?";
         String insertBookingQuery = "INSERT INTO booking (bookingId, userId, scheduleId) VALUES (?, ?, ?)";
@@ -99,7 +99,7 @@ public class BookingDAOImpl implements BookingDAO{
             }
 
         } catch (SQLException e) {
-            System.out.println("Oops! An error occurred. Try again later.");
+            new BookingFailedException("Oops! An error occurred. Try again later.");
             e.printStackTrace();
             return null; // Return null if an exception occurred
         }

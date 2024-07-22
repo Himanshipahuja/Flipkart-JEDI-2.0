@@ -12,7 +12,7 @@ public class DBConnection {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/flipfit-schema";
-            Connection connection = DriverManager.getConnection(url,"root","password");
+            Connection connection = DriverManager.getConnection(url,"root","avnihere1234");
                 System.out.println("Database Connected");
 
             return connection;
