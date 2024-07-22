@@ -111,6 +111,13 @@ public class CustomerFlipfitMenu {
         System.out.println("CARD DETAILS: "+  customer.getCardDetails());
         System.out.println("---------------------------------------------------------------------------");
     }
+    private void cancelBookingSubMenu(String userName){
+        System.out.println("Select the Booking you want to cancel: ");
+        printUserPlan(userName);
+        String bookingId = scanner.next();
+        customerService.cancelBooking(bookingId);
+
+    }
     private void printUserPlan(String userName){
         System.out.println("Bookings : ");
 //        List<UserPlan> allUserPlan= customerService.getCustomerPlan(userName);
@@ -160,7 +167,7 @@ public class CustomerFlipfitMenu {
                     break;
 
                 case 4:
-                    System.out.println("All bookings for cancel are shown");
+                    cancelBookingSubMenu(username);
                     break;
 
                 case 5:

@@ -39,7 +39,7 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
 
     @Override
     public void cancelBooking(String bookingID) {
-
+        bookingService.cancelBooking(bookingID);
     }
 
     @Override

@@ -30,6 +30,14 @@ public class SQLConstants {
     public static final String CUSTOMER_LOGIN_QUERY = "SELECT * FROM `flipfit-schema`.`user` WHERE userName = ? AND password = ? AND role = ?";
     public static final String UPDATE_CUSTOMER_PASSWORD = "UPDATE `flipfit-schema`.`user` SET password = ? WHERE userId = ? AND role = ?;";
 
+
+    //  --------------------------------------BOOKING -----------
+    public static final String GET_BOOKING_BY_CUSTOMER_ID ="Select * From FlipFit.Booking where userID = ?";
+    public static final String CANCEL_BOOKING_BY_ID= "Delete from FlipFit.Booking where bookingId = ?";
+    public static final String GET_BOOKING_BY_BOOKING_ID ="Select * From FlipFit.Booking where bookingId = ?";
+
+
+
     // -----------------------------------GYM OWNER -----------------------------------------------------------------------
     public static final String SQL_APPROVE_GYM_OWNER_BY_ID_QUERY="Update gym_owner Set Approved=1 WHERE ownerId=?";
     public static final String SQL_APPROVE_GYM_OWNER_ALL="Update gym_owner Set Approved=1";

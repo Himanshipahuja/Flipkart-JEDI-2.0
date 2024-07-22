@@ -1,5 +1,6 @@
 package com.flipkart.business;
 
+import com.flipkart.bean.Booking;
 import com.flipkart.bean.BookingDetails;
 import com.flipkart.dao.BookingDAOImpl;
 
@@ -25,6 +26,14 @@ public class BookingServiceImpl implements BookingServiceInterface{
 //
 
     public void cancelBooking(String bookingID) {
+        try {
+            Booking booking  = bookingDAO.getBookingByBookingId(bookingID);
+            bookingDAO.cancelBookingById(bookingID);
+//            scheduleService.modifySchedule(booking.getScheduleID(),1);
+        } catch (BookingFailedException e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
 }

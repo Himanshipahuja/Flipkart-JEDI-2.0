@@ -1,5 +1,6 @@
 package com.flipkart.dao;
 
+import com.flipkart.bean.Booking;
 import com.flipkart.bean.BookingDetails;
 import com.flipkart.exceptions.BookingFailedException;
 import com.flipkart.utils.DBConnection;
@@ -11,6 +12,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import static com.flipkart.constants.SQLConstants.CANCEL_BOOKING_BY_ID;
+import static com.flipkart.constants.SQLConstants.GET_BOOKING_BY_BOOKING_ID;
 
 public class BookingDAOImpl {
     public List<BookingDetails> getBookingByCustomerId(String username) throws BookingFailedException {
@@ -103,4 +107,44 @@ public class BookingDAOImpl {
         return bookingId;
     }
 
+
+    public void cancelBookingById(String bookingID) throws BookingFailedException {
+        try {
+            Connection conn = DBConnection.connect();
+            PreparedStatement stmt = conn.prepareStatement(CANCEL_BOOKING_BY_ID);
+            stmt.setString(1, bookingID);
+            stmt.executeUpdate();
+        } catch(SQLException sql) {
+            throw new BookingFailedException("Could not cancel booking for BookingId: " + bookingID);
+        } catch(Exception e) {
+            System.out.println("Oops! An error occurred. Try again later.");
+        }
+    }
+
+    public Booking getBookingByBookingId(String bookingId) throws BookingFailedException{
+        Booking booking  = null;
+        try {
+            Connection conn = DBConnection.connect();
+            PreparedStatement stmt = conn.prepareStatement(GET_BOOKING_BY_BOOKING_ID);
+            stmt.setString(1, bookingId);
+            ResultSet rs = stmt.executeQuery();
+
+            while(rs.next()) {
+                booking = new Booking(
+                        rs.getString("bookingId"),
+                        rs.getString("userID"),
+                        rs.getString("scheduleID")
+                );
+
+            }
+        } catch(SQLException sql) {
+            throw new BookingFailedException("Could not fetch booking by bookingId: " + bookingId);
+        } catch(Exception excep) {
+            System.out.println("Oops! An error occurred. Try again later.");
+        }
+        return booking;
+    }
+
 }
+
+
