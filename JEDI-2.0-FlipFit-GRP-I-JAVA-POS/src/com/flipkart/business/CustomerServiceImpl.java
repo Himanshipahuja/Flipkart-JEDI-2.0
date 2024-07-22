@@ -26,11 +26,6 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     private final BookingServiceInterface bookingService = new BookingServiceImpl();
 
     @Override
-    public void CustomerLogin() {
-
-    }
-
-    @Override
     public List<GymCentre> getAllGymCenterDetailsByCity(String city) {
         return gymCenterDAO.getGymCentreListByCity(city);
     }
@@ -101,7 +96,7 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     }
 
     @Override
-    public String getCustomerIdFromNameAndPass(String userName, String password) {
+    public String getCustomerIdFromNameAndPass(String userName, String password) throws WrongCredentialsException {
         return customerDAO.getCustomerIdFromNameAndPass(userName, password);
     }
 

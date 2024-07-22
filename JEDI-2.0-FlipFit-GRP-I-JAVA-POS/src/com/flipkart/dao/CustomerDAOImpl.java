@@ -99,7 +99,7 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
-    public String getCustomerIdFromNameAndPass(String userName, String password) {
+    public String getCustomerIdFromNameAndPass(String userName, String password) throws WrongCredentialsException {
         String customerId = "";
         try {
             Connection conn = DBConnection.connect();
@@ -110,7 +110,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             if (rs.next()) {
                 customerId = rs.getString("userId");
             } else {
-                throw new SQLException("User not found with provided credentials");
+                throw new WrongCredentialsException();
             }
         } catch (Exception exp) {
             exp.printStackTrace();

@@ -23,7 +23,7 @@ public class CustomerFlipfitMenu {
 
     CustomerServiceImpl customerService = new CustomerServiceImpl();
 
-    public void customerLogin(String userName, String password) {
+    public void customerLogin(String userName, String password) throws WrongCredentialsException {
         if(customerService.customerLogin(userName, password)) {
             String customerId = customerService.getCustomerIdFromNameAndPass(userName, password);
             customerClientMainPage(userName, customerId);
@@ -33,7 +33,7 @@ public class CustomerFlipfitMenu {
         }
     }
 
-    public void register() {
+    public void register() throws WrongCredentialsException {
         Customer customer = customerService.register();
         String customerId = customerService.getCustomerIdFromNameAndPass(customer.getUserName(),
                 customer.getPassword());

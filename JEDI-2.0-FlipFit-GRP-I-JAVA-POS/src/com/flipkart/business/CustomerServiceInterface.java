@@ -11,7 +11,6 @@ import java.sql.Timestamp;
 import java.util.List;
 
 public interface CustomerServiceInterface {
-    void CustomerLogin();
     List<GymCentre> getAllGymCenterDetailsByCity(String city);
     List<BookingDetails> getCustomerBookings(String customerId);
     boolean bookSlot(String userID,Date date, String slotId,String centreId);
@@ -23,7 +22,7 @@ public interface CustomerServiceInterface {
     public Customer viewMyProfile(String username);
     public void customerChangePassword(String userName,String old_password,String new_password) throws WrongCredentialsException;
     public String getSlotIdFromGymCentreAndTimestamp(String gymOwner, Timestamp timestamp);
-    public String getCustomerIdFromNameAndPass(String userName, String password);
+    public String getCustomerIdFromNameAndPass(String userName, String password) throws WrongCredentialsException;
     public Integer getBookingCountFromSlotId(String slotId);
     public Integer getGymCentreCapacityFromCentreId(String centerId);
     public String addSchedule(Timestamp timestamp, String slotId);
