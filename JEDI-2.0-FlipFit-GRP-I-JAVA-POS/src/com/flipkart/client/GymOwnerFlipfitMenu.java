@@ -75,12 +75,12 @@ public class GymOwnerFlipfitMenu {
                     List<GymCentre> allGymCentres = gymCentreService.getAllCentresByOwmerId(userName);
                     if(allGymCentres.size()>0){
                         System.out.println("--------------------------------------------------------------------");
-                        System.out.printf("| %-10s | %-10s | %-20s | %-15s |\n",
-                                "Centre Name", "Capacity", "City", "Amount per slot");
+                        System.out.printf("| %-15s | %-10s | %-10s | %-20s | %-15s |\n",
+                                "Centre Id","Centre Name", "Capacity", "City", "Amount per slot");
                         for(GymCentre gymcenter:allGymCentres ){
                             System.out.println("--------------------------------------------------------------------");
-                            System.out.printf("| %-10s | %-10s | %-20s | %-15s |\n",
-                                    gymcenter.getCentreName(), gymcenter.getCapacity(), gymcenter.getCity(), gymcenter.getAmountPerSlot());
+                            System.out.printf("| %-15s | %-10s | %-10s | %-20s | %-15s |\n",
+                                    gymcenter.getCentreId(),gymcenter.getCentreName(), gymcenter.getCapacity(), gymcenter.getCity(), gymcenter.getAmountPerSlot());
                         }
                     }
                     else{
@@ -95,8 +95,8 @@ public class GymOwnerFlipfitMenu {
                     break;
 
                 case 2:
-                    System.out.println("Enter gym centre id: ");
-                    String gymId = scanner.next();
+//                    System.out.println("Enter gym centre id: ");
+                    String gymId ="";
 
                     System.out.println("Enter Gym Centre name: ");
                     String gymCentreName = scanner.next();
@@ -113,15 +113,16 @@ public class GymOwnerFlipfitMenu {
                     System.out.println("Enter price: : ");
                     float price = scanner.nextFloat();
                     boolean isapproved = false;
+
                     gymCentreService.addCenter(gymId,userName,gymCentreName,gstin,city,capacity,isapproved,price );
                     System.out.println("New Gym center added\n");
 
                     break;
 
                 case 3:
-                    System.out.println("Enter gym centre id: ");
-                    String gymCentreId = scanner.next();
-                    gymCentreService.requestGymCentreApproval(gymCentreId);
+                    System.out.println("Enter gym centre Name: ");
+                    String gymCentrename = scanner.next();
+                    gymCentreService.requestGymCentreApproval(gymCentrename,userName);
                     break;
 
                 case 4:

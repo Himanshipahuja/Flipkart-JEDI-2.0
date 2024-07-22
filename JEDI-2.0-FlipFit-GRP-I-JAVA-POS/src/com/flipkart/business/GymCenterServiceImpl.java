@@ -20,8 +20,8 @@ public class GymCenterServiceImpl implements GymCenterServiceInterface {
         return;
 
     }
-    public void requestGymCentreApproval(String gymCentreId){
-//        gymCenterDAOImpl.sendRequestForApprovalOfCentre(gymCentreId);
+    public void requestGymCentreApproval(String gymCentreName, String userName){
+        gymCenterDAOImpl.sendRequestForApprovalOfCentre(gymCentreName, userName);
     }
 
 

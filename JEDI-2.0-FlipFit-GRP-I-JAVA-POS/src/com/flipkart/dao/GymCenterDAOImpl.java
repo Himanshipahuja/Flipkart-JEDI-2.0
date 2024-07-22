@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import static com.flipkart.constants.SQLConstants.SQL_APPROVE_GYM_CENTRE_BY_ID_QUERY;
+import static com.flipkart.constants.SQLConstants.SQL_SEND_APPROVAL_GYM_CENTRE_BY_ID_QUERY;
+
 public class GymCenterDAOImpl implements GymCenterDAO {
     private Connection conn = null;
     private PreparedStatement statement = null;
@@ -144,10 +147,9 @@ public class GymCenterDAOImpl implements GymCenterDAO {
         try {
             conn = DBConnection.connect();
             System.out.println("Fetching gyms centres..");
-//            String app = (isApproved==1)? "true" :"false";
+
             statement = conn.prepareStatement(SQLConstants.SQL_APPROVE_GYM_CENTRE_BY_ID_QUERY);
-            statement.setInt(1, isApproved);
-            statement.setString(2, gymCentreId);
+            statement.setString(1, gymCentreId);
             statement.executeUpdate();
 
         } catch (SQLException se) {
@@ -246,4 +248,41 @@ public class GymCenterDAOImpl implements GymCenterDAO {
             throw new RuntimeException(e);
         }
     }
+    public void sendRequestForApprovalOfCentre( String gymcentreName,String username) {
+        String fetcehdOwnerID ="";
+        try {
+            conn = DBConnection.connect();
+            System.out.println("Gym Centre Approval Request sent to Admin\n");
+
+
+
+            conn = DBConnection.connect();
+            statement = conn.prepareStatement(SQLConstants.GET_USER_ID_FRROM_USER);
+            statement.setString(1, username);
+
+                System.out.println(statement);
+//            statement.setString(2, "gymowner");
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()) {
+                fetcehdOwnerID = rs.getString("userId");
+            }
+            statement =null;
+            statement = conn.prepareStatement(SQL_SEND_APPROVAL_GYM_CENTRE_BY_ID_QUERY);
+            statement.setInt(1, 2);
+            statement.setString(2, gymcentreName);
+            statement.setString(3, fetcehdOwnerID);
+            System.out.println(statement);
+
+            statement.executeUpdate();
+        } catch (SQLException se) {
+            se.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+
+
 }
