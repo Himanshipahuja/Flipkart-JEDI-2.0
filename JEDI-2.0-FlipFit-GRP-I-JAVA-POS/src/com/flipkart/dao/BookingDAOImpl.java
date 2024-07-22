@@ -114,14 +114,7 @@ public class BookingDAOImpl implements BookingDAO{
             PreparedStatement stmt = conn.prepareStatement(CANCEL_BOOKING_BY_ID);
             stmt.setString(1, bookingID);
             System.out.println("for cancelling bookingId  "+bookingID);
-/*            System.out.println("Executing SQL: " + stmt.toString());*/
-
             int rowsAffected = stmt.executeUpdate();
-//            if (rowsAffected == 0) {
-//                System.out.println("........");
-//            }
-//            conn.commit();  // Assuming conn is your Connection object
-
 
         } catch (SQLException se)
         {

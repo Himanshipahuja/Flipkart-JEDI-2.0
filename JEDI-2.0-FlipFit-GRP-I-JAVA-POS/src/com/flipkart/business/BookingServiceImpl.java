@@ -1,6 +1,4 @@
 package com.flipkart.business;
-
-import com.flipkart.bean.Booking;
 import com.flipkart.bean.BookingDetails;
 import com.flipkart.dao.BookingDAOImpl;
 
@@ -10,7 +8,6 @@ import com.flipkart.exceptions.BookingFailedException;
 
 public class BookingServiceImpl implements BookingServiceInterface{
     private final BookingDAOImpl bookingDAO = new BookingDAOImpl();
-//    private final SlotServiceImpl slotService = new SlotServiceImpl();
 
     public boolean checkBookingOverlap(String customerId, Date date, String slotId){
         return true;
@@ -27,9 +24,7 @@ public class BookingServiceImpl implements BookingServiceInterface{
 
     public void cancelBooking(String bookingID) {
         try {
-            Booking booking  = bookingDAO.getBookingByBookingId(bookingID);
             bookingDAO.cancelBookingById(bookingID);
-//            scheduleService.modifySchedule(booking.getScheduleID(),1);
         } catch (BookingFailedException e) {
             System.out.println(e.getMessage());
         }
