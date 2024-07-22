@@ -7,9 +7,9 @@ import com.flipkart.business.CustomerServiceImpl;
 import com.flipkart.exceptions.WrongCredentialsException;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -57,7 +57,6 @@ public class CustomerFlipfitMenu {
 
         System.out.print("Choose a gymCentre ID to proceed:");
         String chosenGym = scanner.next();
-        System.out.print("Enter the date and time you want to pick");
         //Select Date
         Timestamp sqlTimestamp = getTimestamp();
         String slotId = customerService.getSlotIdFromGymCentreAndTimestamp(chosenGym,sqlTimestamp);
@@ -101,21 +100,37 @@ public class CustomerFlipfitMenu {
 
     private Timestamp getTimestamp(){
         //Select Date
-        System.out.println("Enter date and time (yyyy-MM-dd HH:mm:ss): ");
-        String userInput = scanner.nextLine();
+        while (true) {
+            // Clean buffer
+            if (scanner.hasNextLine()) {
+                scanner.nextLine(); // This ensures the buffer is clean
+            }
 
-        // Parse and format the date
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        Date date = null;
-        try {
-            date = dateFormat.parse(userInput);
-        } catch (Exception e) {
-            System.out.println("Invalid date format. Please use yyyy-MM-dd HH:mm:ss");
-            return getTimestamp();
+            // Select Date
+            System.out.print("Enter date and time (yyyy-MM-dd HH:mm:ss): ");
+            String userInput = scanner.nextLine();
+
+            // Debugging print
+            System.out.println("User input: '" + userInput + "'");
+
+            // Check for empty input
+            if (userInput.trim().isEmpty()) {
+                System.out.println("Input cannot be empty. Please enter a valid date and time.");
+                continue;
+            }
+
+            // Parse and format the date
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            dateFormat.setLenient(false); // Ensures strict parsing
+
+            try {
+                java.util.Date date = dateFormat.parse(userInput);
+                // Convert date to SQL timestamp
+                return new Timestamp(date.getTime());
+            } catch (ParseException e) {
+                System.out.println("Invalid date format. Please use yyyy-MM-dd HH:mm:ss");
+            }
         }
-
-        // Convert date to SQL timestamp
-        return new Timestamp(date.getTime());
     }
 
     public void printCustomerProfile(Customer customer) {
