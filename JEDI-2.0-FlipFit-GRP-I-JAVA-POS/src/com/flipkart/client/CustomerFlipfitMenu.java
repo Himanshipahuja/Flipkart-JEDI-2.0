@@ -63,6 +63,12 @@ public class CustomerFlipfitMenu {
 
         }
 
+        if(centreListByLocation.isEmpty()){
+            System.out.println("Sorry we dont have any gym centre's in this city!");
+            bookSlotSubMenu(userName);
+            return;
+        }
+
         System.out.print("Choose a gymCentre ID to proceed:");
         String chosenGym = scanner.next();
         //Select Date
@@ -72,6 +78,7 @@ public class CustomerFlipfitMenu {
         if(slotId == null){
             System.out.println("No slots available for the selected centre and time");
             bookSlotSubMenu(userName);
+            return;
         }
 
         System.out.println("Slot id is as follows:" + slotId);
@@ -107,7 +114,6 @@ public class CustomerFlipfitMenu {
         else{
             System.out.println("Sorry brother, no slots available");
         }
-
     }
 
     private Timestamp getTimestamp(){
