@@ -37,9 +37,9 @@ public class SQLConstants {
 
 
     //  --------------------------------------BOOKING -----------
-    public static final String GET_BOOKING_BY_CUSTOMER_ID ="Select * From FlipFit.Booking where userID = ?";
-    public static final String CANCEL_BOOKING_BY_ID= "Delete from FlipFit.Booking where bookingId = ?";
-    public static final String GET_BOOKING_BY_BOOKING_ID ="Select * From FlipFit.Booking where bookingId = ?";
+    public static final String GET_BOOKING_BY_CUSTOMER_ID ="SELECT * FROM `flipfit-schema`.`booking` where userId = ?";
+    public static final String CANCEL_BOOKING_BY_ID= "DELETE FROM booking where bookingId = ?";
+    public static final String GET_BOOKING_BY_BOOKING_ID ="SELECT * FROM `flipfit-schema`.`booking` where bookingId = ?";
 
 
     // -------------------------------------- SLOT ------------------------------------------------------------
