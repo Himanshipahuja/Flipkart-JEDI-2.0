@@ -35,7 +35,6 @@ public class AdminFlipfitMenu {
      * @param  userName  description of parameter
      * @param  old_password  description of parameter
      * @param  new_password  description of parameter
-     * @return          description of return value
      */public void adminChangePassword(String userName, String old_password, String new_password) {
         adminService.adminChangePassword(userName, old_password, new_password);
     }
@@ -43,7 +42,6 @@ public class AdminFlipfitMenu {
     /**
      * Displays the main menu for the admin client and handles user input.
      *
-     * @return          void
      */
     public void adminClientMainPage() {
         LocalDateTime currentTime = LocalDateTime.now();

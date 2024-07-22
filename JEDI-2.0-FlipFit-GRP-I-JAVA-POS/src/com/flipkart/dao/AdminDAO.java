@@ -32,7 +32,6 @@ public interface AdminDAO {
      *
      * @param  ownerId    description of parameter
      * @param  isApproved description of parameter
-     * @return           None
      */
     public void validateGymOwnerByID(String ownerId, int isApproved);
 
@@ -46,7 +45,6 @@ public interface AdminDAO {
     /**
      *Validates all Gym Centres..
      *
-     * @return         	description of return value
      */
     public void validateAllGymCentres();
 
@@ -55,7 +53,6 @@ public interface AdminDAO {
      *
      * @param  gymCentreId	description of parameter
      * @param  isApproved	description of parameter
-     * @return         	description of return value
      */
     public void validateGymCentreByID(String gymCentreId, int isApproved);
 }

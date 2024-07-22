@@ -15,7 +15,6 @@ public interface SlotDAO {
      * Adds a new slot to the database.
      *
      * @param  slot the slot to be added
-     * @return the ID of the newly added slot
      */
     public void addSlot(Slot slot);
 

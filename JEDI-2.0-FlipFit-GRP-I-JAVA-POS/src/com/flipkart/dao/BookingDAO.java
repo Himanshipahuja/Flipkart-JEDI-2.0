@@ -29,7 +29,6 @@ public interface BookingDAO {
          * Cancels a booking by its ID.
          *
          * @param  bookingID  the ID of the booking to be cancelled
-         * @return None
          */
     public void cancelBookingById(String bookingID);
         /**

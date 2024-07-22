@@ -36,7 +36,6 @@ public interface AdminServiceInterface {
     /**
      * Retrieves and displays a list of all Gym Owners.
      *
-     * @return         	void
      */
     public void viewAllGymOwners();
 
@@ -60,14 +59,12 @@ public interface AdminServiceInterface {
     /**
      * Retrieves and displays a list of all Gym Centres.
      *
-     * @return         	void
      */
     public void viewAllGymCentres();
 
     /**
      * Validates all Gym Centres..
      *
-     * @return         	void
      */
     public void validateAllGymCentres();
 
