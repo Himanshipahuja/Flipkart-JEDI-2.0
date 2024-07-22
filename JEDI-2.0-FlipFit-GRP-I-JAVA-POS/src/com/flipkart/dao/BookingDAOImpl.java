@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class BookingDAOImpl {
     public List<BookingDetails> getBookingByCustomerId(String username) throws BookingFailedException {
@@ -60,6 +61,46 @@ public class BookingDAOImpl {
     }
 
     public String addBooking(String username, String scheduleId) {
-        return username;
+        String bookingId = UUID.randomUUID().toString();
+        String getUserIdQuery = "SELECT userId FROM user WHERE userName = ?";
+        String insertBookingQuery = "INSERT INTO booking (bookingId, userId, scheduleId) VALUES (?, ?, ?)";
+
+        try (Connection conn = DBConnection.connect()) {
+            // Step 1: Retrieve the userId based on the provided username
+            PreparedStatement getUserIdStmt = conn.prepareStatement(getUserIdQuery);
+            getUserIdStmt.setString(1, username);
+            ResultSet userIdRs = getUserIdStmt.executeQuery();
+
+            String userId = null;
+            if (userIdRs.next()) {
+                userId = userIdRs.getString("userId");
+                System.out.println("Found userId: " + userId);
+            } else {
+                System.out.println("No user found with username: " + username);
+                return null; // Return null if no user found
+            }
+
+            // Step 2: Insert a new booking record into the booking table
+            PreparedStatement insertBookingStmt = conn.prepareStatement(insertBookingQuery);
+            insertBookingStmt.setString(1, bookingId);
+            insertBookingStmt.setString(2, userId);
+            insertBookingStmt.setString(3, scheduleId);
+
+            int rowsInserted = insertBookingStmt.executeUpdate();
+            if (rowsInserted > 0) {
+                System.out.println("Booking successfully added with bookingId: " + bookingId);
+            } else {
+                System.out.println("Failed to add booking");
+                return null; // Return null if the booking insertion failed
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Oops! An error occurred. Try again later.");
+            e.printStackTrace();
+            return null; // Return null if an exception occurred
+        }
+
+        return bookingId;
     }
+
 }
