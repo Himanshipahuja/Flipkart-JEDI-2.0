@@ -16,7 +16,7 @@ import java.util.UUID;
 import static com.flipkart.constants.SQLConstants.CANCEL_BOOKING_BY_ID;
 import static com.flipkart.constants.SQLConstants.GET_BOOKING_BY_BOOKING_ID;
 
-public class BookingDAOImpl {
+public class BookingDAOImpl implements BookingDAO{
     public List<BookingDetails> getBookingByCustomerId(String username) throws BookingFailedException {
         List<BookingDetails> allBookingDetailsList = new ArrayList<>();
         String getUserIdQuery = "SELECT userId FROM user WHERE userName = ?";
