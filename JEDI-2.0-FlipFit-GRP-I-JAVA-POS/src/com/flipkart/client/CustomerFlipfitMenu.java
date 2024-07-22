@@ -78,13 +78,17 @@ public class CustomerFlipfitMenu {
 
         if(currBookingCount < maximumBookingCapacity){
             float gymCentreCost = customerService.getGymCentreCostFromCentreId(chosenGym);
+            System.out.println(" -------------------------------------------------------");
             System.out.println("Would you like to continue to payment? Enter Y/N to pay "+gymCentreCost);
+            System.out.println(" -------------------------------------------------------");
             String paymentChoice = scanner.next();
             if(Objects.equals(paymentChoice, "Y")){
                 String scheduleId = customerService.addSchedule(sqlTimestamp,slotId);
                 String bookingId = customerService.addBooking(userName,scheduleId);
                 String paymentId = customerService.addPayment(bookingId,gymCentreCost);
+                System.out.println(" -------------------------------------------------------------------------------------------------");
                 System.out.println("Booking successfull!, schedule Id for my brother's booking: " + bookingId);
+                System.out.println(" -------------------------------------------------------------------------------------------------");
             }
             else{
                 System.out.println("Redirecting to selection page");
