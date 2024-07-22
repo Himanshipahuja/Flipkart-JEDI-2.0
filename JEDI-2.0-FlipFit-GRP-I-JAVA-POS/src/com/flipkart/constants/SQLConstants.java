@@ -40,7 +40,7 @@ public class SQLConstants {
 
 
     // -----------------------------------GYM OWNER -----------------------------------------------------------------------
-    public static final String SQL_APPROVE_GYM_OWNER_BY_ID_QUERY="Update gym_owner Set Approved=1 WHERE ownerId=?";
+    public static final String SQL_APPROVE_GYM_OWNER_BY_ID_QUERY="Update gym_owner Set Approved=? WHERE ownerId=?";
     public static final String SQL_APPROVE_GYM_OWNER_ALL="Update gym_owner Set Approved=1";
     public static final String FETCH_ALL_GYM_OWNERS_QUERY = "SELECT u.userID, u.userName, u.email, u.password, u.role, g.panNUmber, g.Approved, g.cardDetails FROM user u JOIN gym_owner g on u.userID=g.ownerID";
 

@@ -181,10 +181,11 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
     public void validateGymOwnerByID(String ownerId, int isApproved) {
         try {
             conn = DBConnection.connect();
-            System.out.println("Fetching gyms centres..");
+            System.out.println("Fetching gyms owners..");
 
             statement = conn.prepareStatement(SQLConstants.SQL_APPROVE_GYM_OWNER_BY_ID_QUERY);
-            statement.setString(1, ownerId);
+            statement.setInt(1, isApproved);
+            statement.setString(2, ownerId);
             statement.executeUpdate();
 
         } catch (SQLException se) {

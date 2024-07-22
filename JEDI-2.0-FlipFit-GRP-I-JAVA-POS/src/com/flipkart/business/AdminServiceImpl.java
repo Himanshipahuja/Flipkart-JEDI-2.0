@@ -76,7 +76,7 @@ public class AdminServiceImpl implements AdminServiceInterface {
                 "User ID", "User Name", "Email", "Role", "PAN", "Approved", "Card Details" );
         for(GymOwner gymOwner : gymOwnerList) {
             System.out.println("--------------------------------------------------------------------------------------------------------------------");
-            System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8b | %-20s |\n",
+            System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8d | %-20s |\n",
                     gymOwner.getUserID(), gymOwner.getUserName(), gymOwner.getEmail(), gymOwner.getRole(), gymOwner.getPanNumber(), gymOwner.isApproved(),gymOwner.getCardDetails());
 }
             System.out.println("----------------------------------------------------------------------------------------------------------------------");
