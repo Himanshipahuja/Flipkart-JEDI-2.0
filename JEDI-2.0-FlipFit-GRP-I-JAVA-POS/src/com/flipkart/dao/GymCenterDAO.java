@@ -4,9 +4,10 @@ import com.flipkart.bean.GymCentre;
 
 import java.util.List;
 
-/**
- * Interface for GymCenter DAO
- */
+    /**
+     * @author JEDI-09
+     * Interface for gym center DAO operations
+     */
 public interface GymCenterDAO {
 
 

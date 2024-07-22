@@ -5,6 +5,10 @@ import com.flipkart.bean.GymOwner;
 
 import java.util.List;
 
+    /**
+     * @author JEDI-09
+     * Interface for admin DAO operations
+     */
 public interface AdminDAO {
     /**
      * Retrieves the list of Gym Owners.

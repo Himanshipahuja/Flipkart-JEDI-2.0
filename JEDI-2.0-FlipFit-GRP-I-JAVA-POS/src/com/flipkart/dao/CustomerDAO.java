@@ -3,9 +3,10 @@ package com.flipkart.dao;
 import com.flipkart.bean.Customer;
 import com.flipkart.exceptions.WrongCredentialsException;
 
-/**
- * Interface for Customer data accessor object.
- */
+    /**
+     * @author JEDI-09
+     * Interface for customer DAO operations
+     */
 public interface CustomerDAO {
     /**
      * Registers a new customer with the given information.
