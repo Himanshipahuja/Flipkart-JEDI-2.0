@@ -23,6 +23,12 @@ import java.util.Scanner;
 import static com.flipkart.constants.Constants.INVALID_CHOICE_ERROR;
 import static com.flipkart.constants.Constants.PREVIOUS_MENU_MESSAGE;
 
+
+/**
+ * @author JEDI-09
+ * This class represents the Gym Owner Flipfit Menu.
+ *
+ */
 public class GymOwnerFlipfitMenu {
 
     public static Scanner scanner = new Scanner(System.in);
@@ -30,7 +36,14 @@ public class GymOwnerFlipfitMenu {
     GymOwnerServiceImpl gymOwnerService = new GymOwnerServiceImpl();
     GymCenterServiceImpl gymCentreService = new GymCenterServiceImpl();
     private SlotService slotService = new SlotService();
-
+    /**
+     * Logs in the Gym Owner with the given userName and password.
+     *
+     * @param userName the username of the Gym Owner
+     * @param password the password of the Gym Owner
+     * @return true if the login is successful, false otherwise
+     * @throws ParseException if there is an error parsing the date
+     */
     public boolean gymOwnerLogin(String userName, String password) throws ParseException {
         if(gymOwnerService.gymOwnerLogin(userName, password)){
             System.out.println("---------------------------------------------------------------------------");
@@ -42,17 +55,33 @@ public class GymOwnerFlipfitMenu {
         }
         return true;
     }
-
+    /**
+     * Registers a new Gym Owner by calling the `register` method of the `gymOwnerService` object.
+     * The registered Gym Owner's username and password are then passed to the `gymOwnerClientMainPage` method.
+     *
+     * @throws ParseException if there is an error parsing the date
+     */
     public void register() throws ParseException {
         GymOwner registeredGymOwner = gymOwnerService.register();
         gymOwnerClientMainPage(registeredGymOwner.getUserName(), registeredGymOwner.getPassword());
-//        gymOwnerClientMainPage(userName);
-//        return userName;
     }
-
+    /**
+     * Changes the password of a gym owner.
+     *
+     * @param userName the username of the gym owner
+     * @param old_password the current password of the gym owner
+     * @param new_password the new password to be set for the gym owner
+     */
     public void gymOwnerChangePassword(String userName,String old_password,String new_password){
         gymOwnerService.gymOwnerChangePassword(userName, old_password, new_password);
     }
+    /**
+     * Main page for the gym owner client with various options like viewing gym centres, adding new gym center, etc.
+     *
+     * @param userName the username of the gym owner
+     * @param password the password of the gym owner
+     * @throws ParseException if there is an error parsing the date
+     */
 
     public void gymOwnerClientMainPage(String userName, String password) throws ParseException {
         System.out.println("Welcome to gym owner main page!!");
@@ -68,10 +97,8 @@ public class GymOwnerFlipfitMenu {
             );
             System.out.println("---------------------------------------------------------------------------");
             int choice = scanner.nextInt();
-//            System.out.println("&&&&&------"+choice);
             switch(choice){
                 case 0:
-//                    System.out.println("Gym cetres viewd\n");
                     List<GymCentre> allGymCentres = gymCentreService.getAllCentresByOwmerId(userName);
                     if(allGymCentres.size()>0){
                         System.out.println("--------------------------------------------------------------------");
@@ -95,7 +122,6 @@ public class GymOwnerFlipfitMenu {
                     break;
 
                 case 2:
-//                    System.out.println("Enter gym centre id: ");
                     String gymId ="";
 
                     System.out.println("Enter Gym Centre name: ");

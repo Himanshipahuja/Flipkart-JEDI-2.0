@@ -8,6 +8,10 @@ import java.util.Scanner;
 
 import static com.flipkart.constants.Constants.*;
 
+/**
+ * @author JEDI-09
+ *  * This class represents main menu for the Flipfit application.
+ */
 public class FlipfitApplicationClient {
 
     public static int userId = 0;
@@ -17,7 +21,11 @@ public class FlipfitApplicationClient {
     private static final CustomerFlipfitMenu customerFlipfitMenu = new CustomerFlipfitMenu();
     private static final GymOwnerFlipfitMenu gymOwnerFlipfitMenu = new GymOwnerFlipfitMenu();
 
-
+    /**
+     * Displays the main menu and handles user input to navigate through the application.
+     *
+     * @throws IllegalArgumentException if an invalid choice is entered
+     */
     private static void mainPage(){
         System.out.println("---------------------------------------------------------------------------");
         System.out.println("1. Login\n2. Registration of the GYM Customer\n3. Registration of the GYM Owner\n4. Change Password\n5. Exit");
@@ -45,7 +53,11 @@ public class FlipfitApplicationClient {
         }
         mainPage();
     }
-
+    /**
+     * Prompts the user to enter their Role, UserName, and Passkey, and then logs them in based on their Role.
+     *
+     * @throws Exception if an error occurs during the login process
+     */
     private static void login(){
         try {
             System.out.println("Enter your Role");
@@ -75,7 +87,11 @@ public class FlipfitApplicationClient {
             System.out.println(INVALID_CHOICE_ERROR);
         }
     }
-
+    /**
+     * A method that handles the registration process based on the Role provided.
+     *
+     * @param  role  the Role of the user for registration
+     */
     private static void registration(Role role){
         try {
             switch (role){
@@ -97,6 +113,10 @@ public class FlipfitApplicationClient {
             System.out.println(INVALID_CHOICE_ERROR);
         }
     }
+    /**
+     * A method to change the password based on the user's role.
+     * @return void
+     */
     private static void change_password(){
         try {
             System.out.println("Enter your Role");
@@ -130,7 +150,11 @@ public class FlipfitApplicationClient {
             throw new RuntimeException(e);
         }
     }
-
+    /**
+     * The main function of the program. It prints a welcome message and calls the mainPage function.
+     *
+     * @param  args  the command line arguments
+     */
     public static void main(String[] args) {
         System.out.println(WELCOME_MESSAGE);
         mainPage();

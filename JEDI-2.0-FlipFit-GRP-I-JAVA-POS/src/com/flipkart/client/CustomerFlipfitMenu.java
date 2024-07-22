@@ -19,11 +19,21 @@ import static com.flipkart.constants.Constants.INVALID_CHOICE_ERROR;
 import static com.flipkart.constants.Constants.PREVIOUS_MENU_MESSAGE;
 
 
+/**
+ * @author JEDI-09
+ * This class represents the customer Flipfit Menu.
+ */
 public class CustomerFlipfitMenu {
     public static Scanner scanner = new Scanner(System.in);
 
     CustomerServiceImpl customerService = new CustomerServiceImpl();
-
+    /**
+     * Logs in the customer with the given userName and password, and navigates to the main page if successful.
+     *
+     * @param  userName the username of the customer
+     * @param  password the password of the customer
+     * @throws WrongCredentialsException if the login credentials are incorrect
+     */
     public void customerLogin(String userName, String password) throws WrongCredentialsException {
         try {
             if (customerService.customerLogin(userName, password)) {
@@ -36,7 +46,12 @@ public class CustomerFlipfitMenu {
             System.out.println(e.getMessage());
         }
     }
-
+    /**
+     * Registers a customer by invoking the registration process, obtaining customer details,
+     * and navigating to the main page upon successful registration.
+     *
+     * @throws RegistrationFailedException if the registration process fails
+     */
     public void register() throws RegistrationFailedException {
         try {
             Customer customer = customerService.register();
@@ -47,7 +62,11 @@ public class CustomerFlipfitMenu {
             System.out.println(e.getMessage());
         }
     }
-
+    /**
+     * Book a slot for the user by providing location, selecting a gym center, and managing the booking process.
+     *
+     * @param userName the username of the user booking the slot
+     */
     private void bookSlotSubMenu(String userName){
         //Get Location for filter
         System.out.println("Provide Location to search :");
@@ -115,7 +134,11 @@ public class CustomerFlipfitMenu {
             System.out.println("Sorry brother, no slots available");
         }
     }
-
+    /**
+     * Selects a date and time, parses it, and returns a SQL timestamp.
+     *
+     * @return the SQL timestamp extracted from the user input date and time
+     */
     private Timestamp getTimestamp(){
         //Select Date
         while (true) {
@@ -150,7 +173,11 @@ public class CustomerFlipfitMenu {
             }
         }
     }
-
+    /**
+     * Prints the customer profile information.
+     *
+     * @param customer the customer object containing the profile information
+     */
     public void printCustomerProfile(Customer customer) {
         System.out.println("------------------------------------------------------------------------");
         System.out.println("USER ID: "+ customer.getUserID());
@@ -160,6 +187,11 @@ public class CustomerFlipfitMenu {
         System.out.println("CARD DETAILS: "+  customer.getCardDetails());
         System.out.println("---------------------------------------------------------------------------");
     }
+    /**
+     * Cancels a booking for a user.
+     *
+     * @param userName the username of the user whose booking is to be cancelled
+     */
     private void cancelBookingSubMenu(String userName){
         System.out.println("Select the Booking you want to cancel: ");
         printUserPlan(userName);
@@ -167,6 +199,11 @@ public class CustomerFlipfitMenu {
         customerService.cancelBooking(bookingId);
 
     }
+    /**
+     * Prints the user's booking plan based on the provided username.
+     *
+     * @param userName the username for which the booking plan is to be printed
+     */
     private void printUserPlan(String userName){
         System.out.println("Bookings : ");
 //        List<UserPlan> allUserPlan= customerService.getCustomerPlan(userName);
@@ -189,6 +226,12 @@ public class CustomerFlipfitMenu {
                     booking.getCity());
         }
     }
+    /**
+     * Customer main page function that allows the user to interact with various options such as viewing profile, booking gym slots, viewing bookings, and canceling bookings.
+     *
+     * @param username the username of the customer
+     * @param customerId the customer ID
+     */
     public void customerClientMainPage(String username, String customerId) {
         System.out.println("---------------------------------------------------------------------------");
         System.out.println("Welcome to customer main page!!");
@@ -229,7 +272,14 @@ public class CustomerFlipfitMenu {
             }
         }
     }
-
+    /**
+     * Changes the password of a customer.
+     *
+     * @param  userName the username of the customer
+     * @param  old_password the current password of the customer
+     * @param  new_password the new password to be set for the customer
+     * @throws WrongCredentialsException if the old password is incorrect
+     */
     public void customerChangePassword(String userName,String old_password,String new_password) throws WrongCredentialsException {
         customerService.customerChangePassword(userName, old_password, new_password);
     }
