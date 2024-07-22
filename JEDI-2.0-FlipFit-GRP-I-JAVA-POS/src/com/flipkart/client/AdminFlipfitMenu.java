@@ -15,6 +15,12 @@ public class AdminFlipfitMenu {
 
     public static Scanner scanner = new Scanner(System.in);
 
+    /**
+     * A method to log in as an admin with the given username and password.
+     *
+     * @param  userName  the username of the admin
+     * @param  password  the password of the admin
+     */
     public void adminLogin(String userName, String password) {
         if(adminService.adminLogin(userName, password)){
             adminClientMainPage();
@@ -24,10 +30,22 @@ public class AdminFlipfitMenu {
         }
     }
 
-    public void adminChangePassword(String userName, String old_password, String new_password) {
+    /**
+     * A description of the entire Java function.
+     *
+     * @param  userName  description of parameter
+     * @param  old_password  description of parameter
+     * @param  new_password  description of parameter
+     * @return          description of return value
+     */public void adminChangePassword(String userName, String old_password, String new_password) {
         adminService.adminChangePassword(userName, old_password, new_password);
     }
 
+    /**
+     * Displays the main menu for the admin client and handles user input.
+     *
+     * @return          void
+     */
     public void adminClientMainPage() {
         LocalDateTime currentTime = LocalDateTime.now();
         DateTimeFormatter myFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
@@ -45,7 +63,6 @@ public class AdminFlipfitMenu {
             int pendingChoice = scanner.nextInt();
             switch (pendingChoice) {
                 case 0:
-//                    gymOwnerService.viewAllGymOwners();
                     adminService.viewAllGymOwners();
                     break;
                 case 1:
