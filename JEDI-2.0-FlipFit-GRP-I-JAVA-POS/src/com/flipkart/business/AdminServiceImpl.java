@@ -95,7 +95,7 @@ public class AdminServiceImpl implements AdminServiceInterface {
 
         for (GymCentre gymCentre : gymCentres) {
             System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
-            System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8d | %-10b | %-15f |\n",
+            System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8d | %-10d | %-15f |\n",
                     gymCentre.getCentreId(), gymCentre.getOwnerId(), gymCentre.getCentreName(), gymCentre.getGstNo(), gymCentre.getCity(), gymCentre.getCapacity(), gymCentre.isApproved(), gymCentre.getAmountPerSlot());
         }
         System.out.println("--------------------------------------------------------------------------------------------------------------------------------");
