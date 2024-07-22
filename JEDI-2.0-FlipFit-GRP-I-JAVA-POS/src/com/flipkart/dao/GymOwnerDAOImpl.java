@@ -23,7 +23,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
 
     private Connection conn = null;
     private PreparedStatement statement = null;
-
+    AdminDAOImpl adminDAO = new AdminDAOImpl();
     private List<GymOwner> gymOwnerList = new ArrayList<>();
     public List<GymOwner> getGymOwnerList(){
         return gymOwnerList;
@@ -135,67 +135,6 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         }
         return pendingGymOwner;
     }
-    @Override
-    public List<GymOwner> getGymOwnersList() {
-        List<GymOwner> gymOwnerList = new ArrayList<>();
-
-        try {
-            conn = DBConnection.connect();
-            statement = conn.prepareStatement(SQLConstants.FETCH_ALL_GYM_OWNERS_QUERY);
-            ResultSet rs = statement.executeQuery();
-            while (rs.next()) {
-                GymOwner owner = new GymOwner(
-                        rs.getString("userId"),
-                        rs.getString("userName"),
-                        rs.getString("email"),
-                        rs.getString("password"),
-                        rs.getString("panNumber"),
-                        rs.getInt("Approved"),
-                        rs.getString("cardDetails")
-                );
-                gymOwnerList.add(owner);
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return gymOwnerList;
-    }
-
-    @Override
-    public void validateAllGymOwners() {
-        try {
-            conn = DBConnection.connect();
-            System.out.println("Fetching gyms owners..");
-
-            statement = conn.prepareStatement(SQLConstants.SQL_APPROVE_GYM_OWNER_ALL);
-            statement.executeUpdate();
-
-        } catch (SQLException se) {
-            se.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void validateGymOwnerByID(String ownerId, int isApproved) {
-        try {
-            conn = DBConnection.connect();
-            System.out.println("Fetching gyms owners..");
-
-            statement = conn.prepareStatement(SQLConstants.SQL_APPROVE_GYM_OWNER_BY_ID_QUERY);
-            statement.setInt(1, isApproved);
-            statement.setString(2, ownerId);
-            statement.executeUpdate();
-
-        } catch (SQLException se) {
-            se.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-    }
-
 
     @Override
     public void sendOwnerApprovalRequest(String gymOwnerId){
@@ -213,7 +152,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
 
     @Override
     public String getGymOwnerId(String userName, String password) {
-        List<GymOwner> gymOwnerList = getGymOwnersList();
+        List<GymOwner> gymOwnerList = adminDAO.getGymOwnersList();
         for (GymOwner gymowner: gymOwnerList) {
             if (gymowner.getUserName().equals(userName) && gymowner.getPassword().equals(password)) {
                 return gymowner.getUserID();

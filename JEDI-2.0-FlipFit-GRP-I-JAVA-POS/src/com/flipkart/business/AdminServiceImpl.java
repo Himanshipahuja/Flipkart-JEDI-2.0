@@ -3,6 +3,7 @@ package com.flipkart.business;
 import com.flipkart.bean.Admin;
 import com.flipkart.bean.GymCentre;
 import com.flipkart.bean.GymOwner;
+import com.flipkart.dao.AdminDAOImpl;
 import com.flipkart.dao.GymCenterDAOImpl;
 import com.flipkart.dao.GymOwnerDAOImpl;
 import com.flipkart.exceptions.LoginFailedException;
@@ -13,6 +14,7 @@ import java.util.Objects;
 public class AdminServiceImpl implements AdminServiceInterface {
 
     Admin admin = new Admin();
+    AdminDAOImpl adminDAO = new AdminDAOImpl();
     GymCenterDAOImpl gymCenterDAOImpl = new GymCenterDAOImpl();
     GymOwnerDAOImpl gymOwnerDAOImpl = new GymOwnerDAOImpl();
 
@@ -70,7 +72,7 @@ public class AdminServiceImpl implements AdminServiceInterface {
 
     @Override
     public void viewAllGymOwners() {
-        List<GymOwner> gymOwnerList = gymOwnerDAOImpl.getGymOwnersList();
+        List<GymOwner> gymOwnerList = adminDAO.getGymOwnersList();
         System.out.println("------------------------------------------------------------------------------------------------------------------------");
         System.out.printf("| %-10s | %-10s | %-20s | %-15s | %-15s | %-8s | %-20s |\n",
                 "User ID", "User Name", "Email", "Role", "PAN", "Approved", "Card Details" );
@@ -85,7 +87,7 @@ public class AdminServiceImpl implements AdminServiceInterface {
 
     @Override
     public void viewAllGymCentres(){
-        List<GymCentre> gymCentres = gymCenterDAOImpl.getGymCentersList();
+        List<GymCentre> gymCentres = adminDAO.getGymCentersList();
 
 //        List<String> gymCenterNames = new ArrayList<>();
 //        gymCentres.forEach(gymCentre -> {gymCenterNames.add(gymCentre.getCentreName());});
@@ -105,22 +107,22 @@ public class AdminServiceImpl implements AdminServiceInterface {
     }
     @Override
     public void validateAllGymCentres() {
-        gymCenterDAOImpl.validateAllGymCentres();
+        adminDAO.validateAllGymCentres();
     }
 
     @Override
     public void validateGymCentreByID(String gymCentreId, int isApproved) {
-        gymCenterDAOImpl.validateGymCentreByID(gymCentreId,isApproved);
+        adminDAO.validateGymCentreByID(gymCentreId,isApproved);
     }
 
     @Override
     public void validateAllGymOwners() {
-        gymOwnerDAOImpl.validateAllGymOwners();
+        adminDAO.validateAllGymOwners();
     }
 
     @Override
     public void validateGymOwnerByID(String ownerId, int isApproved) {
-        gymOwnerDAOImpl.validateGymOwnerByID(ownerId,isApproved);
+        adminDAO.validateGymOwnerByID(ownerId,isApproved);
     }
 }
 
