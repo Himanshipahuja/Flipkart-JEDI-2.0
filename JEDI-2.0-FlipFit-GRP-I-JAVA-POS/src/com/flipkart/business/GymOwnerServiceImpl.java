@@ -5,6 +5,7 @@ import com.flipkart.bean.Slot;
 import com.flipkart.dao.GymOwnerDAOImpl;
 import com.flipkart.bean.GymOwner;
 import com.flipkart.exceptions.LoginFailedException;
+import com.flipkart.exceptions.RegistrationFailedException;
 
 import java.sql.Date;
 import java.util.List;
@@ -36,9 +37,10 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
         System.out.println("Enter your Card Number");
         String cardNumber = scanner.next();
 
-        GymOwner registeredOwner = gymOwnerDAOImpl.registerGymOwner(userName,password,email,panNumber,cardNumber);
+        try {
+            GymOwner registeredOwner = gymOwnerDAOImpl.registerGymOwner(userName, password, email, panNumber, cardNumber);
 //        List<GymOwner>gymOwnerList=gymOwnerDAO.getGymOwnerList();
-        System.out.println("Registered successfully!! ");
+            System.out.println("Registered successfully!! ");
 
 //        for(GymOwner gymowner:gymOwnerList){
 //            System.out.println("\t User Name: " + gymowner.getUserName());
@@ -46,7 +48,10 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
 //            System.out.println("\t PAN Number: " +  gymowner.getPanNumber());
 //            System.out.println("\t Card Number: " +  gymowner.getCardDetails());
 //        }
-        return registeredOwner;
+            return registeredOwner;
+        } catch(RegistrationFailedException e){
+            throw new RegistrationFailedException("Failed to register Gym Owner");
+        }
     }
 
     @Override

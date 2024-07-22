@@ -15,6 +15,8 @@ import java.util.Random;
 
 import com.flipkart.bean.Role;
 import com.flipkart.constants.SQLConstants;
+import com.flipkart.exceptions.LoginFailedException;
+import com.flipkart.exceptions.RegistrationFailedException;
 import com.flipkart.utils.DBConnection;
 
 public class GymOwnerDAOImpl implements GymOwnerDAO {
@@ -92,8 +94,8 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         }catch(SQLException e){
             e.printStackTrace();
             System.out.println("Try again with a different Username \n");
+            throw new RegistrationFailedException("Failed to register Gym Owner");
         }
-        return gymOwner;
     }
     public boolean loginGymOwner(String username,String password){
         try {
@@ -115,7 +117,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
             } catch (Exception e) {
                 e.printStackTrace();
                 System.out.println("SQL Exception\n");
-                return false;
+                throw new LoginFailedException("Failed to login Gym Owner");
             }
         }catch (SQLException e){
             System.out.println("SQL Exception\n");
