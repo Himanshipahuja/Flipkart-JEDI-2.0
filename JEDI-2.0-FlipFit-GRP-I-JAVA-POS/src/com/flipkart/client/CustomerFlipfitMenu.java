@@ -195,6 +195,7 @@ public class CustomerFlipfitMenu {
     private void cancelBookingSubMenu(String userName){
         System.out.println("Select the Booking you want to cancel: ");
         printUserPlan(userName);
+        System.out.println("Enter bookingId which you want to cancel....");
         String bookingId = scanner.next();
         customerService.cancelBooking(bookingId);
 
