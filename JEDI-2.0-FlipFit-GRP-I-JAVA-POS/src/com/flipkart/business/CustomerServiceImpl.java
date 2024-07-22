@@ -4,7 +4,6 @@ import com.flipkart.bean.BookingDetails;
 import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
 import com.flipkart.dao.*;
-import com.flipkart.exceptions.RegistrationFailedException;
 import com.flipkart.exceptions.WrongCredentialsException;
 
 import java.sql.Date;
