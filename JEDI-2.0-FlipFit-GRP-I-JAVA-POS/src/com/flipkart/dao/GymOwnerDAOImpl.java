@@ -65,7 +65,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
             String role = "roleId3";
             statement.setString(5,role);
 
-            System.out.println(statement);
+//            System.out.println(statement);
 
             statement.execute();
             statement = null;
@@ -76,7 +76,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
             statement.setString(3, cardNumber);
             statement.setString(4,userid);
 
-            System.out.println(statement);
+//            System.out.println(statement);
 
             statement.execute();
 
@@ -201,6 +201,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
             System.out.println("Sending gym owner approval request..");
             statement = conn.prepareStatement(SQLConstants.SEND_GYM_OWNER_APPROVAL_REQ_QUERY);
             statement.setString(1,gymOwnerId);
+//            System.out.println(statement);
             statement.executeUpdate();
 
         } catch (SQLException se) { se.printStackTrace(); }
@@ -209,6 +210,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
 
     @Override
     public String getGymOwnerId(String userName, String password) {
+        List<GymOwner> gymOwnerList = getGymOwnersList();
         for (GymOwner gymowner: gymOwnerList) {
             if (gymowner.getUserName().equals(userName) && gymowner.getPassword().equals(password)) {
                 return gymowner.getUserID();
