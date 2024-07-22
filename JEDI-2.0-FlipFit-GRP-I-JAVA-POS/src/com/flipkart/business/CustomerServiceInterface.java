@@ -10,9 +10,10 @@ import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.List;
 
-/**
- * Interface for Customer Service.
- */
+    /**
+     * @author JEDI-09
+     * Interface for Customer Service.
+     */
 public interface CustomerServiceInterface {
 
     /**

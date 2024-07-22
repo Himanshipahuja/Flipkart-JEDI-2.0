@@ -11,7 +11,6 @@ import java.util.Scanner;
 public class AdminFlipfitMenu {
 
     AdminServiceImpl adminService = new AdminServiceImpl();
-    GymOwnerServiceImpl gymOwnerService = new GymOwnerServiceImpl();
 
     public static Scanner scanner = new Scanner(System.in);
 

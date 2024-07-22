@@ -5,9 +5,10 @@ import com.flipkart.bean.BookingDetails;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Interface for Booking Service.
- */
+    /**
+     * @author JEDI-09
+     * Interface for Booking Service
+     */
 public interface BookingServiceInterface {
 
     /**

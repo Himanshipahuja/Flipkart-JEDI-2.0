@@ -4,9 +4,10 @@ import com.flipkart.bean.Slot;
 
 import java.util.List;
 
-/**
- * Interface for Slot Service
- */
+    /**
+     * @author JEDI-09
+     * Interface for Slot Service
+     */
 public interface SlotServiceInterface {
 
     /**

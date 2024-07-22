@@ -4,9 +4,10 @@ import com.flipkart.bean.GymCentre;
 
 import java.util.List;
 
-/**
- * Interface for GymCenter Service
- */
+    /**
+     * @author JEDI-09
+     * Interface for GymCenter Service
+     */
 public interface GymCenterServiceInterface {
     /**
      * Retrieves a list of GymCentres based on the provided gymOwnerId.

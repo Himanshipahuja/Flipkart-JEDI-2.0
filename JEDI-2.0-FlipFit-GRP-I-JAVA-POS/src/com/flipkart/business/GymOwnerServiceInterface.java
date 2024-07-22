@@ -2,9 +2,10 @@ package com.flipkart.business;
 
 import com.flipkart.bean.GymOwner;
 
-/**
- * Interface for GymOwner Dao
- */
+    /**
+     * @author JEDI-09
+     * Interface for GymOwner Dao
+     */
 public interface GymOwnerServiceInterface {
 
     /**
