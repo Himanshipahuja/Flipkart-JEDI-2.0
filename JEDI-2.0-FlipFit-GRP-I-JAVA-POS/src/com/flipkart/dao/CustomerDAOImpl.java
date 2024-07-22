@@ -16,6 +16,9 @@ import java.util.UUID;
 
 import static com.flipkart.constants.SQLConstants.*;
 
+/**
+ * Implementation for Customer data accessor object.
+ */
 public class CustomerDAOImpl implements CustomerDAO {
     List<Customer> customerList = new ArrayList<>();
 

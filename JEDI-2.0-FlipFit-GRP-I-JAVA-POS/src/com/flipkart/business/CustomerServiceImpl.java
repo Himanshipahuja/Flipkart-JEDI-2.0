@@ -12,7 +12,9 @@ import java.sql.Timestamp;
 import java.util.List;
 import java.util.Scanner;
 
-
+/**
+ * Implementation of Customer Service.
+ */
 public class CustomerServiceImpl implements  CustomerServiceInterface{
 
     public static Scanner scanner = new Scanner(System.in);
@@ -113,9 +115,9 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
         return slotDAO.getSlotbyCentreIdAndTimeStamp(gymOwner,timestamp);
     }
 
-    public Customer viewMyProfile(String username)
+    public Customer viewMyProfile(String customerId)
     {
-        return customerDAO.getCustomerById(username);
+        return customerDAO.getCustomerById(customerId);
     }
 
     @Override
