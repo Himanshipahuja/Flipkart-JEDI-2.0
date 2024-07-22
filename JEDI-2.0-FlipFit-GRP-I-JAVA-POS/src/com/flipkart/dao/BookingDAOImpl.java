@@ -58,4 +58,8 @@ public class BookingDAOImpl {
         }
         return allBookingDetailsList;
     }
+
+    public String addBooking(String username, String scheduleId) {
+        return username;
+    }
 }
