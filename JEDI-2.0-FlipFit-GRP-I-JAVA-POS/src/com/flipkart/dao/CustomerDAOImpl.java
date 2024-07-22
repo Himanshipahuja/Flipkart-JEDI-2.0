@@ -1,6 +1,7 @@
 package com.flipkart.dao;
 
 import com.flipkart.bean.Customer;
+import com.flipkart.exceptions.LoginFailedException;
 import com.flipkart.exceptions.RegistrationFailedException;
 import com.flipkart.exceptions.WrongCredentialsException;
 import com.flipkart.utils.DBConnection;
@@ -23,8 +24,10 @@ public class CustomerDAOImpl implements CustomerDAO {
         String customerId = UUID.randomUUID().toString();
         Customer newCustomer = new Customer(customerId, username, email, password, phoneNumber, cardNumber);
         try {
+            if(checkCustomerDetails(username, password)) {
+                throw new RegistrationFailedException("Please enter a different userName or password.");
+            }
             Connection conn = DBConnection.connect();
-
             PreparedStatement stmtUser = conn.prepareStatement(ADD_NEW_USER);
             stmtUser.setString(1, customerId);
             stmtUser.setString(2, username);
@@ -40,10 +43,10 @@ public class CustomerDAOImpl implements CustomerDAO {
             stmt.executeUpdate();
             stmt.close();
             System.out.println("Customer Registered!!");
-        }catch (SQLException exp) {
+        } catch (RegistrationFailedException e) {
+            throw e;
+        } catch (Exception e) {
             throw new RegistrationFailedException("Failed to register the user. Try again.");
-        }  catch (Exception e) {
-            System.out.println("Error occurred while registration: \n" + e.getMessage() + "\n" + e);
         }
         return newCustomer;
     }
@@ -94,6 +97,7 @@ public class CustomerDAOImpl implements CustomerDAO {
             stmt.close();
         } catch (Exception exp) {
             System.out.println("Oops! An error occurred. Try again later.");
+            throw new LoginFailedException("Customer logIn failed");
         }
         return false;
     }

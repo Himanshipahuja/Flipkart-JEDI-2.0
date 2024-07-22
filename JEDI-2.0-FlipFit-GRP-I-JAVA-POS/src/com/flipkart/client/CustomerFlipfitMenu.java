@@ -4,6 +4,7 @@ import com.flipkart.bean.BookingDetails;
 import com.flipkart.bean.Customer;
 import com.flipkart.bean.GymCentre;
 import com.flipkart.business.CustomerServiceImpl;
+import com.flipkart.exceptions.RegistrationFailedException;
 import com.flipkart.exceptions.WrongCredentialsException;
 
 import java.sql.Timestamp;
@@ -24,20 +25,27 @@ public class CustomerFlipfitMenu {
     CustomerServiceImpl customerService = new CustomerServiceImpl();
 
     public void customerLogin(String userName, String password) throws WrongCredentialsException {
-        if(customerService.customerLogin(userName, password)) {
-            String customerId = customerService.getCustomerIdFromNameAndPass(userName, password);
-            customerClientMainPage(userName, customerId);
-        }
-        else{
-            System.out.println("Invalid Credentials!");
+        try {
+            if (customerService.customerLogin(userName, password)) {
+                String customerId = customerService.getCustomerIdFromNameAndPass(userName, password);
+                customerClientMainPage(userName, customerId);
+            } else {
+                System.out.println("Invalid Credentials!");
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
     }
 
-    public void register() throws WrongCredentialsException {
-        Customer customer = customerService.register();
-        String customerId = customerService.getCustomerIdFromNameAndPass(customer.getUserName(),
-                customer.getPassword());
-        customerClientMainPage(customer.getUserName(), customerId);
+    public void register() throws RegistrationFailedException {
+        try {
+            Customer customer = customerService.register();
+            String customerId = customerService.getCustomerIdFromNameAndPass(customer.getUserName(),
+                    customer.getPassword());
+            customerClientMainPage(customer.getUserName(), customerId);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     private void bookSlotSubMenu(String userName){
