@@ -5,9 +5,6 @@ import com.flipkart.constants.SQLConstants;
 import com.flipkart.utils.DBConnection;
 
 import java.sql.*;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.List;
 
 public class SlotDAOImpl implements SlotDAO {
 
@@ -16,59 +13,6 @@ public class SlotDAOImpl implements SlotDAO {
 
 
     public SlotDAOImpl() {}
-
-    public List<Slot> getSlotList() {
-        List<Slot> slotList = new ArrayList<>();
-
-        String query = "SELECT slotId, centreId, time FROM slot"; // Adjust query according to your table schema
-
-        try (Connection connection = DBConnection.connect()) {
-            assert connection != null;
-            try (PreparedStatement stmt = connection.prepareStatement(query);
-                 ResultSet resultSet = stmt.executeQuery()) {
-
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
-                while (resultSet.next()) {
-                    String slotId = resultSet.getString("slotId");
-                    String centreId = resultSet.getString("centreId");
-                    Date slotTime = resultSet.getDate("time");
-
-                    slotList.add(new Slot(slotId, centreId, slotTime));
-                }
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return slotList;
-    }
-
-    @Override
-    public List<Slot> getSlotByCentreId(String gymCentreId) {
-        List<Slot> filteredSlotList = new ArrayList<>();
-        String query = "SELECT slotId, centreId, time FROM slot WHERE centreId = ?"; // Adjust query according to your table schema
-
-        try (Connection connection = DBConnection.connect();
-             PreparedStatement stmt = connection.prepareStatement(query)) {
-
-            stmt.setString(1, gymCentreId);
-            try (ResultSet resultSet = stmt.executeQuery()) {
-                while (resultSet.next()) {
-                    String slotId = resultSet.getString("slotId");
-                    String centreName = resultSet.getString("centreId");
-                    Date slotTime = resultSet.getDate("time");
-
-                    filteredSlotList.add(new Slot(slotId, centreName, slotTime));
-                }
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        return filteredSlotList;
-    }
 
     @Override
     public void addSlot(Slot slot) {

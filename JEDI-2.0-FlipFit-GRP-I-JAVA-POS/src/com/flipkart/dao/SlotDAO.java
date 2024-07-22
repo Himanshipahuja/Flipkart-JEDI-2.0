@@ -10,20 +10,6 @@ import java.util.List;
      * Interface for slot DAO operations
      */
 public interface SlotDAO {
-    /**
-     * Retrieves a list of all slots available.
-     *
-     * @return   	list of Slot objects representing all available slots
-     */
-    public List<Slot> getSlotList();
-
-    /**
-     * Retrieves a list of slots for a given gym centre ID.
-     *
-     * @param  gymCentreId the ID of the gym centre for which to retrieve the slots
-     * @return            a list of Slot objects representing the slots for the given gym centre
-     */
-    public List<Slot> getSlotByCentreId(String gymCentreId);
 
     /**
      * Adds a new slot to the database.
