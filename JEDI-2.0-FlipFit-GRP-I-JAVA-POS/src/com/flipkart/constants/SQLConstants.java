@@ -11,6 +11,7 @@ public class SQLConstants {
     public static final String FETCH_GYM_CENTRES_BY_CITY = "SELECT * FROM gym_center where city = ?";
     public static final String FETCH_GYM_CENTRE_CAPACITY =  "SELECT capacity FROM gym_center WHERE centerId = ?";
     public static final String SQL_SEND_APPROVAL_GYM_CENTRE_BY_ID_QUERY="Update gym_center Set approved=? WHERE centerName=? AND ownerId=?";
+    public static final String FETCH_GYM_CENTRE_COST =  "SELECT amountPerSlot FROM gym_center WHERE centerId = ?";
 
     // -------------------------------------- USER ------------------------------------------------------------
     public static final String GET_USER_BY_ID = "SELECT * FROM `flipfit-schema`.`user` WHERE userId = ?;";
@@ -52,6 +53,11 @@ public class SQLConstants {
     // -------------------------------------- SCHEDULE ------------------------------------------------------------
     public static final  String GET_BOOKED_SLOT_COUNT_FROM_SLOTID = "SELECT count(*) FROM schedule where slotId = ?";
     public static final String ADD_SCHEDULE = "INSERT INTO schedule (scheduleId,date,slotid) VALUES (?,?,?)";
+
+    // -------------------------------------- PAYMENT ------------------------------------------------------------
+    public static final  String ADD_PAYMENT = "INSERT INTO payment (paymentId,bookingId,amountPaid) VALUES (?,?,?)";
+
+
 
 
 

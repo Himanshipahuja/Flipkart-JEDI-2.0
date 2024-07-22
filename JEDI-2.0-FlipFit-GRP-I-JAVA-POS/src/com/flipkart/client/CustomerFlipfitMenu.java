@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Scanner;
 
 import static com.flipkart.constants.Constants.INVALID_CHOICE_ERROR;
@@ -60,6 +61,12 @@ public class CustomerFlipfitMenu {
         //Select Date
         Timestamp sqlTimestamp = getTimestamp();
         String slotId = customerService.getSlotIdFromGymCentreAndTimestamp(chosenGym,sqlTimestamp);
+
+        if(slotId == null){
+            System.out.println("No slots available for the selected centre and time");
+            bookSlotSubMenu(userName);
+        }
+
         System.out.println("Slot id is as follows:" + slotId);
 
         Integer currBookingCount = customerService.getBookingCountFromSlotId(slotId);
@@ -71,11 +78,20 @@ public class CustomerFlipfitMenu {
         System.out.println("The maximum number of bookings in the given slot possible are : " + maximumBookingCapacity);
 
         if(currBookingCount < maximumBookingCapacity){
-             String scheduleId = customerService.addSchedule(sqlTimestamp,slotId);
-            String BookingId = customerService.addBooking(userName,scheduleId);
-//             System.out.println("Booking successfull!, schedule Id for my brother's booking: " + BookingId);
-//            update schedule table
-//            update booking table
+            float gymCentreCost = customerService.getGymCentreCostFromCentreId(chosenGym);
+            System.out.println("Would you like to continue to payment? Enter Y/N to pay "+gymCentreCost);
+            String paymentChoice = scanner.next();
+            if(Objects.equals(paymentChoice, "Y")){
+                String scheduleId = customerService.addSchedule(sqlTimestamp,slotId);
+                String bookingId = customerService.addBooking(userName,scheduleId);
+                String paymentId = customerService.addPayment(bookingId,gymCentreCost);
+                System.out.println("Booking successfull!, schedule Id for my brother's booking: " + bookingId);
+            }
+            else{
+                System.out.println("Redirecting to selection page");
+                bookSlotSubMenu(userName);
+            }
+
         }
         else{
             System.out.println("Sorry brother, no slots available");

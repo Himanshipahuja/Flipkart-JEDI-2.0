@@ -285,4 +285,22 @@ public class GymCenterDAOImpl implements GymCenterDAO {
 
 
 
+
+    @Override
+    public float getCostFromCenterId(String centerId) {
+        float gymCentreCost = 0;
+        try {
+            conn = DBConnection.connect();
+            System.out.println("Fetching gyms centre cost");
+            statement = conn.prepareStatement(SQLConstants.FETCH_GYM_CENTRE_COST);
+            statement.setString(1, centerId);
+            ResultSet rs = statement.executeQuery();
+            while(rs.next()) {
+                gymCentreCost = rs.getInt("amountPerSlot");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return gymCentreCost;
+    }
 }

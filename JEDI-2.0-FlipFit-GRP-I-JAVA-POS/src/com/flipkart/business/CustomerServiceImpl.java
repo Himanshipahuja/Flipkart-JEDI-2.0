@@ -22,6 +22,8 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     private final ScheduleDAO scheduleDAO = new ScheduleDAOImpl();
     private final BookingServiceInterface bookingService = new BookingServiceImpl();
     private final BookingDAOImpl bookingDAO = new BookingDAOImpl();
+    private final PaymentDAOImpl paymentDAO = new PaymentDAOImpl();
+
     @Override
     public List<GymCentre> getAllGymCenterDetailsByCity(String city) {
         return gymCenterDAO.getGymCentreListByCity(city);
@@ -111,6 +113,17 @@ public class CustomerServiceImpl implements  CustomerServiceInterface{
     public String addSchedule(Timestamp timestamp, String slotId) {
         return scheduleDAO.addSchedule(timestamp,slotId);
     }
+
+    @Override
+    public float getGymCentreCostFromCentreId(String centerId) {
+        return  gymCenterDAO.getCostFromCenterId(centerId);
+    }
+
+    @Override
+    public String addPayment(String bookingID, float amountPaid) {
+        return paymentDAO.addPayment(bookingID,amountPaid);
+    }
+
     public String addBooking(String username, String scheduleId) {
         return bookingDAO.addBooking(username, scheduleId);
     }

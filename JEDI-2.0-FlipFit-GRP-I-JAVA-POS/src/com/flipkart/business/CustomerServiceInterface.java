@@ -26,4 +26,6 @@ public interface CustomerServiceInterface {
     public Integer getBookingCountFromSlotId(String slotId);
     public Integer getGymCentreCapacityFromCentreId(String centerId);
     public String addSchedule(Timestamp timestamp, String slotId);
+    public float getGymCentreCostFromCentreId(String centerId);
+    public String addPayment(String bookingID, float amountPaid);
 }
