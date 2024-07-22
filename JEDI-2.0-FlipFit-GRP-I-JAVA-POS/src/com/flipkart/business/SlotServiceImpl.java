@@ -5,7 +5,7 @@ import com.flipkart.dao.SlotDAOImpl;
 
 import java.util.List;
 
-public class SlotServiceImpl implements SlotService {
+public class SlotServiceImpl implements SlotServiceInterface {
 
     private static SlotDAOImpl slotDAO = new SlotDAOImpl();
 

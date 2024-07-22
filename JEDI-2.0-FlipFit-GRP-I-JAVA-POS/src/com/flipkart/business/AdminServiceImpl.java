@@ -4,8 +4,6 @@ import com.flipkart.bean.Admin;
 import com.flipkart.bean.GymCentre;
 import com.flipkart.bean.GymOwner;
 import com.flipkart.dao.AdminDAOImpl;
-import com.flipkart.dao.GymCenterDAOImpl;
-import com.flipkart.dao.GymOwnerDAOImpl;
 import com.flipkart.exceptions.LoginFailedException;
 
 import java.util.List;
@@ -15,8 +13,6 @@ public class AdminServiceImpl implements AdminServiceInterface {
 
     Admin admin = new Admin();
     AdminDAOImpl adminDAO = new AdminDAOImpl();
-    GymCenterDAOImpl gymCenterDAOImpl = new GymCenterDAOImpl();
-    GymOwnerDAOImpl gymOwnerDAOImpl = new GymOwnerDAOImpl();
 
 
     @Override

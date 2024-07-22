@@ -1,8 +1,5 @@
 package com.flipkart.dao;
 
-import com.flipkart.bean.Schedule;
-
-import java.sql.Time;
 import java.sql.Timestamp;
 
     /**

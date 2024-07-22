@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Interface for Slot Service
  */
-public interface SlotService {
+public interface SlotServiceInterface {
 
     /**
      * Adds the slot to the Gym
