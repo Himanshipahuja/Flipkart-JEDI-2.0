@@ -1,0 +1,5 @@
+com/flipkart/rest/HelloRestController.class
+com/flipkart/rest/CustomerGymFlipFitController.class
+com/flipkart/rest/AdminGymFlipFitController.class
+com/flipkart/rest/GymOwnerFlipFitController.class
+com/flipkart/app/App.class
