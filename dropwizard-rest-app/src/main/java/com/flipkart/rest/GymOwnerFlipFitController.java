@@ -57,8 +57,8 @@ public class GymOwnerFlipFitController {
     @GET
     @Path("/get-approval-center")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response requestGymCentreApproval(@QueryParam("gymCentreId") String gymCentreId, @QueryParam("userName") String userName) {
-        gymCenterService.requestGymCentreApproval(gymCentreId, userName);
-        return Response.ok("Sent approval request to Admin").build();
+    public Response requestGymCentreApproval(@QueryParam("gymCentreName") String gymCentreName, @QueryParam("userName") String userName) {
+        gymCenterService.requestGymCentreApproval( gymCentreName, userName);
+        return Response.ok("Sent Gym Center approval request to Admin").build();
     }
 }
