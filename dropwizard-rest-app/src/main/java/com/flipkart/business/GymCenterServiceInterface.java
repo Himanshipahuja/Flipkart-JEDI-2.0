@@ -15,7 +15,7 @@ public interface GymCenterServiceInterface {
      * @param  gymOwnerId  the ID of the gym owner
      * @return             a list of GymCentres associated with the given gymOwnerId
      */
-    List<GymCentre> getAllCentresByOwmerId(String gymOwnerId);
+    List<GymCentre> getAllCentresByOwnerUsername(String gymOwnerId);
 
     /**
      * Adds a new gym center with the provided details.

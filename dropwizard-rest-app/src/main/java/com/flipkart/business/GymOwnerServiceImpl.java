@@ -16,7 +16,7 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
     public GymOwner register(GymOwner gymOwner) {
         try {
             GymOwner registeredOwner = gymOwnerDAOImpl.registerGymOwner(gymOwner.getUserName(), gymOwner.getPassword(),
-                    gymOwner.getEmail(), gymOwner.getPanNumber(), gymOwner.getPanNumber());
+                    gymOwner.getEmail(), gymOwner.getPanNumber(), gymOwner.getPanNumber(),gymOwner.getGymCentreLists());
             System.out.println("Registered successfully!! ");
             return registeredOwner;
         } catch(RegistrationFailedException e){

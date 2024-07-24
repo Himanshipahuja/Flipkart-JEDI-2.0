@@ -10,8 +10,8 @@ public class GymCenterServiceImpl implements GymCenterServiceInterface {
 
 
 
-    public List<GymCentre> getAllCentresByOwmerId(String gymOwnerId) {
-        return gymCenterDAOImpl.getAllCentresByOwmerId(gymOwnerId);
+    public List<GymCentre> getAllCentresByOwnerUsername(String gymOwnerId) {
+        return gymCenterDAOImpl.getAllCentresByOwnerUsername(gymOwnerId);
     }
     public void addCenter(String gymId,String userName,String gymCentreName, String gstin, String city,int capacity,boolean isapproved,float price) {
         //takes gymCenter details

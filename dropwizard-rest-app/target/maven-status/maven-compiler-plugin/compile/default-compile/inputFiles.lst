@@ -12,6 +12,7 @@
 /Users/harshit.singh3/Desktop/DemoProject/Flipkart-JEDI-2.0/dropwizard-rest-app/src/main/java/com/flipkart/business/BookingServiceInterface.java
 /Users/harshit.singh3/Desktop/DemoProject/Flipkart-JEDI-2.0/dropwizard-rest-app/src/main/java/com/flipkart/app/App.java
 /Users/harshit.singh3/Desktop/DemoProject/Flipkart-JEDI-2.0/dropwizard-rest-app/src/main/java/com/flipkart/business/SlotServiceInterface.java
+/Users/harshit.singh3/Desktop/DemoProject/Flipkart-JEDI-2.0/dropwizard-rest-app/src/main/java/com/flipkart/dao/PaymentDAOImpl.java
 /Users/harshit.singh3/Desktop/DemoProject/Flipkart-JEDI-2.0/dropwizard-rest-app/src/main/java/com/flipkart/bean/Role.java
 /Users/harshit.singh3/Desktop/DemoProject/Flipkart-JEDI-2.0/dropwizard-rest-app/src/main/java/com/flipkart/exceptions/CentreNotFoundException.java
 /Users/harshit.singh3/Desktop/DemoProject/Flipkart-JEDI-2.0/dropwizard-rest-app/src/main/java/com/flipkart/business/GymCenterServiceInterface.java
@@ -34,6 +35,7 @@
 /Users/harshit.singh3/Desktop/DemoProject/Flipkart-JEDI-2.0/dropwizard-rest-app/src/main/java/com/flipkart/exceptions/WrongCredentialsException.java
 /Users/harshit.singh3/Desktop/DemoProject/Flipkart-JEDI-2.0/dropwizard-rest-app/src/main/java/com/flipkart/bean/User.java
 /Users/harshit.singh3/Desktop/DemoProject/Flipkart-JEDI-2.0/dropwizard-rest-app/src/main/java/com/flipkart/bean/Schedule.java
+/Users/harshit.singh3/Desktop/DemoProject/Flipkart-JEDI-2.0/dropwizard-rest-app/src/main/java/com/flipkart/dao/CustomerDAOImpl.java
 /Users/harshit.singh3/Desktop/DemoProject/Flipkart-JEDI-2.0/dropwizard-rest-app/src/main/java/com/flipkart/dao/BookingDAOImpl.java
 /Users/harshit.singh3/Desktop/DemoProject/Flipkart-JEDI-2.0/dropwizard-rest-app/src/main/java/com/flipkart/exceptions/DataEntryException.java
 /Users/harshit.singh3/Desktop/DemoProject/Flipkart-JEDI-2.0/dropwizard-rest-app/src/main/java/com/flipkart/bean/Slot.java

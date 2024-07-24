@@ -32,7 +32,7 @@ public interface GymOwnerDAO {
      * @param  cardNumber  the card number of the GymOwner
      * @return              the newly registered GymOwner
      */
-    public GymOwner registerGymOwner(String userName,String password,String email,String panNumber,String cardNumber);
+    public GymOwner registerGymOwner(String userName,String password,String email,String panNumber,String cardNumber,List<String> gymCentreList);
 
     /**
      * Retrieves the list of pending Gym Owners.

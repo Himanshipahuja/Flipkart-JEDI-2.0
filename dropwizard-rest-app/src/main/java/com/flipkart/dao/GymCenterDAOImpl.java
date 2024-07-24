@@ -19,14 +19,14 @@ public class GymCenterDAOImpl implements GymCenterDAO {
     private PreparedStatement statement = null;
     AdminDAOImpl adminDAO = new AdminDAOImpl();
 
-        public List<GymCentre> getAllCentresByOwmerId(String gymOwnerId) {
+        public List<GymCentre> getAllCentresByOwnerUsername(String gymOwnerUsername) {
         List<GymCentre> gymCentreListofOwner = new ArrayList<>();
 
             String fetcehdOwnerID = "";
             try {
                 conn = DBConnection.connect();
                 statement = conn.prepareStatement(SQLConstants.GET_USER_ID_FRROM_USER);
-                statement.setString(1, gymOwnerId);
+                statement.setString(1, gymOwnerUsername);
 
                 ResultSet rs = statement.executeQuery();
                 while (rs.next()) {

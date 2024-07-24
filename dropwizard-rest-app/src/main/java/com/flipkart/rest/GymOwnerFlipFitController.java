@@ -7,8 +7,14 @@ import com.flipkart.business.GymOwnerServiceImpl;
 import com.flipkart.business.GymOwnerServiceInterface;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+
+import com.flipkart.bean.*;
+import com.flipkart.business.*;
+
+import java.util.List;
 
 @Path("/gymOwner")
 @Produces(MediaType.APPLICATION_JSON)
@@ -60,5 +66,18 @@ public class GymOwnerFlipFitController {
     public Response requestGymCentreApproval(@QueryParam("gymCentreName") String gymCentreName, @QueryParam("userName") String userName) {
         gymCenterService.requestGymCentreApproval( gymCentreName, userName);
         return Response.ok("Sent Gym Center approval request to Admin").build();
+    }
+
+    @Path("/gym-centres")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAllCentresByGymOwnerUsername(@QueryParam("gymOwnerUsername") String gymOwnerUsername) {
+        List<GymCentre> centres = gymCenterService.getAllCentresByOwnerUsername(gymOwnerUsername);
+        if (centres == null || centres.isEmpty()) {
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("No gym centres found for the given owner ID.")
+                    .build();
+        }
+        return Response.ok(centres).build();
     }
 }

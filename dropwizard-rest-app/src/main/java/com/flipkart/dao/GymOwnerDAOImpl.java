@@ -54,7 +54,7 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
         // Convert StringBuilder to String and return the generated random string
         return sb.toString();
     }
-    public GymOwner registerGymOwner(String userName,String password,String email,String panNumber,String cardNumber){
+    public GymOwner registerGymOwner(String userName,String password,String email,String panNumber,String cardNumber, List<String> gymCentreList){
         GymOwner gymOwner = new GymOwner();
         try{
             conn  = DBConnection.connect();
@@ -80,11 +80,14 @@ public class GymOwnerDAOImpl implements GymOwnerDAO {
             statement.execute();
 
             System.out.println("Registration Success\n");
+            gymOwner.setUserID(userid);
             gymOwner.setUserName(userName);
             gymOwner.setPassword(password);
             gymOwner.setEmail(email);
             gymOwner.setPanNumber(panNumber);
             gymOwner.setCardDetails(cardNumber);
+            gymOwner.setGymCentreLists(gymCentreList);
+            gymOwner.setRole(Role.GYMOWNER);
 
             return gymOwner;
 
