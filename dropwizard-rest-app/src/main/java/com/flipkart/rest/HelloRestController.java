@@ -8,7 +8,6 @@ import javax.ws.rs.core.Response;
 
 @Path("/helloapi")
 @Produces(MediaType.APPLICATION_JSON)
-
 public class HelloRestController {
     @GET
     public String getEmployees(){

@@ -25,7 +25,8 @@ public class App extends Application<Configuration>
     @Override
     public void run(Configuration c, Environment e) throws Exception {
         LOGGER.info("Registering REST resources");
-          e.jersey().register(new HelloRestController());
+        e.jersey().register(new HelloRestController());
+        e.jersey().register(new GymOwnerFlipFitController());
         // e.jersey().register(new AdminGMSRESTService());
         //  e.jersey().register(new GymOwnerGMSRESTService());
         //e.jersey().register(new UserGMSRESTService());
