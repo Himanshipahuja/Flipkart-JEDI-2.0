@@ -35,4 +35,14 @@ public class GymOwnerFlipFitController {
             return "Login failed! Invalid Credentials";
         }
     }
+
+    @POST
+    @Path("/register")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response GymOwnerRegister(GymOwner gymOwner) {
+        GymOwner registerdGymOwner =  gymOwnerService.register(gymOwner);
+        if(registerdGymOwner==null)
+            return Response.notModified().build();
+        return Response.ok(registerdGymOwner).build();
+    }
 }

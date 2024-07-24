@@ -13,24 +13,10 @@ public class GymOwnerServiceImpl implements GymOwnerServiceInterface{
     public static Scanner scanner = new Scanner(System.in); // has to be imported from main client
 
     @Override
-    public GymOwner register() {
-        System.out.println("Enter your UserName");
-        String userName = scanner.next();
-
-        System.out.println("Enter your Passkey");
-        String password = scanner.next();
-
-        System.out.println("Enter your Email");
-        String email = scanner.next();
-
-        System.out.println("Enter your PAN Number");
-        String panNumber = scanner.next();
-
-        System.out.println("Enter your Card Number");
-        String cardNumber = scanner.next();
-
+    public GymOwner register(GymOwner gymOwner) {
         try {
-            GymOwner registeredOwner = gymOwnerDAOImpl.registerGymOwner(userName, password, email, panNumber, cardNumber);
+            GymOwner registeredOwner = gymOwnerDAOImpl.registerGymOwner(gymOwner.getUserName(), gymOwner.getPassword(),
+                    gymOwner.getEmail(), gymOwner.getPanNumber(), gymOwner.getPanNumber());
             System.out.println("Registered successfully!! ");
             return registeredOwner;
         } catch(RegistrationFailedException e){

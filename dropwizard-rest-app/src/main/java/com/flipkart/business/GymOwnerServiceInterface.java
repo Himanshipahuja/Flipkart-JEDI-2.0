@@ -13,7 +13,7 @@ public interface GymOwnerServiceInterface {
      *
      * @return  the registered GymOwner
      */
-    public GymOwner register();
+    public GymOwner register(GymOwner gymOwner);
 
     /**
      * Logs in a GymOwner by checking the provided username and password against the GymOwnerDAOImpl.
