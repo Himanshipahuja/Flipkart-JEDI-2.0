@@ -22,6 +22,10 @@ public class GymCentre {
         this.amountPerSlot = amountPerSlot;
     }
 
+    public GymCentre(){
+
+    }
+
     public String getCentreId() {
         return centreId;
     }

@@ -80,4 +80,23 @@ public class GymOwnerFlipFitController {
         }
         return Response.ok(centres).build();
     }
+
+    @POST
+    @Path("/add-centre")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public String addGymCentre(GymCentre gymCentre) {
+
+        String gymId = gymCentre.getCentreId();
+        String ownerId = gymCentre.getOwnerId();
+        String gymCentreName = gymCentre.getCentreName();
+        String gstin = gymCentre.getGstNo();
+        String city = gymCentre.getCity();
+        int capacity = gymCentre.getCapacity();
+        boolean isApproved = gymCentre.isApproved() != 0; // Convert int to boolean
+        float amountPerSlot = gymCentre.getAmountPerSlot();
+
+        gymCenterService.addCenter(gymId, ownerId, gymCentreName, gstin, city, capacity, isApproved, amountPerSlot);
+
+        return "center added successfully";
+    }
 }
