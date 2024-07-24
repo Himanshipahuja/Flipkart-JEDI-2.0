@@ -87,7 +87,7 @@ public class GymOwnerFlipFitController {
     public String addGymCentre(GymCentre gymCentre) {
 
         String gymId = gymCentre.getCentreId();
-        String ownerId = gymCentre.getOwnerId();
+        String ownerUsername = gymCentre.getOwnerId();
         String gymCentreName = gymCentre.getCentreName();
         String gstin = gymCentre.getGstNo();
         String city = gymCentre.getCity();
@@ -95,7 +95,7 @@ public class GymOwnerFlipFitController {
         boolean isApproved = gymCentre.isApproved() != 0; // Convert int to boolean
         float amountPerSlot = gymCentre.getAmountPerSlot();
 
-        gymCenterService.addCenter(gymId, ownerId, gymCentreName, gstin, city, capacity, isApproved, amountPerSlot);
+        gymCenterService.addCenter(gymId, ownerUsername, gymCentreName, gstin, city, capacity, isApproved, amountPerSlot);
 
         return "center added successfully";
     }
