@@ -45,4 +45,12 @@ public class GymOwnerFlipFitController {
             return Response.notModified().build();
         return Response.ok(registerdGymOwner).build();
     }
+
+    @GET
+    @Path("/changePassword")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String changePassword(@QueryParam("userName") String userName, @QueryParam("oldPassword") String oldPassword, @QueryParam("newPassword") String newPassword) {
+        gymOwnerService.gymOwnerChangePassword(userName, oldPassword, newPassword);
+        return "Password updated successfully.";
+    }
 }
