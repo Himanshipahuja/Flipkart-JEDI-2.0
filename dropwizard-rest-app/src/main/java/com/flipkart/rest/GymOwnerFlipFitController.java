@@ -53,4 +53,12 @@ public class GymOwnerFlipFitController {
         gymOwnerService.gymOwnerChangePassword(userName, oldPassword, newPassword);
         return "Password updated successfully.";
     }
+
+    @GET
+    @Path("/get-approval-owner")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response requestGymOwnerApproval(@QueryParam("gymOwnerId") String gymOwnerId) {
+        gymOwnerService.requestGymOwnerApproval(gymOwnerId);
+        return Response.ok("Sent approval request to Admin").build();
+    }
 }
