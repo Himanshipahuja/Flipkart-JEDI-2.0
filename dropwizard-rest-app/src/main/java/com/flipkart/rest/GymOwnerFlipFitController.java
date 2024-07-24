@@ -22,6 +22,8 @@ public class GymOwnerFlipFitController {
 
     GymOwnerServiceInterface gymOwnerService = new GymOwnerServiceImpl();
     GymCenterServiceInterface gymCenterService = new GymCenterServiceImpl();
+    private SlotServiceImpl slotServiceImpl = new SlotServiceImpl();
+
     @GET
     @Path("/login")
     public String GymOwnerLogin(@QueryParam("userName") String userName, @QueryParam("password") String password) {
@@ -98,5 +100,20 @@ public class GymOwnerFlipFitController {
         gymCenterService.addCenter(gymId, ownerUsername, gymCentreName, gstin, city, capacity, isApproved, amountPerSlot);
 
         return "center added successfully";
+    }
+
+    @POST
+    @Path("/addSlots")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response addSlotsToGym(List<Slot> slotList, @QueryParam("centreId") String centreId){
+        try {
+            System.out.println(centreId);
+            System.out.println(slotList);
+            slotServiceImpl.addSlotsForGym(centreId, slotList);
+            return Response.ok("Slots added in the Gym centre").build();
+        } catch (IllegalArgumentException exp){
+            System.out.println("illegal arg");
+            return Response.notModified().build();
+        }
     }
 }
