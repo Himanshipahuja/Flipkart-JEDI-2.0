@@ -1,1 +1,0 @@
-typeSearchIndex = [{"p":"com.flipkart.rest","l":"AdminGymFlipFitController"},{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"com.flipkart.app","l":"App"},{"p":"com.flipkart.rest","l":"CustomerGymFlipFitController"},{"p":"com.flipkart.rest","l":"GymOwnerFlipFitController"},{"p":"com.flipkart.rest","l":"HelloRestController"}];updateSearchResults();
