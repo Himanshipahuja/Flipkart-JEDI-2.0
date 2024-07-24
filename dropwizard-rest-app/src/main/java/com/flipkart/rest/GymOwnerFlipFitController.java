@@ -1,29 +1,21 @@
 package com.flipkart.rest;
 
+import com.flipkart.bean.GymOwner;
+import com.flipkart.business.GymCenterServiceImpl;
+import com.flipkart.business.GymCenterServiceInterface;
+import com.flipkart.business.GymOwnerServiceImpl;
+import com.flipkart.business.GymOwnerServiceInterface;
+
 import javax.ws.rs.*;
-import javax.ws.rs.core.Application;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.flipkart.bean.*;
-import com.flipkart.business.SlotServiceInterface;
-import com.flipkart.business.*;
-import com.flipkart.exceptions.DataEntryException;
-import org.eclipse.jetty.http.MetaData;
-
-import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.util.List;
-import java.util.Locale;
-
-@Path("/gymowner")
+@Path("/gymOwner")
 @Produces(MediaType.APPLICATION_JSON)
 public class GymOwnerFlipFitController {
 
     GymOwnerServiceInterface gymOwnerService = new GymOwnerServiceImpl();
-
+    GymCenterServiceInterface gymCenterService = new GymCenterServiceImpl();
     @GET
     @Path("/login")
     public String GymOwnerLogin(@QueryParam("userName") String userName, @QueryParam("password") String password) {
@@ -59,6 +51,14 @@ public class GymOwnerFlipFitController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response requestGymOwnerApproval(@QueryParam("gymOwnerId") String gymOwnerId) {
         gymOwnerService.requestGymOwnerApproval(gymOwnerId);
+        return Response.ok("Sent approval request to Admin").build();
+    }
+
+    @GET
+    @Path("/get-approval-center")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response requestGymCentreApproval(@QueryParam("gymCentreId") String gymCentreId, @QueryParam("userName") String userName) {
+        gymCenterService.requestGymCentreApproval(gymCentreId, userName);
         return Response.ok("Sent approval request to Admin").build();
     }
 }
